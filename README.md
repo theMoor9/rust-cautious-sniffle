@@ -1,6 +1,6 @@
-# Rust Exercise CheatRepo
+# Welcome to Rust CheatRepo!
 
-Welcome to Rust Exercise CheatRepo! This repository contains a collection of Rust code blocks for learning, along with a comprehensive Rust cheat sheet. It is designed to help you learn Rust through hands-on practice and easy-to-reference resources.
+This repository contains a collection of Rust code blocks for learning, along with a few comprehensive Rust cheat sheets. It is designed to help you learn Rust through hands-on practice and easy-to-reference resources.
 
 If, like me, you love challenges and are a seeker of self-tought knowledge, here’s what I suggest:
 
@@ -14,13 +14,13 @@ My methodical approach to learning has proven to be practically successful. I ho
 ## Table of Contents
 
 - [Exercises](#exercises)
-- [Cheat Sheet](#cheat-sheet)
+- [Cheat Sheets](#cheat-sheet)
 - [Link to Official Documentation](#documentation)
 
 
-## Cheat Sheet
+## Cheat Sheets
 
-You can find a detailed Rust cheat sheet [here](./cheat_sheets).
+You can find the detailed Rust cheat sheets [here](./cheat_sheets).
 
 ## Documentation
 
