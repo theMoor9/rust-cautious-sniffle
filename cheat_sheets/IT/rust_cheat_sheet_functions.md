@@ -151,9 +151,9 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 ---
 ## **Metodi Standard**
-
+	
 ##### Vettori (`Vec<T>`)
-
+	
 - **.push()**: Aggiunge un elemento alla fine del vettore.
 - **.pop()**: Rimuove e restituisce l'ultimo elemento del vettore.
 - **.len()**: Restituisce il numero di elementi nel vettore.
@@ -168,9 +168,9 @@ fn multiply(a: i32, b: i32) -> i32 {
 - **.reserve(additional)**: Riserva spazio per almeno altri `additional` elementi.
 - **.shrink_to_fit()**: Riduce la capacità del vettore per adattarla alla lunghezza attuale.
 - **.retain(f)**: Mantiene solo gli elementi che soddisfano il predicato `f`.
-
+	
 ##### Stringhe (`String` e `&str`)
-
+	
 - **.to_string()**: Converte una slice di stringa in una stringa posseduta.
 - **.to_owned()**: Crea una copia posseduta della stringa.
 - **.len()**: Restituisce la lunghezza della stringa in byte.
@@ -187,4 +187,5 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 	
 ---
+	
 **Author:** Kenneth Boldrini

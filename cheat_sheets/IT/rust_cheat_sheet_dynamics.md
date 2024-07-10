@@ -104,7 +104,7 @@ Espressioni di controllo
 	
 ---
 ## **Expressions**
-
+	
  E' possibile utilizzare le espressioni in *assegnazione dinamica*. Inoltre è possibile utilizzare le espressioni innestate.
 ##### If - Else
 	
@@ -119,10 +119,10 @@ let mut variable: bool = if control_variable > 9 {
 	false
 }
 ```
-
+	
 E' possibile utilizzare le espressioni per costrutti diretti attraverso l'*assegnazione dinamica*.
 Siccome l'espressione `if`  restituisce un valore booleano e il controllo stesso è un'entità booleana, si effettua quanto segue.
-
+	
 ```Rust 
 let control_variable: u32 = 10 ;
 let mut variable: bool = control_variable > 9 ;
@@ -133,7 +133,6 @@ let mut variable: bool = control_variable > 9 ;
 - **Caso d'Uso**: Assegnazione diretta ed espressioni innestate (Terza variante su `match`).
 - **Esempio**:
 	
-
 ```Rust
 	enum DrinkHad {
 		One,
@@ -187,10 +186,10 @@ La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
 	// println!("{}", s2) // Questo causerebbe errore
 	```
 	
-
+	
 	>Se la variabile si trova all interno di una funzione, essa prende la *Responsabilità* fino alla fine del suo blocco. Alla fine di essa il dato variabile viene eliminato.
-
-
+		
+	
 ```Rust
 struct Customer {
 	name: &str,
@@ -221,7 +220,7 @@ fn main () {
 - **Sintassi**: `&`
 - **Caso d'Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
 - **Esempio**:
-
+	
 ```Rust
 // Si aggiunge la refernza `&` nell'intestazione
 fn calculate_length(given_name: &String) -> usize {
@@ -249,7 +248,7 @@ variabile che elabora alla fine del suo contesto
 	
 ---
 ### **Lifetimes** da finire
-
+	
 - Ensure that references are valid as long as they are used.
 - **Caso d'Uso**: Managing the scope of references.
 - **Esempio**:
@@ -270,8 +269,8 @@ variabile che elabora alla fine del suo contesto
     ```
 	
 - **Output**: `The longest string is long string is long`
-
-
-
+	
+	
 ---
+	
 **Author:** Kenneth Boldrini

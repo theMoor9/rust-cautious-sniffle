@@ -3,9 +3,9 @@ Tipi di dati, proprietà e funzionamento
 	
 ---
 ### **Tipi Scalari**
-
+	
 I tipi scalari in Rust rappresentano i valori più semplici, quelli che non possono essere suddivisi ulteriormente.
-
+	
 ##### Numeri Interi
     
 - **Interi Polari**: (`i` : Integers) Possono assumere forma negativa e positiva.
@@ -36,7 +36,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Tipi**: ```f32``` (Precisione singola), ```f64``` (Precisione doppia)
 - **Caso d'Uso**: Calcoli scientifici e di precisione.
 - **Esempio**:
-
+	
 	```
 	let pi: f32 = 3.14; 
 	let e: f64 = 2.718281828459045;
@@ -73,11 +73,11 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 I tipi composti raggruppano più variabili sotto un unico tipo
 	 
 ##### Tuples
-
+	
 - **Definizione**: Può raggruppare molteplici valori con differenti tipi
 - **Caso d'Uso**: Ritornare valori multipli da una funzione.
 - **Esempio**:
-
+	
 ```Rust
 // Unpacking della tupla in variabili definite
 let (first, second, third) = (1,2,3) ; 
@@ -120,12 +120,12 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 I tipi complessi in Rust rappresentano i valori composti, che  possono essere suddivisi ulteriormente per ottenere una varietà ampia di valori su cui è possibile applicare metodi e attribuire proprietà. 
 	
 ##### **Struct**
-
+	
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
 - **Tipo**: `struct`
 - **Caso d'Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
 - **Esempio**:
-
+	
 ```Rust
 struct ShippingBox{
 	width: u32, 
@@ -144,9 +144,9 @@ let my_box = ShippingBox {
 	depth: 3,
 } ; 
 ```
-
+	
 Si chiama in causa un ***campo*** della struct utilizzando il punto `.`
-
+	
 ```Rust
 let my_box_height = my_box.height ;
 let my_box_depth = my_box.depth ;
@@ -154,7 +154,7 @@ let my_box_width = my_box.width ;
 
 let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 ```
-
+	
 >Le proprietà di solidità di Rust impongono che alla creazione `let` di una `struct` si debba specificare tutti i ***campi*** di essa per evitare errori
 	
 - ##### Struct String
@@ -238,12 +238,12 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 	
 ##### **Enumerations**
-
+	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
 - **Tipo**: `enum`
 - **Caso d'Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
 - **Esempio**:
-
+	
 ```Rust
 enum EnumName {
 	Version1(u8),
@@ -264,9 +264,9 @@ key2: "Questa è roba puzzle!",
 key3: OtherEnum::SomeVersion.. ,
 } ;
 ```
-
+	
 - **Approfondimento**
-
+	
 ```Rust
 enum Exceptions {
 	NoLactose(bool),
@@ -297,13 +297,13 @@ let second_pick_beverage = Menu::beverage{
 	volume: 0.5
 } ;
 ```
-
+	
 >	Da notare la possibilità di creare tipi piramidali complessi con varianti di tipo `enum`
 	
 	
 ---
 ### **Tipi Aggiuntivi**
-
+	
 1. **Slices**:
 	
 	- **Definizione**: Visualizzazione dinamica di un *array*.
@@ -317,9 +317,8 @@ let second_pick_beverage = Menu::beverage{
 	```
 	
 	- **Output**: `Slice: [2, 3]`
-
-
-2. String Slice:
+	
+1. String Slice:
     
     - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
     - **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
@@ -333,11 +332,11 @@ let second_pick_beverage = Menu::beverage{
         ```
 	
 	- **Output**: `Hello, world!`
-
-
+	
+	
 ---
 ### **Other Important **Tipi**** da finire
-
+	
 1. **Option**<**T**>:
     
     - Represents an optional value that can be either ```Some(T)``` or ```None```.
@@ -355,8 +354,7 @@ let second_pick_beverage = Menu::beverage{
         ```
 	
 	- **Output**: `Number: 5`
-
-
+	
 1. **Result<T, E>**:
     
     - Represents either a success (```Ok(T)```\n) or an error (```Err(E)```).
@@ -377,12 +375,11 @@ let second_pick_beverage = Menu::beverage{
 		Err(e) => println!("Error: {}", e), 
 	}
 	```
-
+		
 	- **Output**: `Result: 5`
-
-
-
-
+	
+	
 ---
+	
 **Author:** Kenneth Boldrini
 

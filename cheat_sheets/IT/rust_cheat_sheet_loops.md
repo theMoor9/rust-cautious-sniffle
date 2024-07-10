@@ -12,7 +12,6 @@ loop {
 	print!("I'am cycling in a long text line, ");
 }
 ```
-
 	
 	
 ---
@@ -157,11 +156,11 @@ while true {
 	
 ---
 ## **Interruzione cicli**
-
+	
 - `continue`: Salta l'iterazione corrente e passa alla successiva.
-
+	
 - `return`: Esce dalla funzione in cui il ciclo è contenuto.
-
+	
 - `labelled break` e `labelled continue`: Per gestire cicli annidati.
 ```Rust
 outer: for i in 0..5 { 		
@@ -176,7 +175,7 @@ outer: for i in 0..5 {
 }
 ```
 	
-
+	
 - `break` con valore: Per restituire un valore da un ciclo `loop`.
 ```Rust
 let result = loop { 
@@ -189,7 +188,7 @@ let result = loop {
 println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 ```
 	
-
+	
 - Uso di `Option` e `Result` per gestire condizioni di uscita specifiche.
 	
 	Con `Option`
@@ -223,4 +222,5 @@ println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 	
 	
 ---
+	
 **Author:** Kenneth Boldrini
