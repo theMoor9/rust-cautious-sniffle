@@ -125,6 +125,9 @@ Elementi base per esecuzione di rust
 	   $ ./main
 	   ```     
 	
+---
+##### Progressione Suggerita
+[[rust_cheat_sheet_types]]
 	
 ---
 	

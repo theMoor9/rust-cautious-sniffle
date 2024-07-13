@@ -378,6 +378,10 @@ let second_pick_beverage = Menu::beverage{
 		
 	- **Output**: `Result: 5`
 	
+		
+---
+##### Progressione Suggerita
+[[rust_cheat_sheet_dynamics]]
 	
 ---
 	

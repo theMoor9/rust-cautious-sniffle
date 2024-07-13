@@ -187,5 +187,10 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 	
 ---
+##### Progressione Suggerita
+[[rust_cheat_sheet_loops]]
+[[rust_cheat_sheet_dynamics]]
+	
+---
 	
 **Author:** Kenneth Boldrini

@@ -117,6 +117,10 @@ The struct setting is increasing to: Volume { value: 30 }
 
 ```
 	
+		
+---
+##### Suggested Progression
+[[rust_cheat_sheet_dynamics]]
 	
 ---
 	

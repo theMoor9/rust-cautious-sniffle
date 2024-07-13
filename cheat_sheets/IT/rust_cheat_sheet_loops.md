@@ -222,5 +222,9 @@ println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 	
 	
 ---
+##### Suggested Progression
+[[rust_cheat_sheet_macros]]
+	
+---
 	
 **Author:** Kenneth Boldrini
