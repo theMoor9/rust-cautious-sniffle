@@ -1,4 +1,4 @@
-# Welcome to Rust CheatRepo!
+# Welcome to Kenneth's Rust CheatRepo!
 
 This repository contains a collection of Rust code blocks for learning, along with a few comprehensive Rust cheat sheets. It is designed to help you learn Rust through hands-on practice and easy-to-reference resources.
 
