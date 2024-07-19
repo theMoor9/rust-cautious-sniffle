@@ -1,8 +1,21 @@
 # Rust Cheat Sheet - Dinamiche del codice
 Dinamiche di funzionamento e proprietà del linguaggio
 	
+---
+##### **Table of Contents**
+###### [§ Control Expressions](#-Control-Expressions-1)
+- [If - Else](#If---Else)
+- [Match](#Match)
+###### [§ Expressions Dynamics](#-Expressions-Dynamics-1)
+- [If - Else](#If---Else-1)
+- [Match](#Match-1)
+###### [§ Ownership and References](#-Ownership-and-References-1)
+- [Ownership](#Ownership)
+- [References](#References)
+###### [§ Lifetimes](#-Lifetimes-1)
+
 ___
-## **Control Expressions**
+## **§ Control Expressions**
 Espressioni di controllo
 	
 - ###  If - Else
@@ -103,7 +116,7 @@ Espressioni di controllo
 	
 	
 ---
-## **Expressions**
+## **§ Expressions Dynamics**
 	
  E' possibile utilizzare le espressioni in *assegnazione dinamica*. Inoltre è possibile utilizzare le espressioni innestate.
 ##### If - Else
@@ -164,7 +177,7 @@ let mut variable: bool = control_variable > 9 ;
 	
 	
 ___
-## **Ownership and References**
+## **§ Ownership and References**
 	
 La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
 	
@@ -247,7 +260,7 @@ variabile che elabora alla fine del suo contesto
 	>Per ovviare a questo problema, sono necessarie le annotazioni di durata ***lifetimes*** oppure, in alternativa, si può usare la `struct` di default di Rust `String`.
 	
 ---
-### **Lifetimes** da finire
+### **§ Lifetimes** da finire
 	
 - Ensure that references are valid as long as they are used.
 - **Caso d'Uso**: Managing the scope of references.

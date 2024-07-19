@@ -2,7 +2,22 @@
 Tipi di dati, proprietà e funzionamento
 	
 ---
-### **Tipi Scalari**
+##### **Table of Contents**
+###### [§ Tipi Scalari](#-Tipi-Scalari-1)
+- [Numeri Interi](#Numeri-Interi)
+- [Numeri Floating-Point](#Numeri-Floating-Point)
+- [Booleani](#Booleani)
+- [Caratteri](#Caratteri)
+###### [§ Tipi Composti](#-Tipi-Composti-1)
+- [Tuples](#Tuples)
+- [Arrays](#Arrays)
+###### [§ Tipi Complessi](#-Tipi-Complessi-1)
+- [Struct](#Struct)
+- [Enumerations](#Enumerations)
+###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1)
+	
+---
+### **§ Tipi Scalari**
 	
 I tipi scalari in Rust rappresentano i valori più semplici, quelli che non possono essere suddivisi ulteriormente.
 	
@@ -68,7 +83,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 	
 ---
-### **Tipi composti**
+### **§ Tipi composti**
 	
 I tipi composti raggruppano più variabili sotto un unico tipo
 	 
@@ -115,7 +130,7 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 	
 	
 ---
-### **Tipi Complessi**
+### **§ Tipi Complessi**
 	
 I tipi complessi in Rust rappresentano i valori composti, che  possono essere suddivisi ulteriormente per ottenere una varietà ampia di valori su cui è possibile applicare metodi e attribuire proprietà. 
 	
@@ -302,7 +317,7 @@ let second_pick_beverage = Menu::beverage{
 	
 	
 ---
-### **Tipi Aggiuntivi**
+### **§ Tipi Aggiuntivi**
 	
 1. **Slices**:
 	
@@ -334,51 +349,6 @@ let second_pick_beverage = Menu::beverage{
 	- **Output**: `Hello, world!`
 	
 	
----
-### **Other Important **Tipi**** da finire
-	
-1. **Option**<**T**>:
-    
-    - Represents an optional value that can be either ```Some(T)``` or ```None```.
-    - **Caso d'Uso**: Handling nullable values.
-    - **Esempio**:
-        
-        ```
-        let some_number: Option<i32> = Some(5); 
-        let no_number: Option<i32> = None;  
-        
-        match some_number {
-             Some(value) => println!("Number: {}", value),
-             None => println!("No number"), 
-        }
-        ```
-	
-	- **Output**: `Number: 5`
-	
-1. **Result<T, E>**:
-    
-    - Represents either a success (```Ok(T)```\n) or an error (```Err(E)```).
-    - **Caso d'Uso**: Error handling in functions.
-    - **Esempio**:
-        
-	```
-	fn divide(numerator: f64, denominator: f64) -> Result<f64, String> {
-		if denominator == 0.0 {
-			Err(String::from("Cannot divide by zero"))     
-		} else {
-			Ok(numerator / denominator)     
-		} 
-	}  
-	
-	match divide(10.0, 2.0) {
-		Ok(result) => println!("Result: {}", result),
-		Err(e) => println!("Error: {}", e), 
-	}
-	```
-		
-	- **Output**: `Result: 5`
-	
-		
 ---
 ##### Progressione Suggerita
 [[rust_cheat_sheet_dynamics]]

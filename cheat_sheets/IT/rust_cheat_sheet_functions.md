@@ -1,7 +1,17 @@
 # Rust Cheat Sheet - Funzioni
+---
+##### **Table of Contents**
+###### [§ Struttura](#-Struttura-1)
+###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1)
+###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1)
+- [Implementazione](#Implementazione)
+- [Implementazione autonoma](#Implementazione-autonoma)
+###### [§ Metodi Standard](#-Metodi-Standard-1)
+- [Vettori (`Vec<T>`)](#vettori-vect)
+- [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
 	
 ---
-## **Struttura**
+## **§ Struttura**
 	
 Sintassi: `fn`
 	
@@ -15,7 +25,7 @@ fn multiply(a: i32, b: i32, c ...) -> i32 {
 ```
 	
 --- 
-## **Metodi di restituzione** :
+## **§ Metodi di Restituzione** :
 	
 Con `return`
 	
@@ -45,7 +55,7 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 	
 ---
-## **Funzionalità (Metodi)**
+## **§ Funzionalità (Metodi)**
 
 - ##### Implementazione
 	Atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
@@ -150,7 +160,7 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 	
 ---
-## **Metodi Standard**
+## **§ Metodi Standard**
 	
 ##### Vettori (`Vec<T>`)
 	

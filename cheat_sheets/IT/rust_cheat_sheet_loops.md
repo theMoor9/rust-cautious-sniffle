@@ -1,7 +1,14 @@
 # Rust Cheat Sheet - Cicli
 	
 ---
-## **Ciclo infinito ∞**
+##### **Table of Contents**
+###### [§ Ciclo Infinito ∞](#[-Ciclo-infinito--1)
+###### [§ Cicli Condizionale - while](#-Cicli-Condizionale-1)
+###### [§ Ciclo Iterativo - for](#-Ciclo-Iterativo-1)
+###### [§ Interruzione Cicli](#-Interruzione-Cicli-1)
+	
+---
+## **§ Ciclo infinito ∞**
 	
 - **Descrizione**: Ciclo infinito
 - **Sintassi**: `loop` 
@@ -15,7 +22,7 @@ loop {
 	
 	
 ---
-## **Cicli condizionali**
+## **§ Cicli Condizionale**
 	
 ##### WHILE
 	
@@ -31,7 +38,7 @@ while true {
 	
 	
 ---
-## **Ciclo iterativo**
+## **§ Ciclo Iterativo**
 	
 ##### FOR
 	
@@ -155,7 +162,7 @@ while true {
 	
 	
 ---
-## **Interruzione cicli**
+## **§ Interruzione Cicli**
 	
 - `continue`: Salta l'iterazione corrente e passa alla successiva.
 	

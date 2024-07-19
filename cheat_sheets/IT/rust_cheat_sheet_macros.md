@@ -2,7 +2,13 @@
 Funzioni *imbedded* distinte dall'aggiunta di `!` prima dei loro argomenti `(...)`
 	
 ---
-## println!
+##### **Table of Contents**
+###### [§ println!](#-println-1)
+###### [§ vec!](#-vec-1)
+
+	
+---
+## § println!
 	
 Oltre il classico uso, `println!` ha bisogno elementi *`token`* da usare nei placeholders `{...}` come argomenti oltre la stringa per stampare variabili
 	
@@ -74,7 +80,7 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 	
 	
 ---
-## vec!
+## § vec!
 	
 Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
 	
