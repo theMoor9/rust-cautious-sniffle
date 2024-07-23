@@ -287,7 +287,7 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics)
+[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
 	
 ---
 	

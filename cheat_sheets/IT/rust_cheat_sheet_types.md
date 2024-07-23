@@ -424,7 +424,7 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics)
+[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
 	
 ---
 	

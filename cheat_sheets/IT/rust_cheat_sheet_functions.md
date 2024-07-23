@@ -201,8 +201,8 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Cicli](./rust_cheat_sheet_loops)
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics)
+[Rust Cheat Sheet - Cicli](./rust_cheat_sheet_loops.md)
+[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
 	
 ---
 	
