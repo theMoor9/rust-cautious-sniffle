@@ -1,5 +1,6 @@
 # **Rust Cheat Sheet - Tipi**
-Tipi di dati, proprietà e funzionamento #Types
+	
+#Types #Integers #Float #Bool #Char
 	
 ---
 ##### **Table of Contents**
@@ -15,10 +16,13 @@ Tipi di dati, proprietà e funzionamento #Types
 - [Struct](#Struct)
 - [Enumerations](#Enumerations)
 ###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1)
+
+###### [§ Annotazioni Esplicite del Tipo](#-Annotazioni-Esplicite-del-Tipo)
+- [Specifiche](#Specifiche)
+- [Generiche](#Generiche)
 	
 ---
 ## **§ Tipi Scalari** 
-#Integers #Float #Bool #Char
 	
 I tipi scalari in Rust rappresentano i valori più semplici, quelli che non possono essere suddivisi ulteriormente.
 	
@@ -85,7 +89,6 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 ---
 ## **§ Tipi composti**
-#Tuples #Arrays
 	
 I tipi composti raggruppano più variabili sotto un unico tipo
 	 
@@ -130,10 +133,10 @@ println!("First day: {}", first_day);
 
 - **Output**: `First day: Mon`
 	
+#Tuples #Arrays
 	
 ---
-## **§ Tipi Complessi** 
-#Structs #Enums
+## **§ Tipi Complessi**
 	
 I tipi complessi in Rust rappresentano i valori composti, che  possono essere suddivisi ulteriormente per ottenere una varietà ampia di valori su cui è possibile applicare metodi e attribuire proprietà. 
 	
@@ -175,7 +178,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 >Le proprietà di solidità di Rust impongono che alla creazione `let` di una `struct` si debba specificare tutti i ***campi*** di essa per evitare errori
 	
-- ##### Struct String #Strings 
+- ##### Struct String 
 	
 	- **Definizione**: E' una collezione mutabile e dinamicamente allocata di caratteri UTF-8.
 	- **Tipo**: `String`
@@ -227,7 +230,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 >	Con lo `Struct String`, il valore nella memoria, quando viene modificato usa lo stesso spazio piuttosto creare un altro valore nella memoria. Agendo sul valore della variabile come una proprietà dell'oggetto "classe"
 
-- ##### Struct Vec #Vectors
+- ##### Struct Vec
 
 	- **Definizione**: Una collezione di dati dal tipo univoco
 	- Tipo: `Vec<>`
@@ -256,7 +259,6 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 	
 ### Enumerations 
-#Enums 
 	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
 - **Tipo**: `enum`
@@ -319,10 +321,10 @@ let second_pick_beverage = Menu::beverage{
 	
 >	Da notare la possibilità di creare tipi piramidali complessi con varianti di tipo `enum`
 	
+#Structs #Enums #Vectors #Strings 
 	
 ---
 ## **§ Tipi Aggiuntivi**
-#Slices #Strings 
 	
 ### Slices
 	
@@ -353,9 +355,10 @@ println!("Slice: {:?}", slice);
 
 - **Output**: `Hello, world!`
 	
+#Slices #Strings 
 	
 ---
-## § Annotazioni Esplicite del Tipo
+## § Annotazioni Esplicite del Tipo 
 	
 ### Specifiche
 	
@@ -366,7 +369,7 @@ println!("Slice: {:?}", slice);
 let positive_number = 10; // Generates space in memory even for Negative numbers!
 
 // Explicit Anntotation
-let positive_number: i8 = 10; // Exclusively for Positive numbers!
+let positive_number: u8 = 10; // Exclusively for Positive numbers!
 ```
 	
 ### Generiche
@@ -381,10 +384,8 @@ enum DirectionalArrows {
 	Right,
 }
 
-
-
 struct Block {
-	hash_signature: String,
+	hash_sign: String,
 	merkle_root: String,
 	nonce: String,
 }
@@ -397,12 +398,12 @@ fn main () {
 	// STRUCTURES
 	// Blockchain example just to be fancy
 	let first_block: Block = {
-		hash_signature: String::from("tBJAihCD4Zc6++SXhcIEn3AqDzfm0x1XrqAa+DmzQh0="),
+	    hash_sign: String::from("tBJAihCD4Zc6++SXhcIEn3AqDzfm0x1XrqAa+DmzQh0="),
 		merkle_root: String::from("CnPC478PrYguuMwDiaU6BpvC7bTWUMcll+BYhSN2e5k="),
 		nonce_count: String::from("00000000000000000"),
 	};
 	let second_block: Block = {
-		hash_signature: String::from("CnPC478PrYguuMwDiaU6BpvC7bTWUMcll+BYhSN2e5k="),
+		hash_sign: String::from("CnPC478PrYguuMwDiaU6BpvC7bTWUMcll+BYhSN2e5k="),
 		merkle_root: String::from("sJVxRwy67sCy44Fzen5CT3wmi565pLkuKuqXqcwXkhc="),
 		nonce_count: String::from("00000000000000000"),
 	};
@@ -417,9 +418,9 @@ fn main () {
 	}
 
 }
-
-
 ```
+	
+#Enums #Arrays #Vectors  
 	
 ---
 ##### Progressione Suggerita

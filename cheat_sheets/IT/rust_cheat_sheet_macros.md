@@ -1,5 +1,6 @@
 # **Rust Cheat Sheet - Macro**
-Funzioni *imbedded* distinte dall'aggiunta di `!` prima dei loro argomenti `(...)` #Macros
+	
+#Macros #Structs #Enums #Ownership #Vectors 
 	
 ---
 ##### **Table of Contents**
@@ -87,7 +88,6 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 	
 ---
 ## **§ vec!**
-#Vectors 
 	
 Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
 	
@@ -133,8 +133,7 @@ The struct setting is increasing to: Volume { value: 30 }
 	
 ---
 ## **§ Derive**
-#Structs #Enums
-
+	
 Con `derive`, aggiungiamo implementazioni automatiche di determinati tratti ai tipi complessi come `enum` e `struct` per scopi di debug o convenienza.
 	
 ### Debug
@@ -153,7 +152,7 @@ enum EyeColor {
 #[derive(Debug)]
 struct Person{
 	name: String,
-	age: i8,
+	age: u8,
 	eyes: EyeColor,
 }
 
@@ -186,7 +185,7 @@ In pratica, `#[derive(Debug)]` facilita l'estrapolazione e la rappresentazione d
 	
 **Descrizione**: La macro `#[derive(Clone)]` permette di creare copie della struttura complessa. `Clone` indica che è permessa la clonazione esplicita chiamando `.clone()`.
 
-**Perché**: Permette di non violare la condizione di *ownership* #Ownership di un oggetto .
+**Perché**: Permette di non violare la condizione di *ownership* di un oggetto .
 	
 ```Rust
 #[derive(Debug)]
@@ -199,7 +198,7 @@ enum EyeColor {
 #[derive(Clone,Debug)]
 struct Person{
 	name: String,
-	age: i8,
+	age: u8,
 	eyes: EyeColor,
 }
 
@@ -241,7 +240,7 @@ enum EyeColor {
 #[derive(Clone,Copy,Debug)]
 struct Person{
 	name: String,
-	age: i8,
+	age: u8,
 	eyes: EyeColor,
 }
 
@@ -284,7 +283,8 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 
 - `.clone()`: Utilizzabile per qualsiasi tipo che implementa `Clone`, inclusi tipi complessi come `String` e `Vec`.
 - `Copy`: Limitato a tipi che hanno una dimensione fissa e non richiedono gestione della memoria dinamica.
-
+	
+	
 ---
 ##### Suggested Progression
 [[rust_cheat_sheet_dynamics]]

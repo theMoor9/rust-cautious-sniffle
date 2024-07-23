@@ -1,10 +1,11 @@
 # **Rust Cheat Sheet - Elementi base**
-Elementi base per esecuzione di rust #Basics
+	
+#Basics #Structs #Types #Enums 
 	
 ---
 ## **Basics**
 	
-- ##### Istanziazione Variabile #Types 
+- ##### Istanziazione Variabile
 	
 	**Sintassi**: `let` (`;`)
 	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
@@ -14,7 +15,8 @@ Elementi base per esecuzione di rust #Basics
 	let my_variable: u32 = 10 ;
 	```
 	
-- ##### Istanziazione Variabile Mutabile #Types 
+	
+- ##### Istanziazione Variabile Mutabile 
 	
 	**Sintassi**: `let mut` (`;`)
 	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
@@ -25,7 +27,8 @@ Elementi base per esecuzione di rust #Basics
 	my_variable = false ;
 	```
 	
-- ##### Struct #Structs
+	
+- ##### Struct
 	
 	**Sintassi**: `struct`
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
@@ -37,7 +40,9 @@ Elementi base per esecuzione di rust #Basics
 	}
 	```
 	
-- ##### Enum #Enusm
+	
+	
+- ##### Enum
 	
 	**Sintassi**: `enum`
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
@@ -49,18 +54,21 @@ Elementi base per esecuzione di rust #Basics
 	}
 	```
 	
-- ##### Chiamata d'Ispezione #Structs #Enums 
+
+	
+- ##### Chiamata d'Ispezione 
 	
 	**Sintassi**: `::`
 	
 	Descrizione: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.
 	
-``` Rust
+	``` Rust
 	Vec::new()
 	String::new()
-```
+	```
 	
-- ##### Istanziazione Funzione #Functions 
+	
+- ##### Istanziazione Funzione 
 	
 	**Sintassi**: `fn`
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
@@ -71,6 +79,7 @@ Elementi base per esecuzione di rust #Basics
 		...
 	}
 	```
+	
 	
 - ##### Commenti e testi
 	

@@ -1,5 +1,6 @@
 # **Rust Cheat Sheet - Dinamiche del codice**
-Dinamiche di funzionamento e proprietà del linguaggio #Dynamics
+	
+#Dynamics #Strings #Vectors #Types #Ownership #Enums #References 
 	
 ---
 ##### **Table of Contents**
@@ -74,7 +75,7 @@ match  condition{
 >
 >Underscore `_` è utilizzato come si utilizzerebbe un `else` non condizionale, per coprire eventuali opzioni extra
 
-- ##### Enumerations #Enums 
+- ##### Enumerations
 
 	 L'utilizzo del controllo `match` sulle `enum` garantisce un controllo robusto rispetto alle varianti dell'enumerazione, visto che `match` genera un errore se non sono sviluppate tutte le alternative di azione per la  ***variante*** e genera un allerta se anche solo una  ***variante*** non viene utilizzata.
 	
@@ -178,12 +179,10 @@ let mut variable: bool = control_variable > 9 ;
 	
 ___
 ## **§ Ownership and References**
-#Ownership  #References
 	
 La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
 	
 ### Ownership
-#Strings #Vectors #Types
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
 - **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
@@ -229,6 +228,7 @@ fn main () {
 }
 ```
 	
+	
 ### References
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
@@ -260,6 +260,7 @@ variabile che elabora alla fine del suo contesto
 	>Non è possibile utilizzare i _Riferimenti_ `&` nei tipi complessi come `struct` ed `enum` perché questi sono obbligati alla pulizia della memoria occupata alla fine del loro scopo. Poiché i _Riferimenti_ non sono di loro proprietà, il compilatore genera un errore per garantire l'integrità del codice.
 	>
 	>Per ovviare a questo problema, sono necessarie le annotazioni di durata ***lifetimes*** oppure, in alternativa, si può usare la `struct` di default di Rust `String`.
+	
 	
 ---
 ## **§ Lifetimes** da finire

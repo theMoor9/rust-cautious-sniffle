@@ -1,5 +1,6 @@
 # **Rust Cheat Sheet - Funzioni**
-#Functions
+	
+#Functions #Vectors #Strings #Structs 
 	
 ---
 ##### **Table of Contents**
@@ -58,8 +59,7 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 ---
 ## **§ Funzionalità (Metodi)**
-#Structs 
-
+	
 - ##### Implementazione
 	Atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
 	
@@ -164,7 +164,6 @@ fn multiply(a: i32, b: i32) -> i32 {
 	
 ---
 ## **§ Metodi Standard**
-#Vectors #Strings
 	
 ##### Vettori (`Vec<T>`)
 	
