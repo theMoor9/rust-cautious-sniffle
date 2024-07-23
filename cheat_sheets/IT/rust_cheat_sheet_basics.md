@@ -142,7 +142,7 @@
 	
 ---
 ##### Progressione Suggerita
-[[rust_cheat_sheet_types]]
+[Rust Cheat Sheet - Tipi](./rust_cheat_sheet_types)
 	
 ---
 	
