@@ -1,4 +1,5 @@
-# Rust Cheat Sheet - Cicli
+# **Rust Cheat Sheet - Cicli**
+#Loops
 	
 ---
 ##### **Table of Contents**
@@ -70,7 +71,7 @@ while true {
 	```
 	
 	
-	*Array*:    `.iter()`
+	*Array* #Arrays :    `.iter()` 
 	```Rust
 	let array = ["apple", "banana", "cherry"] ; 
 	for fruit in fruits.iter() { 
@@ -79,7 +80,7 @@ while true {
 	```
 	
 	
-	*Enumerazioni*:    `.enumerate()`
+	*Enumerazioni* #Enums :    `.enumerate()`
 	```Rust
 	let vec = vec!["a", "b", "c"] ; 
 	for (index, val) in vec.iter().enumerate() { 
@@ -89,7 +90,7 @@ while true {
 	```
 	
 	
-	*Tuple*:    Destrutturazione `for (key,value)` 
+	*Tuple* #Tuples :    Destrutturazione `for (key,value)` 
 	```Rust
 	let tuples = vec![(1, "a"), (2, "b"), (3, "c")] ; 
 	for (num, letter) in tuples { 
@@ -99,7 +100,7 @@ while true {
 	```
 	
 	
-	*Collezioni*:    
+	*Collezioni* #Vectors :    
 	- *Iterazione per Valore* (`.into_iter()`): Consuma la collezione e sposta gli elementi  
 		```Rust
 		let vec = vec![1, 2, 3, 4, 5] ; 

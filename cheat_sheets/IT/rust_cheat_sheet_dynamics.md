@@ -1,5 +1,5 @@
-# Rust Cheat Sheet - Dinamiche del codice
-Dinamiche di funzionamento e proprietà del linguaggio
+# **Rust Cheat Sheet - Dinamiche del codice**
+Dinamiche di funzionamento e proprietà del linguaggio #Dynamics
 	
 ---
 ##### **Table of Contents**
@@ -18,64 +18,64 @@ ___
 ## **§ Control Expressions**
 Espressioni di controllo
 	
-- ###  If - Else
-	Sintassi: 
-	```Rust
-	if condition && condition2 {
-		// Esecuzione del codice
-	} else if condition || condition2 {
-		// Esecuzione alternativa condizionale del codice
-	} else {
-		// Esecuzione alternativa del codice
-	}
-	```
+###  If - Else
+Sintassi: 
+```Rust
+if condition && condition2 {
+	// Esecuzione del codice
+} else if condition || condition2 {
+	// Esecuzione alternativa condizionale del codice
+} else {
+	// Esecuzione alternativa del codice
+}
+```
+
+> Spesso è possibile abbreviare i controlli
 	
-	> Spesso è possibile abbreviare i controlli
+### Match 
 	
-- ### Match 
-	
-	Volendo considerare la sequenza di controllo `if - else` riportata sopra, in caso di possibilità ampie sul controllo della condizione, si creerebbero sequenze controllo `if - else` molto estese. Per cui, per controlli su condizioni singole si predilige la Sintassi: `match`.
-	
-	Logica  ***inefficiente*** `if - else`
-	```Rust
-	let mut condition = "White"
-	
-	if condizion == "Gold"{
-		println!("Il colore è {}", condition) ;
-	} else if condition == "Purple"{
-		// Esecuzione alternativa condizionale del codice
-	} else if condition == "Navy"{
-		// Esecuzione alternativa condizionale del codice
-	} else if condition == "Green"{
-		// Esecuzione alternativa condizionale del codice
-	} else {
-		println!("Il colore è non in lista") ;
-	}
-	// Restituisce a monitor "Il colore è non in lista"
-	```
-	
-	Logica ***efficiente*** di `match`
-	```Rust
-	let mut condition = "White"
-	
-	// Si attesta la variabile da controllare a `match`
-	match  condition{
-		// I possibili valori vengono listati e separati da una virgola
-		"Gold" => println!("Il colore è {}", condition),
-		"Purple" => println!("Il colore è {}", condition),
-		"Navy" => println!("Il colore è {}", condition),
-		"Green" => println!("Il colore è {}", condition),
-		_ => println!("Il colore è non in lista"),
-	} ;
-	// Restituisce a monitor "Il colore è non in lista"
-	```
-	
-	>L'espressione `match` esegue il computo che è posto dopo `=>` inerente al valore di `condition` al momento del controllo
-	>
-	>Underscore `_` è utilizzato come si utilizzerebbe un `else` non condizionale, per coprire eventuali opzioni extra
-	
-	- ##### Enumerations
-	
+Volendo considerare la sequenza di controllo `if - else` riportata sopra, in caso di possibilità ampie sul controllo della condizione, si creerebbero sequenze controllo `if - else` molto estese. Per cui, per controlli su condizioni singole si predilige la Sintassi: `match`.
+
+Logica  ***inefficiente*** `if - else`
+```Rust
+let mut condition = "White"
+
+if condizion == "Gold"{
+	println!("Il colore è {}", condition) ;
+} else if condition == "Purple"{
+	// Esecuzione alternativa condizionale del codice
+} else if condition == "Navy"{
+	// Esecuzione alternativa condizionale del codice
+} else if condition == "Green"{
+	// Esecuzione alternativa condizionale del codice
+} else {
+	println!("Il colore è non in lista") ;
+}
+// Restituisce a monitor "Il colore è non in lista"
+```
+
+Logica ***efficiente*** di `match`
+```Rust
+let mut condition = "White"
+
+// Si attesta la variabile da controllare a `match`
+match  condition{
+	// I possibili valori vengono listati e separati da una virgola
+	"Gold" => println!("Il colore è {}", condition),
+	"Purple" => println!("Il colore è {}", condition),
+	"Navy" => println!("Il colore è {}", condition),
+	"Green" => println!("Il colore è {}", condition),
+	_ => println!("Il colore è non in lista"),
+} ;
+// Restituisce a monitor "Il colore è non in lista"
+```
+
+>L'espressione `match` esegue il computo che è posto dopo `=>` inerente al valore di `condition` al momento del controllo
+>
+>Underscore `_` è utilizzato come si utilizzerebbe un `else` non condizionale, per coprire eventuali opzioni extra
+
+- ##### Enumerations #Enums 
+
 	 L'utilizzo del controllo `match` sulle `enum` garantisce un controllo robusto rispetto alle varianti dell'enumerazione, visto che `match` genera un errore se non sono sviluppate tutte le alternative di azione per la  ***variante*** e genera un allerta se anche solo una  ***variante*** non viene utilizzata.
 	
 	 La sua costruzione è effettuata utilizzando il sistema di selezione della  ***variante***
@@ -97,7 +97,7 @@ Espressioni di controllo
 		MenuChoice::Dessert(pick) => println!("He ordered {}", Pick),
 		MenuChoice::Drink(pick) => println!("He ordered {}", Pick),
 	} ;
-
+	
 	// Othewise
 	
 	fn matching_function (preference: MenuChoice) {
@@ -111,7 +111,7 @@ Espressioni di controllo
 	
 	matching_function(choice) // Fucntion call on choice
 	```
-	
+		
   >Si istanzia `choice` con la variabile `enum` assegnando le varianti come casi di scelta su cui opererà `match` comparando con l'oggetto caso d'analisi `choice`. Si utilizza inoltre `pick` come riferimento di cattura per il contenuto dell'oggetto `choice` ad uso del `println!` come token.
 	
 	
@@ -119,7 +119,7 @@ Espressioni di controllo
 ## **§ Expressions Dynamics**
 	
  E' possibile utilizzare le espressioni in *assegnazione dinamica*. Inoltre è possibile utilizzare le espressioni innestate.
-##### If - Else
+### If - Else
 	
 - **Caso d'Uso**: Assegnazione diretta
 - **Esempio**:
@@ -141,7 +141,7 @@ let control_variable: u32 = 10 ;
 let mut variable: bool = control_variable > 9 ;
 ```
 	
-##### Match 
+### Match 
 	
 - **Caso d'Uso**: Assegnazione diretta ed espressioni innestate (Terza variante su `match`).
 - **Esempio**:
@@ -178,10 +178,12 @@ let mut variable: bool = control_variable > 9 ;
 	
 ___
 ## **§ Ownership and References**
+#Ownership  #References
 	
 La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
 	
-##### Ownership:
+### Ownership
+#Strings #Vectors #Types
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
 - **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
@@ -227,7 +229,7 @@ fn main () {
 }
 ```
 	
-##### References:
+### References
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
 - **Sintassi**: `&`
@@ -260,7 +262,7 @@ variabile che elabora alla fine del suo contesto
 	>Per ovviare a questo problema, sono necessarie le annotazioni di durata ***lifetimes*** oppure, in alternativa, si può usare la `struct` di default di Rust `String`.
 	
 ---
-### **§ Lifetimes** da finire
+## **§ Lifetimes** da finire
 	
 - Ensure that references are valid as long as they are used.
 - **Caso d'Uso**: Managing the scope of references.

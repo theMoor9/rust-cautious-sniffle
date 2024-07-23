@@ -1,5 +1,5 @@
-# Rust Cheat Sheet - Tipi
-Tipi di dati, proprietà e funzionamento
+# **Rust Cheat Sheet - Tipi**
+Tipi di dati, proprietà e funzionamento #Types
 	
 ---
 ##### **Table of Contents**
@@ -17,11 +17,12 @@ Tipi di dati, proprietà e funzionamento
 ###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1)
 	
 ---
-### **§ Tipi Scalari**
+## **§ Tipi Scalari** 
+#Integers #Float #Bool #Char
 	
 I tipi scalari in Rust rappresentano i valori più semplici, quelli che non possono essere suddivisi ulteriormente.
 	
-##### Numeri Interi
+### Numeri Interi
     
 - **Interi Polari**: (`i` : Integers) Possono assumere forma negativa e positiva.
 	
@@ -45,7 +46,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 		let index: usize = 3;
 		```
             
-##### Numeri Floating-Point
+### Numeri Floating-Point
     
 - **Definizione**: Usato per i numeri decimali.
 - **Tipi**: ```f32``` (Precisione singola), ```f64``` (Precisione doppia)
@@ -57,7 +58,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	let e: f64 = 2.718281828459045;
 	```
         
-##### Booleani:
+### Booleani
     
 - **Definizione**: Rappresentano vero o falso.
 - **Tipo**: ```bool```
@@ -69,7 +70,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	let has_error: bool = false;
 	```
 	
-##### Caratteri:
+#### Caratteri:
     
 - **Definizione**: Rappresenta un codice univoco, racchiuso tra apici.
 - **Tipo**: ```char```
@@ -83,11 +84,12 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 	
 ---
-### **§ Tipi composti**
+## **§ Tipi composti**
+#Tuples #Arrays
 	
 I tipi composti raggruppano più variabili sotto un unico tipo
 	 
-##### Tuples
+### Tuples
 	
 - **Definizione**: Può raggruppare molteplici valori con differenti tipi
 - **Caso d'Uso**: Ritornare valori multipli da una funzione.
@@ -114,27 +116,28 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 > Si suggerisce di usare le `struct` quando si ha più di due o tre ***campi***
         
 	
-- ##### **Arrays**
+### Arrays
     
-    - **Definizione**: Una collezione di elementi prefissata.
-    - **Caso d'Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
-    - **Esempio**:
-	
-	```Rust
-	let days: [&str; 7] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-	let first_day = days[0]; 
-	println!("First day: {}", first_day);
-	```
-	
-	- **Output**: `First day: Mon`
+- **Definizione**: Una collezione di elementi prefissata.
+- **Caso d'Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
+- **Esempio**:
+
+```Rust
+let days: [&str; 7] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+let first_day = days[0]; 
+println!("First day: {}", first_day);
+```
+
+- **Output**: `First day: Mon`
 	
 	
 ---
-### **§ Tipi Complessi**
+## **§ Tipi Complessi** 
+#Structs #Enums
 	
 I tipi complessi in Rust rappresentano i valori composti, che  possono essere suddivisi ulteriormente per ottenere una varietà ampia di valori su cui è possibile applicare metodi e attribuire proprietà. 
 	
-##### **Struct**
+### Struct
 	
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
 - **Tipo**: `struct`
@@ -172,7 +175,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 >Le proprietà di solidità di Rust impongono che alla creazione `let` di una `struct` si debba specificare tutti i ***campi*** di essa per evitare errori
 	
-- ##### Struct String
+- ##### Struct String #Strings 
 	
 	- **Definizione**: E' una collezione mutabile e dinamicamente allocata di caratteri UTF-8.
 	- **Tipo**: `String`
@@ -224,7 +227,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 >	Con lo `Struct String`, il valore nella memoria, quando viene modificato usa lo stesso spazio piuttosto creare un altro valore nella memoria. Agendo sul valore della variabile come una proprietà dell'oggetto "classe"
 
-- ##### Struct Vec
+- ##### Struct Vec #Vectors
 
 	- **Definizione**: Una collezione di dati dal tipo univoco
 	- Tipo: `Vec<>`
@@ -252,7 +255,8 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	```
 	
 	
-##### **Enumerations**
+### Enumerations 
+#Enums 
 	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
 - **Tipo**: `enum`
@@ -318,36 +322,38 @@ let second_pick_beverage = Menu::beverage{
 	
 ---
 ### **§ Tipi Aggiuntivi**
+#Slices #Strings 
 	
-1. **Slices**:
+### Slices
 	
-	- **Definizione**: Visualizzazione dinamica di un *array*.
-	- **Caso d'Uso**: Accedere ad una porzione di un array .
-	- **Esempio**:
-		
+- **Definizione**: Visualizzazione dinamica di un *array*.
+- **Caso d'Uso**: Accedere ad una porzione di un array .
+- **Esempio**:
+	
+```Rust
+let array = [1, 2, 3, 4, 5]; 
+let slice: &[i32] = &array[1..3]; 
+println!("Slice: {:?}", slice);
+```
+
+- **Output**: `Slice: [2, 3]`
+	
+### String Slice 
+#Strings 
+
+- **Definizione**: (```&str```) Riferimento immutabile ad una stringa
+- **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
+- **Esempio**:
+	
 	```Rust
-	let array = [1, 2, 3, 4, 5]; 
-	let slice: &[i32] = &array[1..3]; 
-	println!("Slice: {:?}", slice);
+	let greeting: &str = "Hello"; 
+	let mut message = String::from("Hello"); 
+	message.push_str(", world!"); 
+	println!("{}", message);
 	```
-	
-	- **Output**: `Slice: [2, 3]`
-	
-1. String Slice:
-    
-    - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
-    - **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
-    - **Esempio**:
-        
-        ```Rust
-        let greeting: &str = "Hello"; 
-        let mut message = String::from("Hello"); 
-        message.push_str(", world!"); 
-        println!("{}", message);
-        ```
-	
-	- **Output**: `Hello, world!`
-	
+
+- **Output**: `Hello, world!`
+
 	
 ---
 ##### Progressione Suggerita

@@ -1,21 +1,23 @@
-# Rust Cheat Sheet - Elementi base
-Elementi base per esecuzione di rust
+# **Rust Cheat Sheet - Elementi base**
+Elementi base per esecuzione di rust #Basics
 	
 ---
 ## **Basics**
 	
-- ##### Istanziazione Variabile
+- ##### Istanziazione Variabile #Types 
 	
-	Sintassi: `let` (`;`)
+	**Sintassi**: `let` (`;`)
+	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
 	
 	```Rust
 	//snake_case
 	let my_variable: u32 = 10 ;
 	```
 	
-- ##### Istanziazione Variabile Mutabile
+- ##### Istanziazione Variabile Mutabile #Types 
 	
-	Sintassi: `let mut` (`;`)
+	**Sintassi**: `let mut` (`;`)
+	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
 	
 	```Rust
 	//snake_case
@@ -23,9 +25,10 @@ Elementi base per esecuzione di rust
 	my_variable = false ;
 	```
 	
-- ##### Struct
+- ##### Struct #Structs
 	
-	Sintassi: `struct`
+	**Sintassi**: `struct`
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 		
 	```Rust
 	// PascalCase
@@ -34,9 +37,10 @@ Elementi base per esecuzione di rust
 	}
 	```
 	
-- ##### Enum
+- ##### Enum #Enusm
 	
-	Sintassi: `enum`
+	**Sintassi**: `enum`
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 	
 	```Rust
 	// PascalCase
@@ -45,9 +49,9 @@ Elementi base per esecuzione di rust
 	}
 	```
 	
-- ##### Chiamata d'ispezione
+- ##### Chiamata d'Ispezione #Structs #Enums 
 	
-	Sintassi: `::`
+	**Sintassi**: `::`
 	
 	Descrizione: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.
 	
@@ -56,9 +60,10 @@ Elementi base per esecuzione di rust
 	String::new()
 ```
 	
-- ##### Istanziazione Funzione
+- ##### Istanziazione Funzione #Functions 
 	
-	Sintassi: `fn`
+	**Sintassi**: `fn`
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 	
 	```Rust
 	//snake_case
@@ -69,7 +74,8 @@ Elementi base per esecuzione di rust
 	
 - ##### Commenti e testi
 	
-	Sintassi: `//`
+	**Sintassi**: `//`
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 	
 	```Rust
 	// Comment
@@ -82,7 +88,7 @@ Elementi base per esecuzione di rust
 	*/
 	```
 	
-	Sintassi: `\`
+	**Sintassi**: `\`
 	
 	```Rust
 	print!(
@@ -92,9 +98,9 @@ Elementi base per esecuzione di rust
 	);
 	```
 	
-- ##### Variabili inutilizzate
+- ##### Variabili Inutilizzate
 	
-	Sintassi: `_`
+	**Sintassi**: `_`
 	
 	```Rust
 	/*

@@ -1,14 +1,20 @@
-# Rust Cheat Sheet - Macro
-Funzioni *imbedded* distinte dall'aggiunta di `!` prima dei loro argomenti `(...)`
+# **Rust Cheat Sheet - Macro**
+Funzioni *imbedded* distinte dall'aggiunta di `!` prima dei loro argomenti `(...)` #Macros
 	
 ---
 ##### **Table of Contents**
 ###### [§ println!](#-println-1)
+- [Tipologie di Placeholders](#Tipologie-di-Placeholders)
 ###### [§ vec!](#-vec-1)
+###### [§ Derive](#-Derive)
+- [Debug](#Debug)
+- [Clone](#Clone)
+- [Quando Usare Copy](#Quando-Usare-Copy)
+- [Riassunto](#Riassunto)
 
 	
 ---
-## § println!
+## **§ println!**
 	
 Oltre il classico uso, `println!` ha bisogno elementi *`token`* da usare nei placeholders `{...}` come argomenti oltre la stringa per stampare variabili
 	
@@ -19,7 +25,7 @@ println!("string {}", token)
 ```
 	
 	
-**Tipologie di placeholders:**
+### Tipologie di Placeholders
 	
 *Valore end-user display*
 ```Rust
@@ -80,7 +86,8 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 	
 	
 ---
-## § vec!
+## **§ vec!**
+#Vectors 
 	
 Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
 	
@@ -123,7 +130,161 @@ The struct setting is increasing to: Volume { value: 30 }
 
 ```
 	
-		
+	
+---
+## **§ Derive**
+#Structs #Enums
+
+Con `derive`, aggiungiamo implementazioni automatiche di determinati tratti ai tipi complessi come `enum` e `struct` per scopi di debug o convenienza.
+	
+### Debug
+	
+La macro `#[derive(Debug)]` viene utilizzata per assegnare automaticamente l'implementazione del tratto `Debug` a una struttura o un'enumerazione. Questo permette di formattare il tipo in modo leggibile, rendendolo utile per il debug.
+	
+
+```Rust
+#[derive(Debug)]
+enum EyeColor {
+	Green,
+	Blue,
+	Brown,
+}
+
+#[derive(Debug)]
+struct Person{
+	name: String,
+	age: i8,
+	eyes: EyeColor,
+}
+
+fn main () {
+	let me = Person{
+		name: String::from("Kenneth"),
+		age: 27,
+		eyes: EyeColor::Brown,
+	};
+	
+	println!("{:#?}", me.eyes);
+	//Debug Output: Brown
+
+	println!("{:#?}", me);
+	/* 
+	Debug Output: 
+	Person { 
+	   name: "Kenneth", 
+	   age: 27, 
+	   eyes: Brown, 
+	   }
+	*/
+}
+```
+	
+
+In pratica, `#[derive(Debug)]` facilita l'estrapolazione e la rappresentazione del codice per il debug, consentendo l'uso del codice in contesti che altrimenti non lo permetterebbero.
+	
+### Clone
+	
+**Descrizione**: La macro `#[derive(Clone)]` permette di creare copie della struttura complessa. `Clone` indica che è permessa la clonazione esplicita chiamando `.clone()`.
+
+**Perché**: Permette di non violare la condizione di *ownership* #Ownership di un oggetto .
+	
+```Rust
+#[derive(Debug)]
+enum EyeColor {
+	Green,
+	Blue,
+	Brown,
+}
+
+#[derive(Clone,Debug)]
+struct Person{
+	name: String,
+	age: i8,
+	eyes: EyeColor,
+}
+
+fn print_age (worker: Person) {
+	println!("{:#?}", worker.age);
+}
+fn print_eye_color (worker: Person) {
+	println!("{:#?}", worker.eyes);
+}
+
+fn main () {
+	let me = Person{
+		name: String::from("Kenneth"),
+		age: 27,
+		eyes: EyeColor::Brown,
+	};
+	print_age(me.clone())
+	print_eye_color(me.clone())
+	//Debug Output: 27
+	//Debug Output: Brown
+}
+
+```
+	
+>`Clone`: Permette la clonazione esplicita chiamando `.clone()`.
+	
+### Copy
+	
+La specificazione `Copy` rispetto a `Clone` indica che è permessa la copia del clone automatica e quindi implicita senza bisogno di chiamare `.clone()`. Con `#[derive(Clone, Copy)]`, la clonazione è sia esplicita che implicita:
+	
+```Rust
+#[derive(Debug)]
+enum EyeColor {
+	Green,
+	Blue,
+	Brown,
+}
+
+#[derive(Clone,Copy,Debug)]
+struct Person{
+	name: String,
+	age: i8,
+	eyes: EyeColor,
+}
+
+fn print_age (worker: Person) {
+	println!("{:#?}", worker.age);
+}
+fn print_eye_color (worker: Person) {
+	println!("{:#?}", worker.eyes);
+}
+
+fn main () {
+	let me = Person{
+		name: String::from("Kenneth"),
+		age: 27,
+		eyes: EyeColor::Brown,
+	};
+	print_age(me)
+	print_eye_color(me)
+	//Debug Output: 27
+	//Debug Output: Brown
+}
+```
+	
+
+>`Copy`: Permette la copia automatica implicita senza bisogno di chiamare `.clone()`. Questo è utile per tipi semplici e di dimensioni fisse che non gestiscono risorse dinamiche.
+	
+ **Quando Usare Copy**
+	
+- Usa `Copy` quando il tuo tipo è semplice e può essere copiato in modo sicuro e veloce, come tipi scalari (`i32`, `f64`, ecc.) o tipi composti di tali tipi (strutture con solo tipi scalari).
+- Non usare `Copy` su tipi che gestiscono risorse allocate dinamicamente (come `String` o `Vec<T>`), poiché ciò potrebbe portare a problemi di gestione della memoria.
+	
+#### Riassunto
+	
+Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la funzionalità dei tipi complessi beneficiando di:
+- Clonazione esplicita con `.clone()`
+- Copia implicita per tipi che implementano `Copy`
+- Formattazione per il debug con `Debug`
+
+**Applicazione**:
+
+- `.clone()`: Utilizzabile per qualsiasi tipo che implementa `Clone`, inclusi tipi complessi come `String` e `Vec`.
+- `Copy`: Limitato a tipi che hanno una dimensione fissa e non richiedono gestione della memoria dinamica.
+
 ---
 ##### Suggested Progression
 [[rust_cheat_sheet_dynamics]]
