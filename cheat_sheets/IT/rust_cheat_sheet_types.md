@@ -321,7 +321,7 @@ let second_pick_beverage = Menu::beverage{
 	
 	
 ---
-### **§ Tipi Aggiuntivi**
+## **§ Tipi Aggiuntivi**
 #Slices #Strings 
 	
 ### Slices
@@ -338,9 +338,8 @@ println!("Slice: {:?}", slice);
 
 - **Output**: `Slice: [2, 3]`
 	
-### String Slice 
-#Strings 
-
+### String Slice  
+	
 - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
 - **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
 - **Esempio**:
@@ -353,7 +352,74 @@ println!("Slice: {:?}", slice);
 	```
 
 - **Output**: `Hello, world!`
+	
+	
+---
+## § Annotazioni Esplicite del Tipo
+	
+### Specifiche
+	
+**Caso d'Uso**: Utilizzo della sintassi `let variabile: tipo = valore`  per limitare e rendere più solido l'utilizzo della memoria ottimizzandola.
+	
+```Rust
+// Implicit Annotiation
+let positive_number = 10; // Generates space in memory even for Negative numbers!
 
+// Explicit Anntotation
+let positive_number: i8 = 10; // Exclusively for Positive numbers!
+```
+	
+### Generiche
+	
+**Caso d'Uso**: Si può utilizzare la annotazione anche per i tipi composti e complessi `enum`, `struct`, `vec`.
+	
+```Rust
+enum DirectionalArrows {
+	Up,
+	Down,
+	Left,
+	Right,
+}
+
+
+
+struct Block {
+	hash_signature: String,
+	merkle_root: String,
+	nonce: String,
+}
+
+
+fn main () {
+	// ENUMERATIONS
+	let run: DirectionalArrow = DirectionalArrows::Up;
+	
+	// STRUCTURES
+	// Blockchain example just to be fancy
+	let first_block: Block = {
+		hash_signature: String::from("tBJAihCD4Zc6++SXhcIEn3AqDzfm0x1XrqAa+DmzQh0="),
+		merkle_root: String::from("CnPC478PrYguuMwDiaU6BpvC7bTWUMcll+BYhSN2e5k="),
+		nonce_count: String::from("00000000000000000"),
+	};
+	let second_block: Block = {
+		hash_signature: String::from("CnPC478PrYguuMwDiaU6BpvC7bTWUMcll+BYhSN2e5k="),
+		merkle_root: String::from("sJVxRwy67sCy44Fzen5CT3wmi565pLkuKuqXqcwXkhc="),
+		nonce_count: String::from("00000000000000000"),
+	};
+	
+	// VECTORS
+	let blockchain: vec<Block> = vec![first_block, second_block]; // STRUCTURES
+	let dance: vec<DirectionalArrow> = { // ENUMERATIONS
+		DirectionalArrows::Up,
+		DirectionalArrows::Left,
+		DirectionalArrows::Right,
+		DirectionalArrows::Down,
+	}
+
+}
+
+
+```
 	
 ---
 ##### Progressione Suggerita

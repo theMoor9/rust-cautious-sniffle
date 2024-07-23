@@ -3,7 +3,7 @@
 	
 ---
 ##### **Table of Contents**
-###### [§ Struttura](#-Struttura-1)
+###### [§ Signature](#-Signature-1)
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1)
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1)
 - [Implementazione](#Implementazione)
@@ -13,7 +13,7 @@
 - [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
 	
 ---
-## **§ Struttura**
+## **§ Signature**
 	
 Sintassi: `fn`
 	
