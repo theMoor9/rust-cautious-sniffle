@@ -1,6 +1,4 @@
 # **Rust Cheat Sheet - Funzioni**
-	
----
 ##### **Table of Contents**
 ###### [§ Signature](#-Signature-1)
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1)

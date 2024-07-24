@@ -1,6 +1,4 @@
 # **Rust Cheat Sheet - Tipi**
-	
----
 ##### **Table of Contents**
 ###### [§ Tipi Scalari](#-Tipi-Scalari-1)
 - [Numeri Interi](#Numeri-Interi)

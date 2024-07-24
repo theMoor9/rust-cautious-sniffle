@@ -1,6 +1,4 @@
 ## **Rust Cheat Sheet - Dinamiche di controllo del codice**
-	
----
 ##### **Table of Contents**
 ###### [§ Control Expressions](#-Control-Expressions-1)
 - [If - Else](#If---Else)

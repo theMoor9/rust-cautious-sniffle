@@ -1,6 +1,4 @@
 # **Rust Cheat Sheet - Macro**
-	
----
 ##### **Table of Contents**
 ###### [§ println!](#-println-1)
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)

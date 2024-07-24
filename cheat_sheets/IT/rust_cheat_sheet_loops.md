@@ -1,6 +1,4 @@
 # **Rust Cheat Sheet - Cicli**
-	
----
 ##### **Table of Contents**
 ###### [§ Ciclo Infinito ∞](#[-Ciclo-infinito--1)
 ###### [§ Cicli Condizionale - while](#-Cicli-Condizionale-1)

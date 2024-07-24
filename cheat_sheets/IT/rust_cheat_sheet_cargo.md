@@ -1,6 +1,4 @@
-## **Rust Cheat Sheet - Cargo
-	
----
+## **Rust Cheat Sheet - Cargo**
 ##### **Table of Contents**
 ###### [§ Documentazione](#-Documentazione-1)
 - [Aggiungere la Documentazione](#Aggiungere-la-Documentazione) 
