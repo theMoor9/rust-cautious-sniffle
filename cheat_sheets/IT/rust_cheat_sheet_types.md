@@ -45,7 +45,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	- **Tags**: #Integers 
 	- **Esempio**:
 	
-		```
+		```Rust
 		let item_count: u32 = 50; 
 		let index: usize = 3;
 		```
@@ -58,7 +58,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Tags**: #Float 
 - **Esempio**:
 	
-	```
+	```Rust
 	let pi: f32 = 3.14; 
 	let e: f64 = 2.718281828459045;
 	```
@@ -71,7 +71,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Tags**: #Bool 
 - **Esempio**:
 	
-	```
+	```Rust
 	let is_active: bool = true; 
 	let has_error: bool = false;
 	```
@@ -84,7 +84,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Tags**: #Char 
 - **Esempio**:
 	
-	```
+	```Rust
 	let letter: char = 'A'; 
 	let emoji: char = '😊';
 	```

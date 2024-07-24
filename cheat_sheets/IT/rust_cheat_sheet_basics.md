@@ -6,7 +6,7 @@
 	
 - ##### Istanziazione Variabile
 	
-	**Sintassi**: `let` (`;`)
+	**Sintassi**: `let` (`;`)  
 	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
 	
 	```Rust
@@ -17,7 +17,7 @@
 	
 - ##### Istanziazione Variabile Mutabile 
 	
-	**Sintassi**: `let mut` (`;`)
+	**Sintassi**: `let mut` (`;`)  
 	**Posizione obbligatoria rispetto il codice**: *Dentro una funzione funzione*
 	
 	```Rust
@@ -29,8 +29,8 @@
 	
 - ##### Struct
 	
-	**Sintassi**: `struct`
-	**Tags**: #Structs
+	**Sintassi**: `struct`  
+	**Tags**: #Structs  
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 		
 	```Rust
@@ -44,8 +44,8 @@
 	
 - ##### Enum
 	
-	**Sintassi**: `enum`
-	**Tag**: #Enums 
+	**Sintassi**: `enum`  
+	**Tag**: #Enums   
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 	
 	```Rust
@@ -59,9 +59,8 @@
 	
 - ##### Chiamata d'Ispezione 
 	
-	**Sintassi**: `::`
-	
-	Descrizione: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.
+	**Sintassi**: `::`  
+	Descrizione: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.  
 	
 	``` Rust
 	Vec::new()
@@ -71,8 +70,8 @@
 	
 - ##### Istanziazione Funzione 
 	
-	**Sintassi**: `fn`
-	**Posizione obbligatoria rispetto il codice**: *Nessuna*
+	**Sintassi**: `fn`  
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*  
 	
 	```Rust
 	//snake_case
@@ -84,8 +83,8 @@
 	
 - ##### Commenti e testi
 	
-	**Sintassi**: `//`
-	**Posizione obbligatoria rispetto il codice**: *Nessuna*
+	**Sintassi**: `//`  
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*  
 	
 	```Rust
 	// Comment
@@ -98,7 +97,7 @@
 	*/
 	```
 	
-	**Sintassi**: `\`
+	**Sintassi**: `\`  
 	
 	```Rust
 	print!(
@@ -110,7 +109,7 @@
 	
 - ##### Variabili Inutilizzate
 	
-	**Sintassi**: `_`
+	**Sintassi**: `_`  
 	
 	```Rust
 	/*
@@ -126,17 +125,17 @@
 	
 - ##### Procedura di Compilazione ed Esecuzione
 	
-	Nella cartella dove si trova il `main.rs` :
+	Nella cartella dove si trova il `main.rs` :  
 	
-	1. **Compila**
+	1. **Compila**  
 		```sh
 	   $ rustc main.rs
 	   ```
-	2. Esegue **Windows**
+	2. Esegue **Windows**  
 		```sh
 	   $ .\main.exe
 	   ```  
-	3. Esegue **non-Windows** (Linux/macOS):
+	3. Esegue **non-Windows** (Linux/macOS):  
 		```sh
 	   $ ./main
 	   ```     
