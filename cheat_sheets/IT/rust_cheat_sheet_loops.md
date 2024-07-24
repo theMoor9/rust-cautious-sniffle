@@ -1,7 +1,5 @@
 # **Rust Cheat Sheet - Cicli**
 	
-#Loops #Vectors #Enums #Arrays #Tuples
-	
 ---
 ##### **Table of Contents**
 ###### [§ Ciclo Infinito ∞](#[-Ciclo-infinito--1)
@@ -14,6 +12,7 @@
 	
 - **Descrizione**: Ciclo infinito
 - **Sintassi**: `loop` 
+- **Tags**: #Loops 
 - **Esempio**:
 	
 ```Rust
@@ -30,6 +29,7 @@ loop {
 	
 - **Descrizione**: Cicla in base alle condizioni date
 - **Sintassi**: `while`
+- **Tags**: #Loops 
 - **Esempio**:
 	
 ```Rust
@@ -46,6 +46,7 @@ while true {
 	
 - **Descrizione**: Cicla ispezionando in maniera sequenziale gli elementi in esame
 - **Sintassi**: `for`
+- **Tags**: #Loops #Vectors #Arrays #Tuples #Enums
 - **Esempio**:
 	
 	*Range*:    `n..n-1`

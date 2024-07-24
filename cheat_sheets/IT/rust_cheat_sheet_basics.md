@@ -1,6 +1,5 @@
 # **Rust Cheat Sheet - Elementi base**
-	
-#Basics #Structs #Types #Enums 
+#Basics 
 	
 ---
 ## **Basics**
@@ -31,6 +30,7 @@
 - ##### Struct
 	
 	**Sintassi**: `struct`
+	**Tags**: #Structs
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 		
 	```Rust
@@ -45,6 +45,7 @@
 - ##### Enum
 	
 	**Sintassi**: `enum`
+	**Tag**: #Enums 
 	**Posizione obbligatoria rispetto il codice**: *Nessuna*
 	
 	```Rust
@@ -143,6 +144,7 @@
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - Tipi](./rust_cheat_sheet_types.md)
+
 	
 ---
 	

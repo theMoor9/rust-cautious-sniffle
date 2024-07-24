@@ -1,7 +1,5 @@
 # **Rust Cheat Sheet - Macro**
 	
-#Macros #Structs #Enums #Ownership #Vectors 
-	
 ---
 ##### **Table of Contents**
 ###### [§ println!](#-println-1)
@@ -17,7 +15,9 @@
 ---
 ## **§ println!**
 	
-Oltre il classico uso, `println!` ha bisogno elementi *`token`* da usare nei placeholders `{...}` come argomenti oltre la stringa per stampare variabili
+- **Descrizione**: Oltre il classico uso, `println!` ha bisogno elementi *`token`* da usare nei placeholders `{...}` come argomenti oltre la stringa per stampare variabili
+- **Tags**: #Macros 
+- **Esempi**:
 	
 ```Rust
 let token = value
@@ -27,6 +27,9 @@ println!("string {}", token)
 	
 	
 ### Tipologie di Placeholders
+	
+- **Descrizione**: E' possibile scegliere tra diverse tipologie di placeholders ai fini della formattazione
+- **Esempi**:
 	
 *Valore end-user display*
 ```Rust
@@ -89,7 +92,9 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 ---
 ## **§ vec!**
 	
-Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
+- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
+- **Tags**: #Vectors #Macros #Types 
+- **Esempi**:
 	
 ```Rust
 // Inizializzazione
@@ -107,38 +112,41 @@ struct Volume{
 	value: u8,
 }
 
-// Crea un vettore fatto di struct differenti
-let settings = vec![
-	Volume{ value: 00 },
-	Volume{ value: 10 },
-	Volume{ value: 20 },
-	Volume{ value: 30 },
-];
-
-// Per la stampa della struttura in questione occore che il token sia `{:?}`
-for v in settings {
-	println!("The struct setting is increasing to: {:?}", v);
-}
-
-/*
-Output:
-The struct setting is increasing to: Volume { value: 00 }
-The struct setting is increasing to: Volume { value: 10 }
-The struct setting is increasing to: Volume { value: 20 }
-The struct setting is increasing to: Volume { value: 30 }
-*/
-
-```
+fn main() {
+	// Crea un vettore fatto di struct differenti
+	let settings = vec![
+		Volume{ value: 00 },
+		Volume{ value: 10 },
+		Volume{ value: 20 },
+		Volume{ value: 30 },
+	];
 	
+	// Per la stampa della struttura in questione occore che il token sia `{:?}`
+	for v in settings {
+		println!("The struct setting is increasing to: {:?}", v);
+	}
+	
+	/*
+	Output:
+	The struct setting is increasing to: Volume { value: 00 }
+	The struct setting is increasing to: Volume { value: 10 }
+	The struct setting is increasing to: Volume { value: 20 }
+	The struct setting is increasing to: Volume { value: 30 }
+	*/
+}
+```
 	
 ---
 ## **§ Derive**
 	
-Con `derive`, aggiungiamo implementazioni automatiche di determinati tratti ai tipi complessi come `enum` e `struct` per scopi di debug o convenienza.
+- **Descrizione**: Con `derive`, aggiungiamo implementazioni automatiche di determinati tratti ai tipi complessi come `enum` e `struct` per scopi di debug o convenienza.
+- **Tags**: #Macros 
 	
 ### Debug
 	
-La macro `#[derive(Debug)]` viene utilizzata per assegnare automaticamente l'implementazione del tratto `Debug` a una struttura o un'enumerazione. Questo permette di formattare il tipo in modo leggibile, rendendolo utile per il debug.
+- **Descrizione**: La macro `#[derive(Debug)]` viene utilizzata per assegnare automaticamente l'implementazione del tratto `Debug` a una struttura o un'enumerazione. Questo permette di formattare il tipo in modo leggibile, rendendolo utile per il debug.
+- **Tags**: #Structs #Enums 
+- **Esempio**:
 	
 
 ```Rust
@@ -183,9 +191,10 @@ In pratica, `#[derive(Debug)]` facilita l'estrapolazione e la rappresentazione d
 	
 ### Clone
 	
-**Descrizione**: La macro `#[derive(Clone)]` permette di creare copie della struttura complessa. `Clone` indica che è permessa la clonazione esplicita chiamando `.clone()`.
-
-**Perché**: Permette di non violare la condizione di *ownership* di un oggetto .
+- **Descrizione**: La macro `#[derive(Clone)]` permette di creare copie della struttura complessa. `Clone` indica che è permessa la clonazione esplicita chiamando `.clone()`.
+- **Caso d'Uso**: Permette di non violare la condizione di *ownership* di un oggetto .
+- **Tags**: #Structs #Enums #Ownership 
+- **Esempio**:
 	
 ```Rust
 #[derive(Debug)]
@@ -227,7 +236,9 @@ fn main () {
 	
 ### Copy
 	
-La specificazione `Copy` rispetto a `Clone` indica che è permessa la copia del clone automatica e quindi implicita senza bisogno di chiamare `.clone()`. Con `#[derive(Clone, Copy)]`, la clonazione è sia esplicita che implicita:
+- **Descrizione**: La specificazione `Copy` rispetto a `Clone` indica che è permessa la copia del clone automatica e quindi implicita senza bisogno di chiamare `.clone()`. Con `#[derive(Clone, Copy)]`, la clonazione è sia esplicita che implicita:
+- **Tags**: #Structs #Enums 
+- **Esempio**:
 	
 ```Rust
 #[derive(Debug)]
@@ -287,7 +298,7 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust_cheat_sheet_controls_dynamics.md)
 	
 ---
 	

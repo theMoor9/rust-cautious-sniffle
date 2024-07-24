@@ -1,6 +1,4 @@
-# **Rust Cheat Sheet - Dinamiche del codice**
-	
-#Dynamics #Strings #Vectors #Types #Ownership #Enums #References 
+## **Rust Cheat Sheet - Dinamiche di controllo del codice**
 	
 ---
 ##### **Table of Contents**
@@ -10,6 +8,9 @@
 ###### [§ Expressions Dynamics](#-Expressions-Dynamics-1)
 - [If - Else](#If---Else-1)
 - [Match](#Match-1)
+###### [§ Advance Match Dynamics](#-Advance-Match-Dynamics)
+- [Enum](#Enum)
+- [Struct](#Struct)
 ###### [§ Ownership and References](#-Ownership-and-References-1)
 - [Ownership](#Ownership)
 - [References](#References)
@@ -20,7 +21,10 @@ ___
 Espressioni di controllo
 	
 ###  If - Else
-Sintassi: 
+
+- **Descrizione**: Letterale `if` la condizione è vera esegui `{ ... }` `else if` la seconda condizione è vera esegui questo`{ ... }`  `else` esegui questo `{ ... }`
+- **Tags**: #if #Controls 
+- **Sintassi**: 
 ```Rust
 if condition && condition2 {
 	// Esecuzione del codice
@@ -34,11 +38,14 @@ if condition && condition2 {
 > Spesso è possibile abbreviare i controlli
 	
 ### Match 
-	
-Volendo considerare la sequenza di controllo `if - else` riportata sopra, in caso di possibilità ampie sul controllo della condizione, si creerebbero sequenze controllo `if - else` molto estese. Per cui, per controlli su condizioni singole si predilige la Sintassi: `match`.
+
+- **Descrizione**:  Volendo considerare la sequenza di controllo `if - else` riportata sopra, in caso di possibilità ampie sul controllo della condizione, si creerebbero sequenze controllo `if - else` molto estese. Per cui, per controlli su condizioni singole si predilige la Sintassi: `match`.
+- **Tags**: #match #Controls 
+- **Esempio**: 
 
 Logica  ***inefficiente*** `if - else`
 ```Rust
+
 let mut condition = "White"
 
 if condizion == "Gold"{
@@ -75,45 +82,78 @@ match  condition{
 >
 >Underscore `_` è utilizzato come si utilizzerebbe un `else` non condizionale, per coprire eventuali opzioni extra
 
-- ##### Enumerations
+##### Match Enumerations
 
-	 L'utilizzo del controllo `match` sulle `enum` garantisce un controllo robusto rispetto alle varianti dell'enumerazione, visto che `match` genera un errore se non sono sviluppate tutte le alternative di azione per la  ***variante*** e genera un allerta se anche solo una  ***variante*** non viene utilizzata.
+- **Descrizione**:   L'utilizzo del controllo `match` sulle `enum` garantisce un controllo robusto rispetto alle varianti dell'enumerazione, visto che `match` genera un errore se non sono sviluppate tutte le alternative di azione per la  ***variante*** e genera un allerta se anche solo una  ***variante*** non viene utilizzata.
+- **Tags**: #match #Enums #Controls 
+- **Esempio**: 
 	
 	 La sua costruzione è effettuata utilizzando il sistema di selezione della  ***variante***
 	
-	
-	```Rust
-	enum MenuChoice{
-		FirstDish(String),
-		SecondDish(String),
-		Dessert(String),
-		Drink(String),
+```Rust
+enum MenuChoice{
+	FirstDish(String),
+	SecondDish(String),
+	Dessert(String),
+	Drink(String),
+}
+
+// In main
+let choice = MenuChoice::SecondDish(String::from("Fiorentina steak")) ;
+
+match choice {
+	MenuChoice::FirstDish(pick) => println!("He ordered {}", Pick),
+	MenuChoice::SecondDish(pick) => println!("He ordered {}", Pick),
+	MenuChoice::Dessert(pick) => println!("He ordered {}", Pick),
+	MenuChoice::Drink(pick) => println!("He ordered {}", Pick),
+} ;
+
+// Othewise
+
+fn matching_function (preference: MenuChoice) {
+	match preference{
+		MenuChoice::FirstDish(pick) => println!("He ordered {}", pick),
+		MenuChoice::SecondDish(pick) => println!("He ordered {}", pick),
+		MenuChoice::Dessert(pick) => println!("He ordered {}", pick),
+		MenuChoice::Drink(pick) => println!("He ordered {}", pick),
 	}
-	
-	let choice = MenuChoice::SecondDish(String::from("Fiorentina steak")) ;
-	
-	match choice {
-		MenuChoice::FirstDish(pick) => println!("He ordered {}", Pick),
-		MenuChoice::SecondDish(pick) => println!("He ordered {}", Pick),
-		MenuChoice::Dessert(pick) => println!("He ordered {}", Pick),
-		MenuChoice::Drink(pick) => println!("He ordered {}", Pick),
-	} ;
-	
-	// Othewise
-	
-	fn matching_function (preference: MenuChoice) {
-		match preference{
-			MenuChoice::FirstDish(pick) => println!("He ordered {}", pick),
-			MenuChoice::SecondDish(pick) => println!("He ordered {}", pick),
-			MenuChoice::Dessert(pick) => println!("He ordered {}", pick),
-			MenuChoice::Drink(pick) => println!("He ordered {}", pick),
-		}
-	}
-	
-	matching_function(choice) // Fucntion call on choice
+}
+
+// In main
+matching_function(choice) // Fucntion call on choice
 	```
 		
-  >Si istanzia `choice` con la variabile `enum` assegnando le varianti come casi di scelta su cui opererà `match` comparando con l'oggetto caso d'analisi `choice`. Si utilizza inoltre `pick` come riferimento di cattura per il contenuto dell'oggetto `choice` ad uso del `println!` come token.
+>	Si istanzia `choice` con la variabile `enum` assegnando le varianti come casi di scelta su cui opererà `match` comparando con l'oggetto caso d'analisi `choice`. Si utilizza inoltre `pick` come riferimento di cattura per il contenuto dell'oggetto `choice` ad uso del `println!` come token.
+	
+##### Match Option
+
+- **Descrizione**: L'utilizzo del controllo `match` sulle `enum Option<T>` garantisce un controllo completo la dove un tipo *Option* presenta la possibilità di valore nullo da gestire
+- **Tags**: #match #Option #Controls 
+- **Esempio**: 
+	
+```Rust
+enum Activites {
+	morning: String,
+	evening: String,
+	night: Option<String>
+}
+
+fn main () {
+	
+	let today = Activites{
+		morning: "Work".to_owned(),
+		evening: "Hobby".to_owed(),
+		night: None
+	}
+	
+	// We match on an Option possibilities
+	match today.night {
+		Some("Work") => println!("Get some rest!"),
+		Some(activity) => println!("I'm goint to {}", activity),
+		None => println!("Good Sleep!")
+	}
+}
+```
 	
 	
 ---
@@ -123,6 +163,7 @@ match  condition{
 ### If - Else
 	
 - **Caso d'Uso**: Assegnazione diretta
+- Tags: #if #Dynamics 
 - **Esempio**:
 	
 ```Rust
@@ -145,16 +186,19 @@ let mut variable: bool = control_variable > 9 ;
 ### Match 
 	
 - **Caso d'Uso**: Assegnazione diretta ed espressioni innestate (Terza variante su `match`).
+- **Tags**: #match #Dynamics 
 - **Esempio**:
 	
 ```Rust
-	enum DrinkHad {
-		One,
-		Two,
-		Three,
-		Four,
-	}
-	
+enum DrinkHad {
+	One,
+	Two,
+	Three,
+	Four,
+	five(String),
+}
+
+fn main () {
 	let my_friend_im_writing_drunk_for_real = DrinkHad::Two ;
 	let waitress_wantend_me_to_drink: bool = true;
 	
@@ -164,18 +208,117 @@ let mut variable: bool = control_variable > 9 ;
 			if waitress_wantend_me_to_drink {
 				"I got offered a free vodka topping, \
 				She also brought me a free sandwich. \
-				I feel dizzy but she likes me!"
+				I feel dizzy and she likes me!"
 			} else {
 				"Alright, we're done"
 			}
 		},
 		DrinkHad::Three => "That's sad! Focus!",
-		_ => "I'm cooked! Go home!",
+		_ => "I would be cooked! I would go home.", // `_` Unnamed alternative
 	} ;
 	
 	println!("{}", thought) ; // Output: I got offered a free vodka...
+}
 ```
 	
+	
+---
+## **§ Advance Match Dynamics**
+
+E' possibile rendere i `match` dinamici tramite la personalizzazione delle possibilità con l'uso dei nomi delle variabili (Campi o Varianti) e simboli.
+	
+### Enums
+	
+- **Descrizione**: E' possibile dichiarare in maniera dinamica le possibilità non prese in considerazione in modo che il codice sia ricettivo alle alternative.
+- **Tags**: #Enums #match #Dynamics 
+- **Esempio**:
+	
+```Rust
+enum DrinkHad {
+	One,
+	Two,
+	Three,
+	Four,
+	five(String),
+}
+	
+fn main () {
+	
+	let var = 9 ;
+	
+	let reading = match var {
+		1 => "One",
+		2 => "Two",
+		3 => "Three", 
+		other_number => other_numeber, //catches the value of `var`
+	} ;
+	
+	println!("The number read is {}", reading) ; // Output: The number read is 9
+	
+	let lie_drink_had_today = Drink::Five(String::from("Are you stupid?")) ; 
+	
+	let second_day_thougth = match lie_drink_had_today {
+		DrinkHad::One => "I'm a little bit drunk",
+		DrinkHad::Two => "No chance, she was married :\ ",
+		DrinkHad::Three => "That's sad! Focus!",
+		DrinkHad::Five(good_question) => good_question,
+		_ => "I would be cooked! I would go home.",
+	} ;
+	
+	println!("{}", second_day_thougth) ; // Output: Are you stupid?
+	
+}
+```
+	
+### Struct
+
+- **Descrizione**: Si usa per una ricerca avanzata rispetto i campi, con il supporto della sintassi `..` come strumento di esclusione, e dei nominativi dei campi come carpitori di valore.
+- **Tags**: #match #Structs #Dynamics 
+- **Esempio**:
+	
+```Rust
+struct Block {
+	id: i8,
+	field1: i8,
+	field2: i8,
+	field3: i8,
+}
+
+fn search_by_field2 (data: Block) {
+	match data {
+		// Matchin by field value
+		// `..` Are use to not consider other fields
+		Block { field2:32, .. } => println!{"Found!"}, 
+		//Matching by field catching whatever id value for later use
+		Block { field2:22, id, .. } => println!{"Found! id: {}", id},
+		_ => println!("Not found!"), 
+	}
+}
+
+fn main () {
+	let first_block = Block {
+		id: 10,
+		field1: 11,
+		field2: 11,
+		field3: 11,
+	};
+	let second_block = Block {
+		id: 20,
+		field1: 21,
+		field2: 22,
+		field3: 23,
+	};
+	let third_block = Block {
+		id: 30,
+		field1: 31,
+		field2: 32,
+		field3: 33,
+	};
+	search_by_hash(third_block) ; 
+}
+```
+	
+- **Output**: Found!
 	
 ___
 ## **§ Ownership and References**
@@ -186,6 +329,7 @@ La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
 - **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
+- **Tags**: #Ownership #Types #Strings #Dynamics 
 - Esempio:
 	
 	```Rust
@@ -234,6 +378,7 @@ fn main () {
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
 - **Sintassi**: `&`
 - **Caso d'Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
+- **Tags**: #References #Types #Strings #Dynamics 
 - **Esempio**:
 	
 ```Rust
@@ -267,9 +412,10 @@ variabile che elabora alla fine del suo contesto
 	
 - Ensure that references are valid as long as they are used.
 - **Caso d'Uso**: Managing the scope of references.
+- **Tags**: #Dynamics 
 - **Esempio**:
     
-    ```
+    ```Rust
     fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
         if x.len() > y.len() {
 		    x     

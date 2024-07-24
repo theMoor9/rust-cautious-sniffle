@@ -1,7 +1,5 @@
 # **Rust Cheat Sheet - Funzioni**
 	
-#Functions #Vectors #Strings #Structs 
-	
 ---
 ##### **Table of Contents**
 ###### [§ Signature](#-Signature-1)
@@ -16,10 +14,10 @@
 ---
 ## **§ Signature**
 	
-Sintassi: `fn`
-	
-Gli oggetti della funzione sono dichiarati col loro tipo `a: i32` , `b: i32`
-Il simbolo `->`  serve esclusivamente per indicare il tipo della restituzione.
+- **Descrizione**: Gli oggetti della funzione sono dichiarati col loro tipo `a: i32` , `b: i32` Il simbolo `->`  serve esclusivamente per indicare il tipo della restituzione.
+- Sintassi: `fn`
+- **Tags**: #Functions
+- **Esempio**:
 	
 ```Rust
 fn multiply(a: i32, b: i32, c ...) -> i32 {
@@ -29,27 +27,29 @@ fn multiply(a: i32, b: i32, c ...) -> i32 {
 	
 --- 
 ## **§ Metodi di Restituzione** :
+
+- **Definizione**: La restituzione è il risulta to delle operazioni della funzione.
+- **Tags**: #Functions 
+- **Esempi**:
 	
-Con `return`
-	
-```Rust
-fn multiply(a: i32, b: i32) -> i32 {
-	 return a * b ; 
-}
-// Restituisce a * b esplicitamente
-```
-	
-Senza `return`
-	
-```Rust
-fn multiply(a: i32, b: i32) -> i32 {
-	 a * b 
-}
-// Restituisce implicitamente a * b come ultima espressione valutata
-```
-	
-	
-	
+	Con `return`
+		
+	```Rust
+	fn multiply(a: i32, b: i32) -> i32 {
+		 return a * b ; 
+	}
+	// Restituisce a * b esplicitamente
+	```
+		
+	Senza `return`
+		
+	```Rust
+	fn multiply(a: i32, b: i32) -> i32 {
+		 a * b 
+	}
+	// Restituisce implicitamente a * b come ultima espressione valutata
+	```
+		
 **Differenza tra `return` e Ultima Espressione**
 	
 - **Espressione finale senza punto e virgola**: Se l'ultima espressione nel corpo della funzione non è seguita da un punto e virgola, il valore di questa espressione sarà automaticamente restituito.
@@ -60,111 +60,120 @@ fn multiply(a: i32, b: i32) -> i32 {
 ---
 ## **§ Funzionalità (Metodi)**
 	
-- ##### Implementazione
-	Atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
+### Implementazione
+- **Caso D'Uso**: Implementazione atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
+- **Tags**: #Structs 
+- **Sintassi**: `impl`
+- **Esempio**:
 	
-	Sintassi: `impl`
+```Rust
+// Inizializzazione struct
+struct Distance {
+	meters: f32,
+}
+
+// Funzione pertinente alla struct
+fn show_distance (marathon: Distance) {
+	println!("The distance is {}", marathon.meters);
+}
+
+fn main () {
 	
-	```Rust
-	// Inizializzazione struct
-	struct Distance {
-		meters: f32,
-	}
+	let firenze_cup = Distance{
+		meters: 9000.0,
+	};
 	
-	// Funzione pertinente alla struct
+	show_distance(firenze_cup);
+}
+```
+	
+Manipolazione delle `fn` tramite `impl` in metodi:
+	
+```Rust
+struct Distance {
+	meters: f32,
+}
+
+// Implementazione del metodo con riferimento al nome della struct Distance
+impl Distance {
+		
+	// La funzione diventa un metodo
 	fn show_distance (marathon: Distance) {
 		println!("The distance is {}", marathon.meters);
 	}
-	
-	fn main () {
-		
-		let firenze_cup = Distance{
-			meters: 9000.0,
-		};
-		
-		show_distance(firenze_cup);
-	}
-	```
-	
-	Manipolazione delle `fn` tramite `impl` in metodi:
-	
-	```Rust
-	struct Distance {
-		meters: f32,
-	}
-	
-	// Implementazione del metodo con riferimento al nome della struct Distance
-	impl Distance {
-			
-		// La funzione diventa un metodo
-		fn show_distance (marathon: Distance) {
-			println!("The distance is {}", marathon.meters);
-		}
-	}
-	
+}
+
+fn main () {
 	let firenze_cup = Distance{ meters:9000.0 };
 	// Chiamata del Medodo indiretta!
 	Distance::show_distance( firenze_cup )
 	// Restituisce a monitor "9000.0"
-	```
+}
+```
 	
-	```Rust
-	struct Distance {
-		meters: f32,
-	}
+```Rust
+struct Distance {
+	meters: f32,
+}
+	
+impl Distance {
 		
-	impl Distance {
-			
-		/* 
-		La funzione diventa un metodo con riferimento a chi la chiama &,
-		Può così essere chiamata più volte!
-		*/
-		fn show_distance (&self) {
-			println!("The distance is {}", self.meters);
-		}
-		
+	/* 
+	La funzione diventa un metodo con riferimento a chi la chiama &,
+	Può così essere chiamata più volte!
+	*/
+	fn show_distance (&self) {
+		println!("The distance is {}", self.meters);
 	}
 	
+}
+
+fn main () {
 	let firenze_cup = Distance{ meters:9000.0 };
 	// Chiamata del Metodo diretta!
 	firenze_cup.show_distance();
 	// Restituisce a monitor "9000.0"
-	```
-		
-- ##### Implementazione Autonoma
-	Quando i valori della `struct` non sono inizializzati `impl` può autodefinire i valori al momento della chiamata del metodo grazie alla ***Restituzione*** `-> Self`
+}
+```
 	
-	Sintassi: `-> Self`
-	
-	```Rust
-	struct Distance {
-		meters: f32,
+### Implementazione Autonoma
+- **Descrizione**: Quando i valori della `struct` non sono inizializzati `impl` può autodefinire i valori al momento della chiamata del metodo grazie alla ***Restituzione*** `-> Self`
+- **Tags**: #Structs 
+- **Sintassi**: `-> Self`
+- **Esempio**:
+
+```Rust
+struct Distance {
+	meters: f32,
+}
+
+impl Distance {
+	fn set_distance () -> Self {
+		Self { meters:9000.0 }
 	}
-	
-	impl Distance {
-		fn set_distance () -> Self {
-			Self { meters:9000.0 }
-		}
-		fn input_distance (input: f32) -> Self {
-			Self { meters: input }
-		}
-		fn show_distance (&self) {
-			println!("The distance is {}", self.meters);
-		}
+	fn input_distance (input: f32) -> Self {
+		Self { meters: input }
 	}
+	fn show_distance (&self) {
+		println!("The distance is {}", self.meters);
+	}
+}
 	
+fn main () {
 	firenze_cup.set_distance()
 	firenze_cup.show_distance()
 	// Restituisce a monitor "9000.0"
 	firenze_cup.input_distance(999.9)
 	firenze_cup.show_distance()
 	// Restituisce a monitor "999.9"
-	```
-	
+}
+```
+
 	
 ---
 ## **§ Metodi Standard**
-	
+
+**Tags**: #Vectors #Strings 
 ##### Vettori (`Vec<T>`)
 	
 - **.push()**: Aggiunge un elemento alla fine del vettore.
@@ -202,7 +211,7 @@ fn multiply(a: i32, b: i32) -> i32 {
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - Cicli](./rust_cheat_sheet_loops.md)
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust_cheat_sheet_controls_dynamics.md)
 	
 ---
 	

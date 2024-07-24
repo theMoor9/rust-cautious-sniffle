@@ -1,7 +1,5 @@
 # **Rust Cheat Sheet - Tipi**
 	
-#Types #Integers #Float #Bool #Char
-	
 ---
 ##### **Table of Contents**
 ###### [§ Tipi Scalari](#-Tipi-Scalari-1)
@@ -16,7 +14,9 @@
 - [Struct](#Struct)
 - [Enumerations](#Enumerations)
 ###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1)
-
+- [Slices](#Slices)
+- [String Slices](#String-Slices)
+- [Option](#Option)
 ###### [§ Annotazioni Esplicite del Tipo](#-Annotazioni-Esplicite-del-Tipo)
 - [Specifiche](#Specifiche)
 - [Generiche](#Generiche)
@@ -32,6 +32,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 	- **Tipi**: ```i8```, ```i16```, ```i32```, ```i64```, ```i128```, ```isize```
 	- **Caso d'Uso**: Immagazzinare Temperatura, e variabili che possono assumere valori negativi.
+	- **Tags**: #Integers 
 	- **Esempio**:
 	
 		```Rust
@@ -43,6 +44,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 	- **Tipi**: ```u8```, ```u16```, ```u32```, ```u64```, ```u128```, ```usize```
 	- **Caso d'Uso**: Età, Indicizzazione array, etc.
+	- **Tags**: #Integers 
 	- **Esempio**:
 	
 		```
@@ -55,6 +57,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Definizione**: Usato per i numeri decimali.
 - **Tipi**: ```f32``` (Precisione singola), ```f64``` (Precisione doppia)
 - **Caso d'Uso**: Calcoli scientifici e di precisione.
+- **Tags**: #Float 
 - **Esempio**:
 	
 	```
@@ -67,6 +70,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Definizione**: Rappresentano vero o falso.
 - **Tipo**: ```bool```
 - **Caso d'Uso**: Controlli condizionale e avvisi flag.
+- **Tags**: #Bool 
 - **Esempio**:
 	
 	```
@@ -79,6 +83,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Definizione**: Rappresenta un codice univoco, racchiuso tra apici.
 - **Tipo**: ```char```
 - **Caso d'Uso**: Immagazzinare caratteri e simboli singoli.
+- **Tags**: #Char 
 - **Esempio**:
 	
 	```
@@ -96,6 +101,7 @@ I tipi composti raggruppano più variabili sotto un unico tipo
 	
 - **Definizione**: Può raggruppare molteplici valori con differenti tipi
 - **Caso d'Uso**: Ritornare valori multipli da una funzione.
+- **Tags**: #Tuples 
 - **Esempio**:
 	
 ```Rust
@@ -123,6 +129,7 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
     
 - **Definizione**: Una collezione di elementi prefissata.
 - **Caso d'Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
+- **Tags**: #Arrays 
 - **Esempio**:
 
 ```Rust
@@ -133,7 +140,6 @@ println!("First day: {}", first_day);
 
 - **Output**: `First day: Mon`
 	
-#Tuples #Arrays
 	
 ---
 ## **§ Tipi Complessi**
@@ -145,6 +151,7 @@ I tipi complessi in Rust rappresentano i valori composti, che  possono essere su
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
 - **Tipo**: `struct`
 - **Caso d'Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
+- **Tags**: #Structs 
 - **Esempio**:
 	
 ```Rust
@@ -183,6 +190,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	- **Definizione**: E' una collezione mutabile e dinamicamente allocata di caratteri UTF-8.
 	- **Tipo**: `String`
 	- **Caso d'Uso**: Usa `String` per stringhe mutabili e possedute, e `&str` per riferimenti immutabili a stringhe esistenti.
+	- **Tags**: #Structs #Strings 
 	- **Esempio**:
 	
 	```Rust
@@ -233,9 +241,10 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 - ##### Struct Vec
 
 	- **Definizione**: Una collezione di dati dal tipo univoco
-	- Tipo: `Vec<>`
-	- Caso d'uso: Collezionare dati dello stesso tipo come i giorni della settimana
-	- Esempio:
+	- **Sintassi**: `Vec<>`
+	- **Caso d'Uso**: Collezionare dati dello stesso tipo come i giorni della settimana
+	- **Tags**: #Structs #Vectors 
+	- **Esempio**:
 	```Rust
 	let slice: Vec<i32> = Vec::new() ;
 	println!("{:?}", slice); // Output: []
@@ -263,6 +272,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
 - **Tipo**: `enum`
 - **Caso d'Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
+- **Tags**: #Enums 
 - **Esempio**:
 	
 ```Rust
@@ -286,7 +296,7 @@ key3: OtherEnum::SomeVersion.. ,
 } ;
 ```
 	
-- **Approfondimento**
+- ****Approfondimento Avanzato****
 	
 ```Rust
 enum Exceptions {
@@ -321,7 +331,6 @@ let second_pick_beverage = Menu::beverage{
 	
 >	Da notare la possibilità di creare tipi piramidali complessi con varianti di tipo `enum`
 	
-#Structs #Enums #Vectors #Strings 
 	
 ---
 ## **§ Tipi Aggiuntivi**
@@ -330,6 +339,7 @@ let second_pick_beverage = Menu::beverage{
 	
 - **Definizione**: Visualizzazione dinamica di un *array*.
 - **Caso d'Uso**: Accedere ad una porzione di un array .
+- **Tags**: #Slices #Vectors #Arrays 
 - **Esempio**:
 	
 ```Rust
@@ -344,6 +354,7 @@ println!("Slice: {:?}", slice);
 	
 - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
 - **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
+- **Tags**: #Slices #Strings  
 - **Esempio**:
 	
 	```Rust
@@ -355,14 +366,85 @@ println!("Slice: {:?}", slice);
 
 - **Output**: `Hello, world!`
 	
-#Slices #Strings 
+### Option
 	
+- **Definizione**: Il tipo ***Option*** è un `enumerazione` predefinita di Rust
+	
+	```Rust
+	enum Option<T>{
+		Some(T),
+		None
+	}
+	```
+	
+- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere valore nullo, in attesa di un assegnazione.
+- **Sintassi**: `Option<Type>`
+- **Tags**: #Types #Option #Enums 
+- **Esempio**:
+	
+```Rust
+struct Shipping {
+	address: String,
+	address_number: civic_number,
+	city: String,
+	email: String,
+	// Option type definition
+	telephone: Option<i8>, 
+	gift_option: Option<bool>
+}
+
+let my_shipping = Shipping {
+	address: String::from("Via Sab Niccolò"),
+	address_number: 16,
+	city: String::from("Firenze"),
+	email: String::from("jhondoe@protonmail.com"),
+	// Instantiation of the Option variant and its possible type
+	telephone: None,
+	gift_option: Some(True) 
+}
+```
+	
+- **Approfondimento Avanzato**
+	
+```Rust
+struct PersonID {
+	name: String,
+	age: u8,
+	email: Option<String>
+}
+
+fn find_age (people: Vec<PersonID>, name: &String) -> Option<u8> {
+	for person in people {
+		if person.name == name {
+			return person.age
+		}
+	}
+	None
+}
+
+fn main () {
+	let travellers = vec![
+		PersonID { name: "Kenneth".to_owned(), age:27, email: None},
+		PersonID { name: "Linda".to_owned(), age:19, email: None },
+		PersonID { name: "Elisa".to_owned(), age:21, email: None },
+		PersonID { name: "Lorenzo".to_owned(), age:27, email: None },
+	];
+
+	let email_list = vec![];
+	let me = "Kenneth"
+	let kenneth_age = find_age(traverllers, &me);
+}
+
+```
+  
 ---
 ## § Annotazioni Esplicite del Tipo 
 	
 ### Specifiche
 	
-**Caso d'Uso**: Utilizzo della sintassi `let variabile: tipo = valore`  per limitare e rendere più solido l'utilizzo della memoria ottimizzandola.
+- **Caso d'Uso**: Utilizzo della sintassi `let variabile: tipo = valore`  per limitare e rendere più solido l'utilizzo della memoria ottimizzandola.
+- **Tags**: #Types 
+- **Esempio**:
 	
 ```Rust
 // Implicit Annotiation
@@ -374,7 +456,9 @@ let positive_number: u8 = 10; // Exclusively for Positive numbers!
 	
 ### Generiche
 	
-**Caso d'Uso**: Si può utilizzare la annotazione anche per i tipi composti e complessi `enum`, `struct`, `vec`.
+- **Caso d'Uso**: Si può utilizzare la annotazione anche per i tipi composti e complessi `enum`, `struct`, `vec`.
+- **Tags**: #Types #Vectors #Enums #Structs 
+- **Esempio**:
 	
 ```Rust
 enum DirectionalArrows {
@@ -420,11 +504,10 @@ fn main () {
 }
 ```
 	
-#Enums #Arrays #Vectors  
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Dinamiche del codice](./rust_cheat_sheet_dynamics.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust_cheat_sheet_controls_dynamics.md)
 	
 ---
 	
