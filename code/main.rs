@@ -27,7 +27,7 @@ fn ai_main () {}
 fn main () {
     println!("\nYou:");
     your_main();
-    println!("\nME:");
+    println!("\nMe:");
     my_main();
     println!("\nAI:");
     ai_main();
