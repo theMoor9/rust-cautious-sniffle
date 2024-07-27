@@ -327,7 +327,7 @@ La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
 - **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
-- **Tags**: #Ownership #Types #Strings #Dynamics 
+- **Tags**: #Ownership #Types #Strings #Dynamics
 - Esempio:
 	
 	```Rust

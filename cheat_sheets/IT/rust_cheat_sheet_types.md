@@ -192,38 +192,45 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	- **Esempio**:
 	
 	```Rust
-	// Creazione di una stringa 
+	// Init 
 	let mut s = String::from("Hello"); 
 	
-	// Modifica della stringa 
+	// Modify 
 	s.push_str(", world!"); 
 	s.push('!'); 
 	
-	// Concatenazione delle stringhe 
-	let s2 = String::from(" How are you?"); 
+	// concatenate 
+	let s2 = String::from(", How are you?"); 
 	let s3 = s + &s2; // s viene spostato qui e non può più essere usato 
 	
-	// Iterazione sui caratteri della stringa 
+	// Iteration on string's chars
 	for c in s3.chars() { 
 		println!("{}", c); 
 		} 
 		
-	// Accesso ai sottostringhe 
+	// Substring access 
 	let hello = &s3[0..5]; let world = &s3[7..]; 
 	println!("Substring 1: {}", hello);
 	// Output: Hello 
 	println!("Substring 2: {}", world); 
 	// Output: world! How are you? 
+	```
 	
+	- **String Slice** `&str`:
+	
+	```Rust
 	// Conversione tra String e &str 
 	let slice: &str = &s3; 
 	let s4 = slice.to_string(); 
 	println!("Original String: {}", s3); 
 	println!("Converted String: {}", s4); 
+	```
 	
-	// Altre funzioni utili 
-	let len = s4.len(); 
-	let is_empty = s4.is_empty(); 
+	- **Other useful functions**:
+	
+	```Rust
+	let len = s4.len(); // Length
+	let is_empty = s4.is_empty(); // Clear right?
 	println!("Length: {}", len); 
 	// Output: 22 
 	println!("Is Empty: {}", is_empty); 
@@ -285,13 +292,15 @@ enum EnumName {
 	Version4,
 }
 
-let enum_variable1 = EnumName::Version1(9) ;
-let enum_variable2 = EnumName::Version2(-9) ;
-let enum_variable3 = EnumName::Version3{
-key1: 96,
-key2: "Questa è roba puzzle!",
-key3: OtherEnum::SomeVersion.. ,
-} ;
+fn main () {
+	let enum_variable1 = EnumName::Version1(9) ;
+	let enum_variable2 = EnumName::Version2(-9) ;
+	let enum_variable3 = EnumName::Version3{
+	key1: 96,
+	key2: "Questa è roba puzzle!",
+	key3: OtherEnum::SomeVersion.. ,
+	} ;
+}
 ```
 	
 - ****Approfondimento Avanzato****
@@ -315,20 +324,47 @@ enum Menu {
 Si seleziona la variante dell'enumerazione con `::`
 Ne si dichiara il contenuto
 */
-
-let first_pick = Menu::Pizza(String::from("Prataiola")) ;
-let second_pick = Menu::Pasta { 
-	name: String::from("Ragù"), 
-	recipe: Exceptions::NoLactose(true),
-} ;
-let second_pick_beverage = Menu::beverage{ 
-	name: String::from("Beer"), 
-	volume: 0.5
-} ;
+fn main () {
+	let first_pick = Menu::Pizza(String::from("Prataiola")) ;
+	let second_pick = Menu::Pasta { 
+		name: String::from("Ragù"), 
+		recipe: Exceptions::NoLactose(true),
+	} ;
+	let second_pick_beverage = Menu::beverage{ 
+		name: String::from("Beer"), 
+		volume: 0.5
+	} ;
+}
 ```
 	
 >	Da notare la possibilità di creare tipi piramidali complessi con varianti di tipo `enum`
 	
+- **Argomenti**: Creare un enumerazione con <> equivale a creare una sezione per gli  >argomenti argomenti  posizionabili al suo interno come valori standard delle varianti.
+	
+```Rust
+enum PlanetsIT <M, D, R,> {
+	Mercurio(M, D, R),
+	Venere(M, D, R),
+	Terra(M, D, R),
+	Marte(M, D, R),
+	Saturno(M, D, R),
+	Giove(M, D, R),
+	Urano(M, D, R),
+	Nettuno(M, D, R),
+	BigRockNotAPLanetAnymorePlutone(M, D, R),
+}
+
+fn main () {
+	let diameter = String::from("Less than current");
+	let mass = String::from("Less than current");
+	let around_sun_revolutions = String::from("Somewhat similar");
+	let our_next_planed: PlanetIT = PlanetIT::Marte(
+		mass,
+		diameter,
+		around_sun_revolutions
+	);
+}
+```
 	
 ---
 ## **§ Tipi Aggiuntivi**
@@ -375,7 +411,7 @@ println!("Slice: {:?}", slice);
 	}
 	```
 	
-- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere valore nullo, in attesa di un assegnazione.
+- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere variante simboleggiante valore nullo, in attesa di un assegnazione.
 - **Sintassi**: `Option<Type>`
 - **Tags**: #Types #Option #Enums 
 - **Esempio**:
@@ -434,7 +470,51 @@ fn main () {
 }
 
 ```
-  
+	
+### Result
+	
+- **Definizione**: Il tipo ***Result*** è un `enumerazione` predefinita di Rust
+	
+```Rust
+enum Result <T,E> {
+	Ok(T),
+	Err(E)
+}
+```
+	
+- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere una variante con valore extra. Utile per la gestione degli errori, accompagnato da un `match` per gestire l' alternativa.
+- **Sintassi**: `Result<Type, Type>`
+- **Tags**: #Types #Result #Enums 
+- **Esempio**:
+	
+```Rust
+// Nella firma della funzione si dichiara Result e i tipi delle varianti
+fn distance_goal_check (mt: f64, minutes: u8) -> Result<u8, String>{
+	if mt > 1000 {
+		// Ritorna una variante Ok `enum Result`
+		Ok(minutes)
+	} else {
+		// Ritorna una variante Err `enum Result`
+		Err(String::from("Not yet!"))  
+	}
+}
+
+fn main () {
+
+	let mut distance = 999;
+	let mut time = 60;
+	
+	// Diventa una variabile variante di enum Restult
+	let control = distance_goal_check(distance,time) ;
+
+	match control {
+		Ok(t) => println!("Your time is: {}", t),
+		Err(e) => println!("{}",e),
+	}
+}
+```
+	
+	
 ---
 ## § Annotazioni Esplicite del Tipo 
 	

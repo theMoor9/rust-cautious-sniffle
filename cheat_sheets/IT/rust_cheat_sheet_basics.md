@@ -1,8 +1,12 @@
 # **Rust Cheat Sheet - Elementi base**
 #Basics 
-	
+##### **Table of Contents**
+###### [§ Basics](#-Basics-1)
+###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
+
+
 ---
-## **Basics**
+## **§ Basics**
 	
 - ##### Istanziazione Variabile
 	
@@ -125,7 +129,7 @@
 	
 - ##### Procedura di Compilazione ed Esecuzione
 	
-	Nella cartella dove si trova il `main.rs` :  
+	Tramite Terminal nella cartella dove si trova il `main.rs` :  
 	
 	1. **Compila**  
 		```sh
@@ -141,10 +145,19 @@
 	   ```     
 	
 ---
-##### Progressione Suggerita
-[Rust Cheat Sheet - Tipi](./rust_cheat_sheet_types.md)
+## § Standard Library API Docs
+	
+Come spesso accade, i linguaggi possiedono una vasta gamma di metodi e funzioni necessarie ad ampliare la versatilità delle capacità coding. Gli API Docs sono una risorsa indispensabile per ciò.
+##### Procedura di apertura API Docs e ricerca
+	
+Tramite Terminal nella cartella dove si trova il `main.rs` :  
 
-	
----
-	
-**Author:** Kenneth Boldrini
+1. **Apertura Rust Library Documentation** 
+   ```sh
+   $ rustup doc
+   ```
+   
+2. **Nella sezione "Use Rust" si trova il paragrafo "The Standard Library" che conterrà il link diretto alla documentazione API** 
+
+3. **Una volta nell'API Documentation è possibile cercare qualsivoglia elemento necessario ad una corretta implementazione del proprio codice**
+
