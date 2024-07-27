@@ -5,6 +5,7 @@
 - [Numeri Floating-Point](#Numeri-Floating-Point)
 - [Booleani](#Booleani)
 - [Caratteri](#Caratteri)
+- [Unit](#Unit)
 ###### [§ Tipi Composti](#-Tipi-Composti-1)
 - [Tuples](#Tuples)
 - [Arrays](#Arrays)
@@ -89,6 +90,20 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	let emoji: char = '😊';
 	```
 	
+#### Unit
+	
+- **Definizione**: E' una tupla senza campi.
+- **Tipo**: ```()```
+- **Caso d'Uso**: Specificare valore assente la dove è richiesto un valore obbligatoriamente ad esempio su un ritorno.
+- **Tags**: #Unit #Result
+- **Esempio**:
+	
+```Rust
+ fn func () -> Result<(),i64>{
+	 ...
+ }
+```
+	
 	
 ---
 ## **§ Tipi composti**
@@ -135,7 +150,6 @@ let days: [&str; 7] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let first_day = days[0]; 
 println!("First day: {}", first_day);
 ```
-
 - **Output**: `First day: Mon`
 	
 	
@@ -190,7 +204,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	- **Caso d'Uso**: Usa `String` per stringhe mutabili e possedute, e `&str` per riferimenti immutabili a stringhe esistenti.
 	- **Tags**: #Structs #Strings 
 	- **Esempio**:
-	
+		
 	```Rust
 	// Init 
 	let mut s = String::from("Hello"); 
@@ -250,6 +264,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	- **Caso d'Uso**: Collezionare dati dello stesso tipo come i giorni della settimana
 	- **Tags**: #Structs #Vectors 
 	- **Esempio**:
+		
 	```Rust
 	let slice: Vec<i32> = Vec::new() ;
 	println!("{:?}", slice); // Output: []
@@ -366,6 +381,7 @@ fn main () {
 }
 ```
 	
+	
 ---
 ## **§ Tipi Aggiuntivi**
 	
@@ -381,7 +397,6 @@ let array = [1, 2, 3, 4, 5];
 let slice: &[i32] = &array[1..3]; 
 println!("Slice: {:?}", slice);
 ```
-
 - **Output**: `Slice: [2, 3]`
 	
 ### String Slice  
@@ -397,7 +412,6 @@ println!("Slice: {:?}", slice);
 	message.push_str(", world!"); 
 	println!("{}", message);
 	```
-
 - **Output**: `Hello, world!`
 	
 ### Option
@@ -482,7 +496,7 @@ enum Result <T,E> {
 }
 ```
 	
-- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere una variante con valore extra. Utile per la gestione degli errori, accompagnato da un `match` per gestire l' alternativa.
+- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere una variante con valore extra. Utile per la gestione degli errori, accompagnato da un `match` per gestire l' alternativa. La funzionalità è analoga al blocco `try/catch-except`  
 - **Sintassi**: `Result<Type, Type>`
 - **Tags**: #Types #Result #Enums 
 - **Esempio**:
@@ -514,7 +528,63 @@ fn main () {
 }
 ```
 	
+- **Approfondimento Avanzato**
 	
+```Rust
+#[derive(Debug)]
+enum MenuPath {
+    Start,
+    Options,
+    Exit
+}
+
+// Funzione di definizione dei valori dei tipi di Result
+fn choice (input: &char) -> Result<MenuPath, String> {
+    match input {
+        's' => Ok(MenuPath::Start),
+        'o' => Ok(MenuPath::Options),
+        'e' => Ok(MenuPath::Exit),
+        _ => Err("Wrong input!".to_owned()),
+    }
+}
+
+// print_path accetta solo tipi enum MenuPath 
+fn print_path (c: &MenuPath) {
+    println!("{:?}",c);
+}
+
+// Il return Result è atto a catturare gli errori omettendo T con ()
+fn determine_path ( input: char) -> Result<(),String> {
+    /*
+	Determiniamo checked_choice come tipo enum MenuPath
+	L' operatore `?` ritornerà un Err come Result per 
+	determine_path interrompendo la funzione
+	*/
+	let checked_choice: MenuPath = choice(&input)?;
+	// E' assicurato che in questo caso print_path non riceva un Err
+	print_path( &checked_choice );
+	Ok(())
+}
+
+fn main () {
+	// Se è stato ritornato un errore verra raccolto e gestito qui
+	let err = determine_path('s');
+	if err == Err(String::from("Wrong input!")) {println!("{:?}",err)};
+}
+```
+- **Output**: `Wrong input!`
+	
+- ##### Result Operator
+	
+	- **Definizione**: Una collezione di dati dal tipo univoco
+	- **Sintassi**: `?`
+	- **Caso d'Uso**: Collezionare dati dello stesso tipo come i giorni della settimana
+	- **Tags**: #Result 
+	- **Esempio**:
+	
+	```Rust
+	```
+
 ---
 ## § Annotazioni Esplicite del Tipo 
 	

@@ -12,7 +12,7 @@
 ---
 ## **§ Signature**
 	
-- **Descrizione**: Gli oggetti della funzione sono dichiarati col loro tipo `a: i32` , `b: i32` Il simbolo `->`  serve esclusivamente per indicare il tipo della restituzione.
+- **Descrizione**:  Nella Firma della funzione gli oggetti della funzione sono dichiarati col loro tipo `a: i32` , `b: i32` Il simbolo `->`  serve esclusivamente per indicare il tipo della restituzione.
 - Sintassi: `fn`
 - **Tags**: #Functions
 - **Esempio**:
