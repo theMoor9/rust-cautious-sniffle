@@ -108,7 +108,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 ---
 ## **§ Tipi composti**
 	
-I tipi composti raggruppano più variabili sotto un unico tipo
+I tipi composti sono quelli che combinano insieme altri tipi in una struttura semplice. Sono tipi "contenitore" che non hanno necessariamente comportamento o logica associata, ma sono semplicemente un modo di organizzare più valori insieme.
 	 
 ### Tuples
 	
@@ -156,7 +156,7 @@ println!("First day: {}", first_day);
 ---
 ## **§ Tipi Complessi**
 	
-I tipi complessi in Rust rappresentano i valori composti, che  possono essere suddivisi ulteriormente per ottenere una varietà ampia di valori su cui è possibile applicare metodi e attribuire proprietà. 
+I tipi complessi, sono quelli che combinano dati e logica. Possono contenere variabili di tipi diversi, ma hanno anche metodi associati che definiscono comportamenti e interazioni tra i dati.
 	
 ### Struct
 	
@@ -318,7 +318,11 @@ fn main () {
 }
 ```
 	
-- ****Approfondimento Avanzato****
+##### *Approfondimento Avanzato*
+	
+- **Descrizione**:  Enumerazioni contenenti versioni con valori multipli e selezione appropriata.
+- **Tags**: #Enums #Advanced
+- **Esempio**:
 	
 ```Rust
 enum Exceptions {
@@ -379,6 +383,66 @@ fn main () {
 		around_sun_revolutions
 	);
 }
+```
+	
+### Hashmaps
+	
+- **Definizione**: E' un tipo complesso riconducibile come analogia ai dizionari, set di dati di tipi disparati con chiavi associate registrati in maniera casuale, quindi le chiavi diventano essenziali per la gestione.
+- **Sintassi**: `let mut dictionary = HashMap::new();`
+- **Caso d'Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
+- **Tags**: #Hashmaps #Option 
+- **Esempio**:
+	
+```Rust
+let mut dictionary = HashMap::new() ; // Init
+
+let pages1 = 90 ;
+let pages2 = "A thousand" ; // I valori possono essere disparati
+
+// Si definisce chiave e valore per inserire i dati
+dictionary.insert("Key Book1", pages2) ; // Simile al .push per i vettori
+dictionary.insert("Key Book2", pages1) ;
+
+// Si indica la chiave per rimuovere il blocco col valore associato
+dictionary.remove("Key Book1") ; // Simile al .pop per i vettori
+
+// `.get` restituisce un Option value gestibile con `match`
+match dictionary.get("Key Book2") {
+	some(pagesamount) => println("{}",pagesamount),
+	None => println("Not found")
+}
+
+// ITERARE un HashMap
+
+let mut hotel_rooms = HashMap::new();
+
+hotel_rooms.insert("Client ID 1","Room Number1");
+hotel_rooms.insert("Client ID 2","Room Number2");
+hotel_rooms.insert("Client ID 3","Room Number3");
+
+// .iter is used to go through considering the couples KEY/VALUE
+for (client, room) in hotel_rooms() {
+	println!("Client ID: {} and its room number: {}", client, room);
+}
+
+// Go through KEYs
+for client in hotle_room.key(){
+	println!("Client ID: {}", client);
+}
+// Go through VALUEs
+for rooms in hotle_room.values(){
+	println!("Client room number: {}", room);
+}
+```
+	
+##### *Approfondimento Avanzato*
+	
+- **Descrizione**:  Costruire una struttura di dati basata su chiavi utilizzando una libreria standard dalla API Doc.
+- **Tags**: #Hashmaps #Advanced
+- **Esempio**:
+	
+```Rust
+
 ```
 	
 	
@@ -452,7 +516,11 @@ let my_shipping = Shipping {
 }
 ```
 	
-- **Approfondimento Avanzato**
+##### *Approfondimento Avanzato*
+	
+- **Descrizione**:  Un sistema di ricerca per valore che risulta in un None in caso di fallimento.
+- **Tags**: #Option #Advanced
+- **Esempio**:
 	
 ```Rust
 struct PersonID {
@@ -471,16 +539,15 @@ fn find_age (people: Vec<PersonID>, name: &String) -> Option<u8> {
 }
 
 fn main () {
-	let travellers = vec![
+	let travelers = vec![
 		PersonID { name: "Kenneth".to_owned(), age:27, email: None},
 		PersonID { name: "Linda".to_owned(), age:19, email: None },
 		PersonID { name: "Elisa".to_owned(), age:21, email: None },
 		PersonID { name: "Lorenzo".to_owned(), age:27, email: None },
 	];
 
-	let email_list = vec![];
 	let me = "Kenneth"
-	let kenneth_age = find_age(traverllers, &me);
+	let kenneth_age = find_age(travellers, &me);
 }
 
 ```
@@ -528,7 +595,13 @@ fn main () {
 }
 ```
 	
-- **Approfondimento Avanzato**
+##### *Approfondimento Avanzato*
+	
+- **Descrizione**:  Si può evitare controlli match sul tipo di *Result* ottenuto.
+- **Sintassi**: `?`
+- **Caso d'Uso**: Si usa per dare la possibilità ad una chiamata di funzione che restituisce un *Result* di autogestirsi dentro ad una funzione che ritorna un *Result* dando il risultato se esiste o l'errore alla funzione madre se si verifica posizionando `?` subito dopo la funzione figlia.
+- **Tags**: #Result #Advanced
+- **Esempio**:
 	
 ```Rust
 #[derive(Debug)]
@@ -574,17 +647,7 @@ fn main () {
 ```
 - **Output**: `Wrong input!`
 	
-- ##### Result Operator
 	
-	- **Definizione**: Una collezione di dati dal tipo univoco
-	- **Sintassi**: `?`
-	- **Caso d'Uso**: Collezionare dati dello stesso tipo come i giorni della settimana
-	- **Tags**: #Result 
-	- **Esempio**:
-	
-	```Rust
-	```
-
 ---
 ## § Annotazioni Esplicite del Tipo 
 	
