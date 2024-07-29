@@ -5,7 +5,7 @@
 ###### [§ vec!](#-vec-1)
 
 ###### [§ stringify!](#-stringify-1)
-###### [§ Derive](#-Derive)
+###### [§ Derive](#-Derive-1)
 - [Debug](#Debug)
 - [Clone](#Clone)
 - [Quando Usare Copy](#Quando-Usare-Copy)
