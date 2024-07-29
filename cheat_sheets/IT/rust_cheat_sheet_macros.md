@@ -3,12 +3,13 @@
 ###### [§ println!](#-println-1)
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)
 ###### [§ vec!](#-vec-1)
+
+###### [§ stringify!](#-stringify-1)
 ###### [§ Derive](#-Derive)
 - [Debug](#Debug)
 - [Clone](#Clone)
 - [Quando Usare Copy](#Quando-Usare-Copy)
 - [Riassunto](#Riassunto)
-
 	
 ---
 ## **§ println!**
@@ -90,7 +91,7 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 ---
 ## **§ vec!**
 	
-- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [[rust_cheat_sheet_types]]).
+- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [rust_cheat_sheet_types](./rust_cheat_sheet_types)).
 - **Tags**: #Vectors #Macros #Types 
 - **Esempi**:
 	
@@ -133,6 +134,22 @@ fn main() {
 	*/
 }
 ```
+	
+	
+---
+## **§ stringify!**
+	
+- **Descrizione**: converte il nome di una variabile in una stringa.
+- **Tags**: #Strings #Macros #Types 
+- **Esempi**:
+	
+```Rust
+let kenneth = "Kenneth";
+let name = stringify!(kenneth);
+println!("{}",name);
+```
+- **Output**: `kenneth`
+	
 	
 ---
 ## **§ Derive**

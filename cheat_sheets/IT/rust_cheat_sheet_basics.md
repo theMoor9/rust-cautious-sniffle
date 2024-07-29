@@ -1,9 +1,21 @@
 # **Rust Cheat Sheet - Elementi base**
-#Basics 
+
 ##### **Table of Contents**
 ###### [§ Basics](#-Basics-1)
+- [Istanziazione Variabile](#Istanziazione-Variabile)
+- [Istanziazione Variabile Mutabile](#Istanziazione-Variabile-Mutabile)
+- [Struct](#Struct)
+- [Enum](#Enum)
+- [Chiamata d'ispezione](#Chiamata-d'ispezione)
+- [Import Librerie](#Import-Librerie)
+- [Istanziazione Funzione](#IstanziazioneFunzione) 
+- [Commenti e testi](#Commenti-e-testi)
+- [Variabili Inutilizzate](#Variabili-Inutilizzate)
+- [Procedura di Compilazione ed Esecuzione](#Procedura-di-Compilazione-ed-Esecuzione)
 ###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
+- [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
 
+#Basics 
 
 ---
 ## **§ Basics**
@@ -45,7 +57,6 @@
 	```
 	
 	
-	
 - ##### Enum
 	
 	**Sintassi**: `enum`  
@@ -59,16 +70,26 @@
 	}
 	```
 	
-
 	
 - ##### Chiamata d'Ispezione 
 	
+	**Descrizione**: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.  
 	**Sintassi**: `::`  
-	Descrizione: Servono per chiamare i metodi associati di una struct, accedere agli elementi all'interno di moduli.  
 	
 	``` Rust
 	Vec::new()
 	String::new()
+	```
+	
+	
+- ##### Import Librerie
+	**Descrizione**: La dichiarazione per l'importazione delle librerie è `use`, seguita dai due punti (`::`) per importare gli elementi specifici della libreria ai fini della memoria.
+	**Sintassi**: `use` (`;`)  
+
+	```Rust
+	use library::category::element_needed ;
+	// Like
+	use std::collection::HashMap ;
 	```
 	
 	
@@ -125,7 +146,12 @@
 	let y = 9 ;
 	
 	print!("{}",y) ;
+
+	// Tipo Unit (Tupla vuota) 
+	let unit = (); 
+	println!("{:?}", unit); 
 	```
+	- `Output: ()`
 	
 - ##### Procedura di Compilazione ed Esecuzione
 	

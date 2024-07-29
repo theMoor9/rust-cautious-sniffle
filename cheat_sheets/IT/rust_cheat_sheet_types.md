@@ -140,7 +140,7 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 	
 ### Arrays
     
-- **Definizione**: Una collezione di elementi prefissata.
+- **Definizione**: Una collezione di elementi  dalla lunghezza e il tipo prefissati.
 - **Caso d'Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
 - **Tags**: #Arrays 
 - **Esempio**:
@@ -259,9 +259,9 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 
 - ##### Struct Vec
 
-	- **Definizione**: Una collezione di dati dal tipo univoco
+	- **Definizione**: Una collezione di dati dal tipo univoco dalla dimensione variabile
 	- **Sintassi**: `Vec<>`
-	- **Caso d'Uso**: Collezionare dati dello stesso tipo come i giorni della settimana
+	- **Caso d'Uso**: Collezionare dati dello stesso tipo variabile come la lista di clienti
 	- **Tags**: #Structs #Vectors 
 	- **Esempio**:
 		
@@ -388,12 +388,15 @@ fn main () {
 ### Hashmaps
 	
 - **Definizione**: E' un tipo complesso riconducibile come analogia ai dizionari, set di dati di tipi disparati con chiavi associate registrati in maniera casuale, quindi le chiavi diventano essenziali per la gestione.
+- **Libreria**: `use std::collections::HashMap;`
 - **Sintassi**: `let mut dictionary = HashMap::new();`
 - **Caso d'Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
 - **Tags**: #Hashmaps #Option 
 - **Esempio**:
 	
 ```Rust
+use std::collections::HashMap;
+
 let mut dictionary = HashMap::new() ; // Init
 
 let pages1 = 90 ;
@@ -421,7 +424,7 @@ hotel_rooms.insert("Client ID 2","Room Number2");
 hotel_rooms.insert("Client ID 3","Room Number3");
 
 // .iter is used to go through considering the couples KEY/VALUE
-for (client, room) in hotel_rooms() {
+for (client, room) in hotel_rooms.iter() {
 	println!("Client ID: {} and its room number: {}", client, room);
 }
 
@@ -442,7 +445,74 @@ for rooms in hotle_room.values(){
 - **Esempio**:
 	
 ```Rust
+use std::collections::HashMap;
 
+#[derive(Debug)]
+struct Guest {
+    name: String,
+    surname: String,
+    telephone: u32,
+    email: String,
+    confirm: bool
+}
+
+fn add_confirms (chr: &mut HashMap<String,Guest>, hrl: Vec<Guest>) {
+    // Componente per l' ID
+    let mut n = 0 ;
+  
+    for g in hrl {
+        // Se è confermato inserisce
+        if g.confirm {
+            // Converte n in stringa per creare l' ID
+            let nstring = n.to_string();
+            let id: String = "ID".to_owned() + &nstring + " ";
+            // Iserisce nell HashMap ID e Guest
+            chr.insert(id,g) ;
+            // Aumenta il valore ID
+            n = n + 1
+        }
+    }
+}  
+
+fn see_confirms (chr: &HashMap<String,Guest>) {
+    for (id,g) in chr.iter() {
+        println!("{}{:?}",id,g);
+    }
+}
+  
+fn main() {
+  
+    // Lista delle prenotazioni non confermate
+    let mut hotel_reservation_list: Vec<Guest> = vec![
+        Guest{
+            name: String::from("Kenneth"),
+            surname: String::from("Boldrini"),
+            telephone: 345345345,
+            email: String::from("kenneth@email.com"),
+            confirm: true
+        },
+        Guest{
+            name: String::from("Linda"),
+            surname: String::from("Francescucci"),
+            telephone: 346346346,
+            email: String::from("linda@email.com"),
+            confirm: true
+        },
+        Guest{
+            name: String::from("Niccolò"),
+            surname: String::from("Pierazzi"),
+            telephone: 347347347,
+            email: String::from("niccolo@email.com"),
+            confirm: false
+        },
+    ];
+
+    // Lista delle prenotazioni confermate
+    let mut confermed_hotel_reservations:  HashMap<String,Guest> = HashMap::new() ;
+    // Inserimento conferme
+    add_confirms(&mut confermed_hotel_reservations,hotel_reservation_list);
+    see_confirms(&confermed_hotel_reservations);
+}
 ```
 	
 	
