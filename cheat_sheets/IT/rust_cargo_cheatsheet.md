@@ -47,3 +47,12 @@ fn main (){}
 ```sh
 $ cargo doc --open
 ```
+	
+	
+---
+##### Progressione Suggerita
+[Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)
+	
+---
+	
+**Author:** Kenneth Boldrini

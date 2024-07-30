@@ -3,8 +3,8 @@
 ###### [§ println!](#-println-1)
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)
 ###### [§ vec!](#-vec-1)
-
 ###### [§ stringify!](#-stringify-1)
+###### [§ dbg!](#-dbg-1)
 ###### [§ Derive](#-Derive-1)
 - [Debug](#Debug)
 - [Clone](#Clone)
@@ -91,7 +91,7 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 ---
 ## **§ vec!**
 	
-- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi [rust_cheat_sheet_types](./rust_cheat_sheet_types)).
+- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi: **§ Tipi Complessi | Struct -  Struct Vec** in [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)).
 - **Tags**: #Vectors #Macros #Types 
 - **Esempi**:
 	
@@ -139,9 +139,9 @@ fn main() {
 ---
 ## **§ stringify!**
 	
-- **Descrizione**: converte il nome di una variabile in una stringa.
+- **Descrizione**: Converte il nome di una variabile in una stringa.
 - **Tags**: #Strings #Macros #Types 
-- **Esempi**:
+- **Esempio**:
 	
 ```Rust
 let kenneth = "Kenneth";
@@ -151,6 +151,24 @@ println!("{}",name);
 - **Output**: `kenneth`
 	
 	
+---
+## **§ dbg!**
+	
+- **Descrizione**: Mostra nel terminale l'argomento ai fini del debug.
+- **Tags**: #Debug #Macros  
+- **Esempio**:
+	
+```Rust
+let kenneth = "Kenneth";
+let name = stringify!(kenneth);
+dbg!(name);
+```
+- **Output**: `name = kenneth`
+	
+	
+
+
+
 ---
 ## **§ Derive**
 	
@@ -313,7 +331,7 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Dinamiche del codice](rust_cheat_sheet_controls_dynamics.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
 	
 ---
 	

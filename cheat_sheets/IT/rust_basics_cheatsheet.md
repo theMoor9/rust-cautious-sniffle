@@ -187,3 +187,12 @@ Tramite Terminal nella cartella dove si trova il `main.rs` :
 
 3. **Una volta nell'API Documentation è possibile cercare qualsivoglia elemento necessario ad una corretta implementazione del proprio codice**
 
+	
+---
+##### Progressione Suggerita
+[Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)
+[Rust Cheat Sheet - Cargo](rust_cargo_cheatsheet.md)
+	
+---
+	
+**Author:** Kenneth Boldrini

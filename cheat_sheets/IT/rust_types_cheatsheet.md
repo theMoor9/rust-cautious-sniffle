@@ -719,7 +719,7 @@ fn main () {
 	
 	
 ---
-## § Annotazioni Esplicite del Tipo 
+## **§ Annotazioni Esplicite del Tipo**
 	
 ### Specifiche
 	
@@ -788,7 +788,8 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Dinamiche del codice](rust_cheat_sheet_controls_dynamics.md)
+[Rust Cheat Sheet - Macro](rust_macros_cheatsheet.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
 	
 ---
 	
