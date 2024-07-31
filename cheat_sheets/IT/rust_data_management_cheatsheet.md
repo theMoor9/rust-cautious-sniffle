@@ -11,13 +11,16 @@
 - [Or Else](#Or-Else)
 - [Unwrap Else](#Unwrap-Else)
 ###### [§ Using Collections Iterators](#-Using-Collections-Iterators-1)
-- [Map](#Map)
-- [Filter](#Filter)
+- [Map](#Map-1)
+- [Filter](#Filter-1)
 - [Find](#Find)
 - [Count](#Count)
 - [Last](#Last)
 - [Min Max](#Min-Max)
 - [Take](#Take)
+### [§ Range](#-Range-1)
+- [Numeri](#Numeri)
+- [Lettere](#Lettere)
 	
 ---
 ## **§ Closures**
@@ -58,7 +61,7 @@ fn main () {
 - **Descrizione**: Il Mapping è la pratica di  trasformare qualcosa in un altra. La funzione complementare `.map()` in Rust è lo strumento atto a questo scopo che restituisce un iteratore sui dati trasformati, pronti per essere consumati quando necessario.
 - **Caso d'Uso**: La funzione `.map()` serve ad applicare Closures( Funzioni semplici atte a piccole modifiche ) in maniera dinamica quindi su risultati di funzione funzione().map(closure) multivalore quindi inaspettati o collezioni di dati, come per formattare in upcase dati che si generano via via che la funzione primaria genera dati per .map()
 - **Tags**: #Map #Combinators
-- Esercizio:
+- **Esercizio**:
 	
 ```Rust
 // Funzione di somma con input che resituisce un un i8 o un Messaggio di errore
@@ -93,7 +96,7 @@ fn main () {
 - **Descrizione**: Il collettore *collect* trasforma un iteratore in una collezione, cosa che può essere necessaria a seconda di come intendi utilizzare i dati.
 - **Sintassi**: `.collect()`
 - **Caso d' Uso**: Collect finalizza i dati elaborati, se scopo è semplicemente passare i dati trasformati a un altro passo di elaborazione o consumare i risultati una sola volta, potresti non aver bisogno di usare `collect()`.
-- **Esercizio**::
+- **Esercizio**:
 	
 ```Rust
 fn main () {
@@ -125,9 +128,9 @@ fn main () {
 	
 ### Is some or none
 	
-- Descrizione: Restituiscono dati booleani sulla veridicità del nome del combinatore
-- Tags: #Some #None
-- Esempio:
+- **Descrizione**: Restituiscono dati booleani sulla veridicità del nome del combinatore
+- **Tags**: #Some #None
+- **Esempio**:
 	
 ```Rust
 let opt: Option<i8> = Some(3) ;
@@ -139,9 +142,9 @@ let opt_s_none = opt.is_none() ; // Output: false
 	
 ### Map
 	
-- Descrizione: Itera i dati solo se la Option è `Some()` in questo caso `Some(3)` sarà num
-- Tags: #Map 
-- Esempio:
+- **Descrizione**: Itera i dati solo se la Option è `Some()` in questo caso `Some(3)` sarà num
+- **Tags**: #Map 
+- **Esempio**:
 	
 ```Rust
 let opt: Option<i8> = Some(3) ;
@@ -151,9 +154,9 @@ let opt_mapped = opt.map(|num|num + 6) ; //Output: Some(9)
 	
 ### Filter
 	
-- Descrizione: Opera con una *closure* di comparazione che usa il *borrowing* su controlli `if` per filtrare ottenendo gli elementi specificati
-- Tags: #Filter
-- Esempio:
+- **Descrizione**: Opera con una *closure* di comparazione che usa il *borrowing* su controlli `if` per filtrare ottenendo gli elementi specificati
+- **Tags**: #Filter
+- **Esempio**:
 	
 ```Rust
 let opt: Option<i8> = Some(3) ;
@@ -165,9 +168,9 @@ let opt_filtered = opt.filter(|num|num == &comparison) ;
 	
 ### Or Else
 	
-- Descrizione: Controlla se `opt` possiede dati se falso ne assegna uno `Some(9)`
-- Tags: #Or #Else  
-- Esempio:
+- **Descrizione**: Controlla se `opt` possiede dati se falso ne assegna uno `Some(9)`
+- **Tags**: #Or #Else  
+- **Esempio**:
 	
 ```Rust
 let opt: Option<i8> = Some(3) ;
@@ -177,9 +180,9 @@ let opt_or_else = opt.or_else(||Some(9)) ; // Output: Some(3);
 	
 ### Unwrap Else
 	
-- Descrizione: Utilizza un valore default se `opt` è `None` 
-- Tags: #Unwrap #Else 
-- Esempio:
+- **Descrizione**: Utilizza un valore default se `opt` è `None` 
+- **Tags**: #Unwrap #Else 
+- **Esempio**:
 	
 ```Rust
 let opt: Option<i8> = Some(3) ;
@@ -203,8 +206,8 @@ let unwrapped = opt.unwrap_or_else(|| default_val);
 	
 ### Map
 	
-- Tags: #Map 
-- Esempio:
+- **Tags**: #Map 
+- **Esempio**:
 	 
 ```Rust
 let animals: Vec<String> = vec![
@@ -243,8 +246,8 @@ println!("Treated: {:?}",veterinary_list);
 	
 ### Filter
 	
-- Tags: #Filter
-- Esempio:
+- **Tags**: #Filter
+- **Esempio**:
 	
 ```Rust
 let animals: Vec<String> = vec![
@@ -274,9 +277,9 @@ println!("Filtered: {:?}",veterinary_list_filtered);
 	
 ### Find
 	
-- Descrizione: Cerca un elemento specifico della collezione ritornando un `Option`.
-- Tags: #Find
-- Esempio:
+- **Descrizione**: Cerca un elemento specifico della collezione ritornando un `Option`.
+- **Tags**: #Find
+- **Esempio**:
 	
 ```Rust
 let animals: Vec<String> = vec![
@@ -304,9 +307,9 @@ println!("Found: {:?}",veterinary_list_found);;
 	
 ### Count
 	
-- Descrizione: Incredibilmente conta i componenti della collezione.
-- Tags: #Count
-- Esempio:
+- **Descrizione**: Incredibilmente conta i componenti della collezione.
+- **Tags**: #Count
+- **Esempio**:
 	
 ```Rust
 let animals: Vec<String> = vec![
@@ -334,9 +337,9 @@ println!("Number of elements: {:?}",veterinary_list_count);
 	
 ### Last
 	
-- Descrizione: Incredibilmente trova l' ultimo valore restituendo un `Option` essendo i vettori inizializzabili vuoti. 
-- Tags: #Last
-- Esempio:
+- **Descrizione**: Incredibilmente trova l' ultimo valore restituendo un `Option` essendo i vettori inizializzabili vuoti. 
+- **Tags**: #Last
+- **Esempio**:
 	
 ```Rust
 let animals: Vec<String> = vec![
@@ -364,9 +367,9 @@ println!("Last item: {:?}",veterinary_list_last);
 	
 ### Min Max
 	
-- Descrizione: Incredibilmente Minimo o Massimo della collezione restituendo un `Option` essendo i vettori inizializzabili vuoti. 
-- Tags: #Min #Max
-- Esempio:
+- **Descrizione**: Incredibilmente Minimo o Massimo della collezione restituendo un `Option` essendo i vettori inizializzabili vuoti. 
+- **Tags**: #Min #Max
+- **Esempio**:
 	
 ```Rust
 let numbers: Vec<i32> = vec![0,3,-12,6,-9,96,];
@@ -394,9 +397,9 @@ println!("Max: {:?}",number_list_max);
 	
 ### Take
 	
-- Descrizione: Incredibilmente prende un valore specifico in considerazione
-- Tags: #Take
-- Esempio:
+- **Descrizione**: Incredibilmente prende un valore specifico in considerazione
+- **Tags**: #Take
+- **Esempio**:
 	
 ```Rust
 let animals: Vec<String> = vec![
@@ -425,6 +428,44 @@ println!("Taken: {:?}",veterinary_list_take);
 `Taken: ["Cat", "Lion", "Dog"]`
 	
 > E' possibile concatenare queste funzioni insieme al fine di creare iteratori complessi
+	
+	
+---
+## **§ Range**
+	
+**Descrizione**: E' possibile prendere in considerazione una serie di elementi in sequenza
+**Sintassi**: `n..m`, `n..=m`
+**Tags**: #Range #Integers #Float #Char
+	
+### Numeri
+	
+- **Esempio**:
+	
+```Rust
+fn main () {
+	let range = 1..3; // Escluso
+	let range = 3..=9; // Compreso =n
+
+	for num in 1..10 {
+		print!("{}", num)
+	}
+
+}
+```
+-  **Output**: `1,2,3,4,5,6,7,8,9`
+	
+### Lettere
+	
+- **Esempio**:
+	
+```Rust
+fn main () {
+	for ch in 'a'..='k' {
+		print!("{}", ch)
+	}
+}
+```
+-  **Output**: `a,b,c,f,e,f,g,j,k,`
 	
 	
 ---
