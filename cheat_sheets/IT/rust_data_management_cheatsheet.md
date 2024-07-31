@@ -3,8 +3,21 @@
 ###### [§ Closures](#-Closures-1)
 - [Basics](#Basics)
 ###### [§ Map Combinator](#-Map-Combinator-1)
+- [Collect](#Collect)
 ###### [§ Option Combinator Pattern](#-Option-Combinator-Pattern-1)
-###### [§ ](#- -1)
+- [Is some or none](#Is-some-or-none)
+- [Map](#Map)
+- [Filter](#Filter)
+- [Or Else](#Or-Else)
+- [Unwrap Else](#Unwrap-Else)
+###### [§ Using Collections Iterators](#-Using-Collections-Iterators-1)
+- [Map](#Map)
+- [Filter](#Filter)
+- [Find](#Find)
+- [Count](#Count)
+- [Last](#Last)
+- [Min Max](#Min-Max)
+- [Take](#Take)
 	
 ---
 ## **§ Closures**
@@ -108,39 +121,315 @@ fn main () {
 ## **§ Option Combinator Pattern**
 
 - **Descrizione**: Lista dei combinators per i tipi Option (Vedi: **§ Tipi Aggiuntivi | Option** in [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)).
-- **Tags**: #Option #Combinators #Map #Closures 
-- **Esempi**:
+- **Tags**: #Option #Combinators #Closures 
+	
+### Is some or none
+	
+- Descrizione: Restituiscono dati booleani sulla veridicità del nome del combinatore
+- Tags: #Some #None
+- Esempio:
 	
 ```Rust
-fn main() {
-	let opt: Option<i8> = Some(3) ;
-	// Restituiscono dati booleani sulla veridicità del nome del combinatore
-	let opt_is_some = opt.is_some() ; // Output: true
-	let opt_s_none = opt.is_none() ; // Output: false
+let opt: Option<i8> = Some(3) ;
+
+let opt_is_some = opt.is_some() ; // Output: true
+let opt_s_none = opt.is_none() ; // Output: false
+
+```
 	
-	// Itera i dati solo se la Option è Some() in questo caso Some(3) sarà num
-	let opt_mapped = opt.map(|num|num + 6) ; //Output: Some(9)
+### Map
 	
-	// Opera con una closure di comparazione che usa il borrowing
-	let comparison = 3 ;
-	let opt_filtered = opt.filter(|num|num == &comparison) ;
-	// num = 3 Output: 3 , num != 3 Output: None
+- Descrizione: Itera i dati solo se la Option è `Some()` in questo caso `Some(3)` sarà num
+- Tags: #Map 
+- Esempio:
 	
-	// Controlla se opt possiede dati se falso ne assegna uno Some(9)
-	let opt_or_else = opt.or_else(||Some(9)) ; // Output: Some(3);
+```Rust
+let opt: Option<i8> = Some(3) ;
+
+let opt_mapped = opt.map(|num|num + 6) ; //Output: Some(9)
+```
 	
-	// Utilizza un valore default se `opt` è None 
-	let default_val = 9; 
-	let unwrapped = opt.unwrap_or_else(|| default_val);
-	// Output: unwrapped == 3 if opt == None unwrapped == 9
+### Filter
+	
+- Descrizione: Opera con una *closure* di comparazione che usa il *borrowing* su controlli `if` per filtrare ottenendo gli elementi specificati
+- Tags: #Filter
+- Esempio:
+	
+```Rust
+let opt: Option<i8> = Some(3) ;
+
+let comparison = 3 ;
+let opt_filtered = opt.filter(|num|num == &comparison) ;
+// num = 3 Output: 3 , num != 3 Output: None
+```
+	
+### Or Else
+	
+- Descrizione: Controlla se `opt` possiede dati se falso ne assegna uno `Some(9)`
+- Tags: #Or #Else  
+- Esempio:
+	
+```Rust
+let opt: Option<i8> = Some(3) ;
+
+let opt_or_else = opt.or_else(||Some(9)) ; // Output: Some(3);
+```
+	
+### Unwrap Else
+	
+- Descrizione: Utilizza un valore default se `opt` è `None` 
+- Tags: #Unwrap #Else 
+- Esempio:
+	
+```Rust
+let opt: Option<i8> = Some(3) ;
+
+let default_val = 9; 
+let unwrapped = opt.unwrap_or_else(|| default_val);
+// Output: unwrapped == 3 if opt == None unwrapped == 9
 }
 ```
 	
 > Controllare la libreria standard di Rust  per maggiori funzionalità( Vedi: **§ Standard Library API Docs** in [Rust Cheat Sheet - Elementi base](rust_basics_cheatsheet.md).)
 	
+	
+---
+## **§ Using Collections Iterators**
+	
+- **Definizione**: Un iteratore è una struttura che ispeziona gli elementi di una collezione di dati permettendo ad un *combinator* di essere eseguito.
+- **Sintassi**: `.iter()`
+- **Caso d'Uso**: Ridurre la sintassi permettendo un codice più semplice da leggere.
+- **Tags**: #Iterators #Combinators #Vectors #Arrays 
+	
+### Map
+	
+- Tags: #Map 
+- Esempio:
+	 
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Shark".to_owned(),
+] ;
+
+// Soluzzione con ciclo for
+/*
+let mut veterinary_list: Vec<String> = vec![] ;
+for anml in animals {
+	healedanimal(anml)
+	veterinary_list.push(String::from(anml) + " Rescued!")
+}
+*/
+
+// Soluzione con iteratore
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Si converte anml in String da &String si concatena &str
+[3] Si colleziona l' Iteratore per finalizzare l' ispezione
+*/
+let veterinary_list: Vec<String> = animals
+	.iter() // [1]
+	.map(|anml| String::from(anml) + " Rescued!") // [2]
+	.collect(); // [3]
+		
+println!("To be treated: {:?}",animals);
+println!("Treated: {:?}",veterinary_list);
+```
+-  **Output**: 
+`To be treated: ["Cat", "Lion", "Dog", "Shark"]`
+`Treated: ["Cat Rescued!", "Lion Rescued!", "Dog Rescued!", "Shark Rescued!"]`
+	
+### Filter
+	
+- Tags: #Filter
+- Esempio:
+	
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Shark".to_owned(),
+	"Cat".to_owned(),
+] ;
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Comparazione stringa
+[3] Si colleziona l' Iteratore per finalizzare l' ispezione
+*/
+let veterinary_list_filtered: Vec<&String> = animals
+	.iter() // [1]
+	.filter(|anmlf| **anmlf == "Cat".to_owned()) // [2]
+	.collect(); // [3]
+		
+println!("To be Filtered: {:?}",animals);
+println!("Filtered: {:?}",veterinary_list_filtered);
+```
+-  **Output**: 
+`To be Filtered: ["Cat", "Lion", "Dog", "Shark", "Cat"]`
+`Filtered: ["Cat", "Cat"]`
+	
+### Find
+	
+- Descrizione: Cerca un elemento specifico della collezione ritornando un `Option`.
+- Tags: #Find
+- Esempio:
+	
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Shark".to_owned(),
+	"Cat".to_owned(),
+] ;
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Comparazione stringa, non necessita di .collect()
+*/
+let veterinary_list_found: Option<&String> = animals
+	.iter() // [1]
+	.find(|anmlf| **anmlf == "Cat".to_owned()); // [2]
+		
+println!("To be Found in: {:?}",animals);
+println!("Found: {:?}",veterinary_list_found);;
+```
+-  **Output**: 
+`To be Found in: ["Cat", "Lion", "Dog", "Shark", "Cat"]`
+`Found: Some("Cat")`
+	
+### Count
+	
+- Descrizione: Incredibilmente conta i componenti della collezione.
+- Tags: #Count
+- Esempio:
+	
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Shark".to_owned(),
+	"Cat".to_owned(),
+] ;
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Conta elementi collezione, non necessita di .collect()
+*/
+let veterinary_list_count = animals
+	.iter() // [1]
+	.count(); //[2]
+		
+println!("To be counted: {:?}",animals);
+println!("Number of elements: {:?}",veterinary_list_count);
+```
+-  **Output**: 
+`To be Counted: ["Cat", "Lion", "Dog", "Shark", "Cat"]`
+`Number of elements: 6`
+	
+### Last
+	
+- Descrizione: Incredibilmente trova l' ultimo valore restituendo un `Option` essendo i vettori inizializzabili vuoti. 
+- Tags: #Last
+- Esempio:
+	
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Cat".to_owned(),
+	"Shark".to_owned(),
+] ;
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Ottiene ultimo elemento della collezione, non necessita di .collect()
+*/
+let veterinary_list_last: Option<&String> = animals
+	.iter() // [1]
+	.last(); // [2]
+		
+println!("What is last in: {:?}",animals);
+println!("Last item: {:?}",veterinary_list_last);
+```
+-  **Output**: 
+`What is last in: ["Cat", "Lion", "Dog", "Cat", "Shark"]`
+`Last item: Some("Shark")`
+	
+### Min Max
+	
+- Descrizione: Incredibilmente Minimo o Massimo della collezione restituendo un `Option` essendo i vettori inizializzabili vuoti. 
+- Tags: #Min #Max
+- Esempio:
+	
+```Rust
+let numbers: Vec<i32> = vec![0,3,-12,6,-9,96,];
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Minimo o Massimo preesente, non necessita di .collect()
+*/
+let number_list_min: Option<&i32> = numbers
+	.iter() // [1]
+	.min(); // [2]
+	
+let number_list_max: Option<&i32> = numbers
+	.iter() // [1]
+	.max(); // [2]
+		
+println!("Numbers: {:?}",animals);
+println!("Min: {:?}",number_list_min);
+println!("Max: {:?}",number_list_max);
+```
+-  **Output**: 
+`Numbers: [0, 3, -12, 6, -9, 96]`
+`Min: Some(-12)`
+`Max: Some(96)`
+	
+### Take
+	
+- Descrizione: Incredibilmente prende un valore specifico in considerazione
+- Tags: #Take
+- Esempio:
+	
+```Rust
+let animals: Vec<String> = vec![
+	"Cat".to_owned(),
+	"Lion".to_owned(),
+	"Dog".to_owned(),
+	"Shark".to_owned(),
+	"Cat".to_owned(),
+] ;
+
+/*
+[1] usa iter() per ottenere riferimenti ai dati, quindi anml è &String
+[2] Prende le prime .take(n) posizioni
+[3] Si colleziona l' Iteratore per finalizzare l' ispezione
+*/
+let veterinary_list_take: Vec<&String> = animals
+        .iter() // [1]
+        .take(3) // [2]
+        .collect(); // [3]
+		
+println!("To be choose: {:?}",animals);
+println!("Taken: {:?}",veterinary_list_take);
+```
+-  **Output**: 
+`To be Taken: ["Cat", "Lion", "Dog", "Shark", "Cat"]`
+`Taken: ["Cat", "Lion", "Dog"]`
+	
+> E' possibile concatenare queste funzioni insieme al fine di creare iteratori complessi
+	
+	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - ](rust_controls_dynamics_cheatsheet.md)
+[Rust Cheat Sheet - ](.md)
 	
 ---
 	

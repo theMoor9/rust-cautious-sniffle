@@ -536,7 +536,7 @@ println!("Slice: {:?}", slice);
 ### String Slice  
 	
 - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
-- **Caso d'Uso**: Gestire i dati di testo in maniera temporanea.
+- **Caso d'Uso**: Gestire i dati di testo in maniera temporanea o  per la creazione di una frase definitiva convertendola poi in struct `String`.
 - **Tags**: #Slices #Strings  
 - **Esempio**:
 	
