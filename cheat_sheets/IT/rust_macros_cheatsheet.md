@@ -10,6 +10,8 @@
 - [Clone](#Clone)
 - [Quando Usare Copy](#Quando-Usare-Copy)
 - [Riassunto](#Riassunto)
+###### [§ Config Test](#-Config-Test-1)
+###### [§ assert_eq!](#-assert_eq-1) 
 	
 ---
 ## **§ println!**
@@ -329,6 +331,21 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 - `Copy`: Limitato a tipi che hanno una dimensione fissa e non richiedono gestione della memoria dinamica.
 	
 	
+---
+## § Config Test
+
+
+
+
+
+
+---
+## § assert_eq!
+
+
+
+
+
 ---
 ##### Suggested Progression
 [Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
