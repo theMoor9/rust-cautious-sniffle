@@ -23,6 +23,7 @@
 - [Lettere](#Lettere)
 ##### [§ If Let Else](#-If-Let-Else-1)
 ##### [§ While let](#-While-let-1)
+###### [§ Modules](#-Modules-1)
 	
 ---
 ## **§ Closures**
@@ -144,7 +145,7 @@ let opt_s_none = opt.is_none() ; // Output: false
 	
 ### Map
 	
-- **Descrizione**: Itera i dati solo se la Option è `Some()` in questo caso `Some(3)` sarà num
+- **Descrizione**: Itera i dati solo se la Option è `Some(_)` in questo caso `Some(3)` sarà num
 - **Tags**: #Map 
 - **Esempio**:
 	
@@ -472,9 +473,9 @@ fn main () {
 	
 ---
 ## § If Let Else
-
+	
 **Descrizione**: Volendo considerare lo statement di controllo `match` durante i controlli sulle `Option` potrebbe non interessarci effettuare controlli per dare soluzioni su `Option None` si utilizza quindi la serie di comandi If Let Else
-**Sintassi**: `if let Some() = { ... } else  { ... }`
+**Sintassi**: `if let Some(_) = { ... } else { ... }`
 **Tags**: #if 
 **Esempio**:
 	
@@ -501,7 +502,74 @@ if let Some(p) = place {
 	
 ---
 ## § While Let
+	
+**Descrizione**: Proprio come `if let` questo comando permette di ciclare rispetto il valore `Some(_)` una variabile `Option`
+**Sintassi**: `while let`
+**Tags**: #Loops 
+**Esempio**:
+	
+```Rust
+let mut place: Option<&str> = Some("Home") ;
 
+while let Some("Home") = place {
+	print!("Relax");
+	data = None; // Exit loop
+}
+
+let animals: [Result<&str, &str>; 5] = [
+	Ok("Cat"),
+	Ok("Dog"),
+	Ok("Shark"),
+	Err("No animal in queue"),
+	Err("No animal in queue"),
+	Err("No animal in queue")
+] ;
+
+let mut veterinary_inspection = animals.iter() ;
+
+// Cicla finche è disponibile un valore Some(_)
+while let Some(Ok(_)) = veterinary_inspection.next() {
+	print!("Visited");
+}
+
+```
+-  **Output**: `Relax Visited Visited Visited`
+	
+	
+---
+## **§ Modules**
+	
+**Descrizione**: I moduli in Rust sono utilizzati per raggruppare funzioni, definizioni di tipo, implementazioni e altri moduli. Funzionano come spazi dei nomi e come unità di organizzazione del codice, consentendo la privacy del codice e la riutilizzabilità. Ogni modulo può essere considerato come un file separato.
+**Sintassi**: `mod nome_modulo {_}`, `use nome_modulo::_`
+**Tags**:  #Modules #Functions 
+**Esempio**:
+	
+```Rust
+mod connection {
+	pub fn init (_) {_}
+	pub fn abort (_) {_}
+	fn check (_) {_} // Funzione privata
+}
+mod order {
+	pub fn sell (amount) {_}
+	pub fn buy (amount) {_}
+}
+
+fn main () {
+	// Import selettivo del modulo per l'utilizzo in funzione
+	use connection::init;
+	init();
+	connection::abort();
+	// check() non è possbile usarla perchè è privata
+	
+	// Import totale del modulo per l'utilizzo in funzione
+	use order::*
+	buy(10);
+	sell(9);
+}
+```
+	
+	
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - ](.md)
