@@ -358,6 +358,7 @@ fn are_you_on_linux() { println!("Siamo su Linux!"); }
 ### Test 
 	
 - **Descrizione**: Con `test`, aggiungiamo implementazioni di compilazione per il debug come `mod`  per scopi di debug
+- **Caso d'Uso**: Con l incrementare della complessità dei programmi è buona pratica implementare test per la robustezza (i tende a eseguire il codice prendendo in considerazione i casi estremi del test).
 - **Tags**: #Test #Modules #Functions 
 - **Esempio**:
 
@@ -375,7 +376,7 @@ mod connection {
 ##### assert! 
 	
 -  **Caso d'Uso**: Verifica se il primo argomento della firma è `true`
--  **Sintassi**: `assert!(boolean_var, "Return message");
+-  **Sintassi**: `assert!(boolean_var, "Debug return message");
 - **Esempio**:
 	
 	```Rust
@@ -394,7 +395,7 @@ mod connection {
 ##### assert_eq!
 	
 -  **Caso d'Uso**: Verifica se il primo argomento della firma è *uguale* al secondo
--  **Sintassi**: `assert_eq!(var1, ar2, "Return message");
+-  **Sintassi**: `assert_eq!(result, expected, "Debug return message");
 - **Esempio**:
 	```Rust	
 	mod testing {
@@ -406,13 +407,15 @@ mod connection {
 			assert_eq!(me,you, "They are NOT the species!");
 		}
 		
+		
+		
 	}
 	```
 	
 ##### assert_ne!
 	
--  **Caso d'Uso**: Verifica se il primoargomento della firma è *diverso* al secondo
--  **Sintassi**: `assert_ne!(var1, ar2, "Return message");
+-  **Caso d'Uso**: Verifica se il primo argomento della firma è *diverso* al secondo
+-  **Sintassi**: `assert_ne!(result, not_expected, "Debug return message");
 - **Esempio**:
 	
 ```Rust
