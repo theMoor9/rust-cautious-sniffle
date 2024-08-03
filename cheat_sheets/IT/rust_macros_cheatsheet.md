@@ -10,8 +10,9 @@
 - [Clone](#Clone)
 - [Quando Usare Copy](#Quando-Usare-Copy)
 - [Riassunto](#Riassunto)
-###### [§ Config Test](#-Config-Test-1)
-###### [§ assert_eq!](#-assert_eq-1) 
+###### [§ Config](#-Config-1)
+- [Target](#Target)
+- [Test](#Test)
 	
 ---
 ## **§ println!**
@@ -271,7 +272,7 @@ fn main () {
 	
 ### Copy
 	
-- **Descrizione**: La specificazione `Copy` rispetto a `Clone` indica che è permessa la copia del clone automatica e quindi implicita senza bisogno di chiamare `.clone()`. Con `#[derive(Clone, Copy)]`, la clonazione è sia esplicita che implicita:
+- **Descrizione**: La specificazione `Copy` rispetto a `Clone` indica che è permessa la copia del clone automatica e quindi implicita senza bisogno di chiamare `.clone()`. Con `#[derive(Clone, Copy)]`, la clonazione è sia esplicita che implicita.
 - **Tags**: #Structs #Enums 
 - **Esempio**:
 	
@@ -332,20 +333,102 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 	
 	
 ---
-## § Config Test
+## § Config
+	
+**Descrizione**: Il macro `cfg` in Rust è utilizzato per configurare la compilazione condizionale del codice a seconda di specifiche flag o opzioni di configurazione.
+**Caso d'Uso**: Particolarmente utile per includere o escludere parti di codice basandosi su piattaforme target, funzionalità opzionali, o altre condizioni personalizzate definite dall'utente.
+**Tags**: #Config
+	
+### Target
+	
+- **Descrizione**: Compilare codice in base all' OS
+- **Tags**: #Os 
+- **Esempio**:
+	
+```Rust
+// Compila questo codice solo se il target è Windows. 
+#[cfg(target_os = "windows")] 
+fn are_you_on_windows() { println!("Siamo su Windows!"); } 
 
+// Compila questo codice solo se il target è Linux. 
+#[cfg(target_os = "linux")] 
+fn are_you_on_linux() { println!("Siamo su Linux!"); }
+```
+	
+### Test 
+	
+- **Descrizione**: Con `test`, aggiungiamo implementazioni di compilazione per il debug come `mod`  per scopi di debug
+- **Tags**: #Test #Modules #Functions 
+- **Esempio**:
 
-
-
-
-
----
-## § assert_eq!
-
-
-
-
-
+```Rust
+#[cfg(test)]
+mod connection {
+	#[test]
+	fn init (_) {_} // si applica test su questa funzione
+	
+	fn abort (_) {_}
+	fn check (_) {_}
+}
+```
+	
+##### assert! 
+	
+-  **Caso d'Uso**: Verifica se il primo argomento della firma è `true`
+-  **Sintassi**: `assert!(boolean_var, "Return message");
+- **Esempio**:
+	
+	```Rust
+	#[cfg(test)]
+	mod testing {
+		
+		#[test]
+		fn is_true {
+			let boolean: bool = true
+			assert!(boolean,"Is not true!");
+		}
+		
+	}
+	```
+	
+##### assert_eq!
+	
+-  **Caso d'Uso**: Verifica se il primo argomento della firma è *uguale* al secondo
+-  **Sintassi**: `assert_eq!(var1, ar2, "Return message");
+- **Esempio**:
+	```Rust	
+	mod testing {
+		
+		#[test]
+		fn equality {
+			let me = "Sapiens"
+			let you = "Sapiens"
+			assert_eq!(me,you, "They are NOT the species!");
+		}
+		
+	}
+	```
+	
+##### assert_ne!
+	
+-  **Caso d'Uso**: Verifica se il primoargomento della firma è *diverso* al secondo
+-  **Sintassi**: `assert_ne!(var1, ar2, "Return message");
+- **Esempio**:
+	
+```Rust
+	mod testing {
+		
+		#[test]
+		fn equality {
+			let me = "Sapiens"
+			let my_cat = "Felidae"
+			assert_ne!(me,you, "They ARE the species!");
+		}
+		
+	}
+```
+	
+	
 ---
 ##### Suggested Progression
 [Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
