@@ -21,9 +21,11 @@
 ### [§ Range](#-Range-1)
 - [Numeri](#Numeri)
 - [Lettere](#Lettere)
-##### [§ If Let Else](#-If-Let-Else-1)
-##### [§ While let](#-While-let-1)
+##### [§ Advanced Control Expressions](#-Advanced-Control_Expressions-1)
+- [While let](#While-let)
+- [If Let Else](#If-Let-Else)
 ###### [§ Modules](#-Modules-1)
+###### [§ External Modules](#-External-Modules-1)
 	
 ---
 ## **§ Closures**
@@ -472,7 +474,11 @@ fn main () {
 	
 	
 ---
-## § If Let Else
+## **§ Advanced Control Expressions**
+	
+**Descrizione**: Seguono espressioni selettive in merito alla gestione dei risultati rispetto i controlli sulle variabili.
+	
+### If Let Else
 	
 **Descrizione**: Volendo considerare lo statement di controllo `match` durante i controlli sulle `Option` potrebbe non interessarci effettuare controlli per dare soluzioni su `Option None` si utilizza quindi la serie di comandi If Let Else
 **Sintassi**: `if let Some(_) = { ... } else { ... }`
@@ -499,9 +505,7 @@ if let Some(p) = place {
 }
 ```
 	
-	
----
-## § While Let
+### While Let
 	
 **Descrizione**: Proprio come `if let` questo comando permette di ciclare rispetto il valore `Some(_)` una variabile `Option`
 **Sintassi**: `while let`
@@ -569,6 +573,11 @@ fn main () {
 }
 ```
 	
+	
+---
+## **§ External Modules**
+	
+**Descrizione**:  
 	
 ---
 ##### Progressione Suggerita

@@ -15,6 +15,10 @@
 ###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
 - [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
 ###### [§ Project Structure](#-Project-Structure-1)
+- Cargo
+- Src - main.rs
+- Src - lib.rs
+- 
 
 #Basics 
 
@@ -200,7 +204,9 @@ progetto_rust/
 ├── Cargo.toml   # File cgf Cargo, dipendenze e le impostazioni del progetto
 ├── Cargo.lock   # File Cargo per tracciare le versioni esatte delle dipendenze
 │
-├── src/                   # Directory contenente i sorgenti del progetto
+├── src/   # Directory contenente i sorgenti del progetto
+│   ├── lib/      # Directory contenente elementi di supporto alla funzionalità
+│   │    └── mod.rs        # File di contenimento dei moduli esterni
 │   ├── main.rs            # File punto di ingresso dell'applicazione
 │   └── lib.rs             # File punto di ingresso della libreria 
 │
@@ -216,9 +222,8 @@ progetto_rust/
 └── target/                # Directory generata dove Cargo compila il progetto
 │
 └── .gitignore             # File di configurazione Git
-
 ```
-
+	
 ### Cargo
 	
 - **Descrizione**: Cargo è il sistema di setup delle dependencies, metadata, configurazione build, gestione del workspace e features opzionali.  
@@ -262,14 +267,28 @@ cargo_name = "VersionNumber"
 	
 ##### .lock
 	
-```Rust
-
+- **Descrizione**: 
+- **Uso**:
+- **Tags**: 
+- **Esempio**:
+	
+```Rust 
 ```
 	
-### Src
-- ##### main
-- ##### lib
+### Src - main.rs
+	
+**Descrizione**:  Non ho voglia di spiegare cosa è. 
+	
+### Src - lib.rs
+	
+**Descrizione**: Serve per definire la struttura pubblica della libreria, ovvero quali funzioni, strutture, moduli, etc., sono accessibili agli utenti della libreria quando essa viene inclusa come dipendenza in altri progetti Rust
+	 
 ### Lib
+	
+- codec.ra
+- mod.rs
+- trasncorde.rs
+	
 ### Integration Test
 ### Simple
 ### Performance
