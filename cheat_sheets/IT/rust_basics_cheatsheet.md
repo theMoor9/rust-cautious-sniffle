@@ -14,6 +14,7 @@
 - [Procedura di Compilazione ed Esecuzione](#Procedura-di-Compilazione-ed-Esecuzione)
 ###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
 - [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
+###### [§ Project Structure](#-Project-Structure-1)
 
 #Basics 
 
@@ -188,6 +189,93 @@ Tramite Terminal nella cartella dove si trova il `main.rs` :
 3. **Una volta nell'API Documentation è possibile cercare qualsivoglia elemento necessario ad una corretta implementazione del proprio codice**
 
 	
+---
+## § Project Structure
+	
+- **Definizione**:
+	
+```
+progetto_rust/
+│
+├── Cargo.toml   # File cgf Cargo, dipendenze e le impostazioni del progetto
+├── Cargo.lock   # File Cargo per tracciare le versioni esatte delle dipendenze
+│
+├── src/                   # Directory contenente i sorgenti del progetto
+│   ├── main.rs            # File punto di ingresso dell'applicazione
+│   └── lib.rs             # File punto di ingresso della libreria 
+│
+├── tests/                    # Directory per i test di integrazione
+│   └── integration_test.rs   # Esempio di test di integrazione
+│
+├── examples/              # Esempi di codice che dimostrano l'uso della libreria
+│   └── simple.rs          # Esempio semplice
+│
+├── benches/          # Directory Benchmark 
+│   └── performance.rs     # File di benchmark per valutazione di parti del codice
+│
+└── target/                # Directory generata dove Cargo compila il progetto
+│
+└── .gitignore             # File di configurazione Git
+
+```
+
+### Cargo
+	
+- **Descrizione**: Cargo è il sistema di setup delle dependencies, metadata, configurazione build, gestione del workspace e features opzionali.  
+- **Tags**: #Cargo
+- Esempio:
+	
+```sh
+# Nella cartella progetto
+cargo init .
+
+# In posizione relativa
+cargo init path
+```
+	
+```sh
+# Nel terminal il link che porta alle possibili implementazioni del file .toml
+
+note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+```
+	
+##### .toml
+	
+- **Descrizione**: File di configurazione degli elementi di cargo.
+- **Uso**: All' URL *crates.io* si trovano i crates importabili nella sezione `[dependencies]` come lista dei requisiti. 
+- **Tags**: #Toml
+- **Esempio**:
+	
+```Rust 
+[package]
+name = "ProjectName"
+version = "VersionNumber"
+authors = "[AuthorName <email>]"
+edition = "Year"
+
+[dependencies]
+cargo_name = "VersionNumber"
+```
+	
+> Si controlla la documentazione del cargo su `cargo.io` per l'implementazione nel `main.rs`.
+> Nel codice si importerà il crate con `use crate_name::needed_element`.
+	
+##### .lock
+	
+```Rust
+
+```
+	
+### Src
+- ##### main
+- ##### lib
+### Lib
+### Integration Test
+### Simple
+### Performance
+### Gitignore
+
+
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)

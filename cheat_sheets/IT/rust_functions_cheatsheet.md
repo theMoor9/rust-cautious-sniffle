@@ -59,7 +59,7 @@ fn multiply(a: i32, b: i32, c ...) -> i32 {
 ## **§ Funzionalità (Metodi)**
 	
 ### Implementazione
-- **Caso D'Uso**: Implementazione atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
+- **Uso**: Implementazione atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
 - **Tags**: #Structs 
 - **Sintassi**: `impl`
 - **Esempio**:

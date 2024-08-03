@@ -228,7 +228,7 @@ In pratica, `#[derive(Debug)]` facilita l'estrapolazione e la rappresentazione d
 ### Clone
 	
 - **Descrizione**: La macro `#[derive(Clone)]` permette di creare copie della struttura complessa. `Clone` indica che è permessa la clonazione esplicita chiamando `.clone()`.
-- **Caso d'Uso**: Permette di non violare la condizione di *ownership* di un oggetto .
+- **Uso**: Permette di non violare la condizione di *ownership* di un oggetto .
 - **Tags**: #Structs #Enums #Ownership 
 - **Esempio**:
 	
@@ -336,7 +336,7 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 ## § Config
 	
 **Descrizione**: Il macro `cfg` in Rust è utilizzato per configurare la compilazione condizionale del codice a seconda di specifiche flag o opzioni di configurazione.
-**Caso d'Uso**: Particolarmente utile per includere o escludere parti di codice basandosi su piattaforme target, funzionalità opzionali, o altre condizioni personalizzate definite dall'utente.
+**Uso**: Particolarmente utile per includere o escludere parti di codice basandosi su piattaforme target, funzionalità opzionali, o altre condizioni personalizzate definite dall'utente.
 **Tags**: #Config
 	
 ### Target
@@ -358,7 +358,7 @@ fn are_you_on_linux() { println!("Siamo su Linux!"); }
 ### Test 
 	
 - **Descrizione**: Con `test`, aggiungiamo implementazioni di compilazione per il debug come `mod`  per scopi di debug
-- **Caso d'Uso**: Con l incrementare della complessità dei programmi è buona pratica implementare test per la robustezza (i tende a eseguire il codice prendendo in considerazione i casi estremi del test).
+- **Uso**: Con l incrementare della complessità dei programmi è buona pratica implementare test per la robustezza (i tende a eseguire il codice prendendo in considerazione i casi estremi del test).
 - **Tags**: #Test #Modules #Functions 
 - **Esempio**:
 
@@ -375,7 +375,7 @@ mod connection {
 	
 ##### assert! 
 	
--  **Caso d'Uso**: Verifica se il primo argomento della firma è `true`
+-  **Uso**: Verifica se il primo argomento della firma è `true`
 -  **Sintassi**: `assert!(boolean_var, "Debug return message");
 - **Esempio**:
 	
@@ -394,7 +394,7 @@ mod connection {
 	
 ##### assert_eq!
 	
--  **Caso d'Uso**: Verifica se il primo argomento della firma è *uguale* al secondo
+-  **Uso**: Verifica se il primo argomento della firma è *uguale* al secondo
 -  **Sintassi**: `assert_eq!(result, expected, "Debug return message");
 - **Esempio**:
 	```Rust	
@@ -414,7 +414,7 @@ mod connection {
 	
 ##### assert_ne!
 	
--  **Caso d'Uso**: Verifica se il primo argomento della firma è *diverso* al secondo
+-  **Uso**: Verifica se il primo argomento della firma è *diverso* al secondo
 -  **Sintassi**: `assert_ne!(result, not_expected, "Debug return message");
 - **Esempio**:
 	

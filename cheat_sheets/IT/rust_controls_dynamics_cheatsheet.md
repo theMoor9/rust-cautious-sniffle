@@ -160,7 +160,7 @@ fn main () {
  E' possibile utilizzare le espressioni in *assegnazione dinamica*. Inoltre è possibile utilizzare le espressioni innestate.
 ### If - Else
 	
-- **Caso d'Uso**: Assegnazione diretta
+- **Uso**: Assegnazione diretta
 - Tags: #if #Dynamics 
 - **Esempio**:
 	
@@ -183,7 +183,7 @@ let mut variable: bool = control_variable > 9 ;
 	
 ### Match 
 	
-- **Caso d'Uso**: Assegnazione diretta ed espressioni innestate (Terza variante su `match`).
+- **Uso**: Assegnazione diretta ed espressioni innestate (Terza variante su `match`).
 - **Tags**: #match #Dynamics 
 - **Esempio**:
 	
@@ -375,7 +375,7 @@ fn main () {
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
 - **Sintassi**: `&`
-- **Caso d'Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
+- **Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
 - **Tags**: #References #Types #Strings #Dynamics 
 - **Esempio**:
 	
@@ -409,7 +409,7 @@ variabile che elabora alla fine del suo contesto
 ## **§ Lifetimes** da finire
 	
 - Ensure that references are valid as long as they are used.
-- **Caso d'Uso**: Managing the scope of references.
+- **Uso**: Managing the scope of references.
 - **Tags**: #Dynamics 
 - **Esempio**:
     

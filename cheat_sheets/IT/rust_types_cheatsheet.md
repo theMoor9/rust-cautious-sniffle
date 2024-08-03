@@ -30,7 +30,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Interi Polari**: (`i` : Integers) Possono assumere forma negativa e positiva.
 	
 	- **Tipi**: ```i8```, ```i16```, ```i32```, ```i64```, ```i128```, ```isize```
-	- **Caso d'Uso**: Immagazzinare Temperatura, e variabili che possono assumere valori negativi.
+	- **Uso**: Immagazzinare Temperatura, e variabili che possono assumere valori negativi.
 	- **Tags**: #Integers 
 	- **Esempio**:
 	
@@ -42,7 +42,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 - **Interi Non Polari**: (`u`: Unsigned) Sono solo numeri positivi.
 	
 	- **Tipi**: ```u8```, ```u16```, ```u32```, ```u64```, ```u128```, ```usize```
-	- **Caso d'Uso**: Età, Indicizzazione array, etc.
+	- **Uso**: Età, Indicizzazione array, etc.
 	- **Tags**: #Integers 
 	- **Esempio**:
 	
@@ -55,7 +55,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
     
 - **Definizione**: Usato per i numeri decimali.
 - **Tipi**: ```f32``` (Precisione singola), ```f64``` (Precisione doppia)
-- **Caso d'Uso**: Calcoli scientifici e di precisione.
+- **Uso**: Calcoli scientifici e di precisione.
 - **Tags**: #Float 
 - **Esempio**:
 	
@@ -68,7 +68,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
     
 - **Definizione**: Rappresentano vero o falso.
 - **Tipo**: ```bool```
-- **Caso d'Uso**: Controlli condizionale e avvisi flag.
+- **Uso**: Controlli condizionale e avvisi flag.
 - **Tags**: #Bool 
 - **Esempio**:
 	
@@ -81,7 +81,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
     
 - **Definizione**: Rappresenta un codice univoco, racchiuso tra apici.
 - **Tipo**: ```char```
-- **Caso d'Uso**: Immagazzinare caratteri e simboli singoli.
+- **Uso**: Immagazzinare caratteri e simboli singoli.
 - **Tags**: #Char 
 - **Esempio**:
 	
@@ -94,7 +94,7 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 - **Definizione**: E' una tupla senza campi.
 - **Tipo**: ```()```
-- **Caso d'Uso**: Specificare valore assente la dove è richiesto un valore obbligatoriamente ad esempio su un ritorno.
+- **Uso**: Specificare valore assente la dove è richiesto un valore obbligatoriamente ad esempio su un ritorno.
 - **Tags**: #Unit #Result
 - **Esempio**:
 	
@@ -113,7 +113,7 @@ I tipi composti sono quelli che combinano insieme altri tipi in una struttura se
 ### Tuples
 	
 - **Definizione**: Può raggruppare molteplici valori con differenti tipi
-- **Caso d'Uso**: Ritornare valori multipli da una funzione.
+- **Uso**: Ritornare valori multipli da una funzione.
 - **Tags**: #Tuples 
 - **Esempio**:
 	
@@ -141,7 +141,7 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 ### Arrays
     
 - **Definizione**: Una collezione di elementi  dalla lunghezza e il tipo prefissati.
-- **Caso d'Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
+- **Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
 - **Tags**: #Arrays 
 - **Esempio**:
 
@@ -162,7 +162,7 @@ I tipi complessi, sono quelli che combinano dati e logica. Possono contenere var
 	
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
 - **Tipo**: `struct`
-- **Caso d'Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
+- **Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
 - **Tags**: #Structs 
 - **Esempio**:
 	
@@ -201,7 +201,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 	- **Definizione**: E' una collezione mutabile e dinamicamente allocata di caratteri UTF-8.
 	- **Tipo**: `String`
-	- **Caso d'Uso**: Usa `String` per stringhe mutabili e possedute, e `&str` per riferimenti immutabili a stringhe esistenti.
+	- **Uso**: Usa `String` per stringhe mutabili e possedute, e `&str` per riferimenti immutabili a stringhe esistenti.
 	- **Tags**: #Structs #Strings 
 	- **Esempio**:
 		
@@ -261,7 +261,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 
 	- **Definizione**: Una collezione di dati dal tipo univoco dalla dimensione variabile
 	- **Sintassi**: `Vec<>`
-	- **Caso d'Uso**: Collezionare dati dello stesso tipo variabile come la lista di clienti
+	- **Uso**: Collezionare dati dello stesso tipo variabile come la lista di clienti
 	- **Tags**: #Structs #Vectors 
 	- **Esempio**:
 		
@@ -291,7 +291,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
 - **Tipo**: `enum`
-- **Caso d'Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
+- **Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
 - **Tags**: #Enums 
 - **Esempio**:
 	
@@ -390,7 +390,7 @@ fn main () {
 - **Definizione**: E' un tipo complesso riconducibile come analogia ai dizionari, set di dati di tipi disparati con chiavi associate registrati in maniera casuale, quindi le chiavi diventano essenziali per la gestione.
 - **Libreria**: `use std::collections::HashMap;`
 - **Sintassi**: `let mut dictionary = HashMap::new();`
-- **Caso d'Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
+- **Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
 - **Tags**: #Hashmaps #Option 
 - **Esempio**:
 	
@@ -522,7 +522,7 @@ fn main() {
 ### Slices
 	
 - **Definizione**: Visualizzazione dinamica di un *array*.
-- **Caso d'Uso**: Accedere ad una porzione di un array .
+- **Uso**: Accedere ad una porzione di un array .
 - **Tags**: #Slices #Vectors #Arrays 
 - **Esempio**:
 	
@@ -536,7 +536,7 @@ println!("Slice: {:?}", slice);
 ### String Slice  
 	
 - **Definizione**: (```&str```) Riferimento immutabile ad una stringa
-- **Caso d'Uso**: Gestire i dati di testo in maniera temporanea o  per la creazione di una frase definitiva convertendola in struct `String`.
+- **Uso**: Gestire i dati di testo in maniera temporanea o  per la creazione di una frase definitiva convertendola in struct `String`.
 - **Tags**: #Slices #Strings  
 - **Esempio**:
 	
@@ -559,7 +559,7 @@ println!("Slice: {:?}", slice);
 	}
 	```
 	
-- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere variante simboleggiante valore nullo, in attesa di un assegnazione.
+- **Uso**: Dare la possibilità ad una variabile di assumere variante simboleggiante valore nullo, in attesa di un assegnazione.
 - **Sintassi**: `Option<Type>`
 - **Tags**: #Types #Option #Enums 
 - **Esempio**:
@@ -633,7 +633,7 @@ enum Result <T,E> {
 }
 ```
 	
-- **Caso d'Uso**: Dare la possibilità ad una variabile di assumere una variante con valore extra. Utile per la gestione degli errori, accompagnato da un `match` per gestire l' alternativa. La funzionalità è analoga al blocco `try/catch-except`  
+- **Uso**: Dare la possibilità ad una variabile di assumere una variante con valore extra. Utile per la gestione degli errori, accompagnato da un `match` per gestire l' alternativa. La funzionalità è analoga al blocco `try/catch-except`  
 - **Sintassi**: `Result<Type, Type>`
 - **Tags**: #Types #Result #Enums 
 - **Esempio**:
@@ -669,7 +669,7 @@ fn main () {
 	
 - **Descrizione**:  Si può evitare controlli match sul tipo di *Result* ottenuto.
 - **Sintassi**: `?`
-- **Caso d'Uso**: Si usa per dare la possibilità ad una chiamata di funzione che restituisce un *Result* di autogestirsi dentro ad una funzione che ritorna un *Result* dando il risultato se esiste o l'errore alla funzione madre se si verifica posizionando `?` subito dopo la funzione figlia.
+- **Uso**: Si usa per dare la possibilità ad una chiamata di funzione che restituisce un *Result* di autogestirsi dentro ad una funzione che ritorna un *Result* dando il risultato se esiste o l'errore alla funzione madre se si verifica posizionando `?` subito dopo la funzione figlia.
 - **Tags**: #Result #Advanced
 - **Esempio**:
 	
@@ -723,7 +723,7 @@ fn main () {
 	
 ### Specifiche
 	
-- **Caso d'Uso**: Utilizzo della sintassi `let variabile: tipo = valore`  per limitare e rendere più solido l'utilizzo della memoria ottimizzandola.
+- **Uso**: Utilizzo della sintassi `let variabile: tipo = valore`  per limitare e rendere più solido l'utilizzo della memoria ottimizzandola.
 - **Tags**: #Types 
 - **Esempio**:
 	
@@ -737,7 +737,7 @@ let positive_number: u8 = 10; // Exclusively for Positive numbers!
 	
 ### Generiche
 	
-- **Caso d'Uso**: Si può utilizzare la annotazione anche per i tipi composti e complessi `enum`, `struct`, `vec`.
+- **Uso**: Si può utilizzare la annotazione anche per i tipi composti e complessi `enum`, `struct`, `vec`.
 - **Tags**: #Types #Vectors #Enums #Structs 
 - **Esempio**:
 	

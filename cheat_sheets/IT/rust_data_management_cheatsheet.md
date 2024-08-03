@@ -40,7 +40,7 @@ let closure_name = | a , b | ... ;
 	
 ### Basics
 	
-- **Caso d'Uso**: Si può evitare grosse parti di sintassi utilizzando la forma breve della closure. E possiamo utilizzarle in maniera strategica in situazioni dinamiche, come potrai vedere nelle sezioni (§) di seguito.
+- **Uso**: Si può evitare grosse parti di sintassi utilizzando la forma breve della closure. E possiamo utilizzarle in maniera strategica in situazioni dinamiche, come potrai vedere nelle sezioni (§) di seguito.
 - **Esempi**:
 	
 ```Rust
@@ -62,7 +62,7 @@ fn main () {
 ## **§ Map Combinator**
 
 - **Descrizione**: Il Mapping è la pratica di  trasformare qualcosa in un altra. La funzione complementare `.map()` in Rust è lo strumento atto a questo scopo che restituisce un iteratore sui dati trasformati, pronti per essere consumati quando necessario.
-- **Caso d'Uso**: La funzione `.map()` serve ad applicare Closures( Funzioni semplici atte a piccole modifiche ) in maniera dinamica quindi su risultati di funzione funzione().map(closure) multivalore quindi inaspettati o collezioni di dati, come per formattare in upcase dati che si generano via via che la funzione primaria genera dati per .map()
+- **Uso**: La funzione `.map()` serve ad applicare Closures( Funzioni semplici atte a piccole modifiche ) in maniera dinamica quindi su risultati di funzione funzione().map(closure) multivalore quindi inaspettati o collezioni di dati, come per formattare in upcase dati che si generano via via che la funzione primaria genera dati per .map()
 - **Tags**: #Map #Combinators
 - **Esercizio**:
 	
@@ -204,7 +204,7 @@ let unwrapped = opt.unwrap_or_else(|| default_val);
 	
 - **Definizione**: Un iteratore è una struttura che ispeziona gli elementi di una collezione di dati permettendo ad un *combinator* di essere eseguito.
 - **Sintassi**: `.iter()`
-- **Caso d'Uso**: Ridurre la sintassi permettendo un codice più semplice da leggere.
+- **Uso**: Ridurre la sintassi permettendo un codice più semplice da leggere.
 - **Tags**: #Iterators #Combinators #Vectors #Arrays 
 	
 ### Map

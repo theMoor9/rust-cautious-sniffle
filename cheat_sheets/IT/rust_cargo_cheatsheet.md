@@ -3,9 +3,9 @@
 ###### [§ Documentazione](#-Documentazione-1)
 - [Aggiungere la Documentazione](#Aggiungere-la-Documentazione) 
 - [Generare la Documentazione](#Generare-la-Documentazione)
-
+###### [§ External Crates](#-External-Crates-1)
 ___
-## § Documentazione
+## **§ Documentazione**
 
 **Uso**: Ai fini di chiarezza del codice
 **Sintassi**: `///`
@@ -49,6 +49,11 @@ $ cargo doc --open
 ```
 	
 	
+---
+## **§ External Crates**
+
+
+
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)
