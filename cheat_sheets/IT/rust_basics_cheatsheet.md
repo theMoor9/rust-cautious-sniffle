@@ -260,41 +260,36 @@ edition = "Year"
 
 [dependencies]
 cargo_name = "VersionNumber"
+
+[lib] // Inserimento moduli esterni
+name = "Module_Name"
+path = "src/lib/mod.rs"
+
 ```
 	
 > Si controlla la documentazione del cargo su `cargo.io` per l'implementazione nel `main.rs`.
 > Nel codice si importerà il crate con `use crate_name::needed_element`.
 	
-##### .lock
+### External Crates
 	
-- **Descrizione**: 
-- **Uso**:
-- **Tags**: 
+- **Descrizione**: Compartimentazione delle funzioni  del codice secondo criteri di convenienza tramite il file mod.rs, file di istanziazione dei moduli.
+- **Tags**: #Crates
 - **Esempio**:
 	
-```Rust 
+```Rust
+pub use module::
+```
+
+##### Accessibilità
+	
+- **Descrizione**: 
+- **Esempio**:
+	
+```Rust
+// super è Equivalente a cercare un elemento fuori dal file o dalla cartella 
+use super::super::ext_crate_name;
 ```
 	
-### Src - main.rs
-	
-**Descrizione**:  Non ho voglia di spiegare cosa è. 
-	
-### Src - lib.rs
-	
-**Descrizione**: Serve per definire la struttura pubblica della libreria, ovvero quali funzioni, strutture, moduli, etc., sono accessibili agli utenti della libreria quando essa viene inclusa come dipendenza in altri progetti Rust
-	 
-### Lib
-	
-- codec.ra
-- mod.rs
-- trasncorde.rs
-	
-### Integration Test
-### Simple
-### Performance
-### Gitignore
-
-
 ---
 ##### Progressione Suggerita
 [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)
