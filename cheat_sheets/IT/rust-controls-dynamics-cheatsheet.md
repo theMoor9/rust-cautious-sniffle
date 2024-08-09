@@ -433,7 +433,7 @@ variabile che elabora alla fine del suo contesto
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Funzioni](rust_functions_cheatsheet.md)
+[Rust Cheat Sheet - Funzioni](rust-functions-cheatsheet.md)
 	
 ---
 	

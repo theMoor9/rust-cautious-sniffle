@@ -788,8 +788,8 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Macro](rust_macros_cheatsheet.md)
-[Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
+[Rust Cheat Sheet - Macro](rust-macros-cheatsheet.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
 	
 ---
 	

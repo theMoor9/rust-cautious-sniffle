@@ -94,7 +94,7 @@ println!("Allineamento a sinistra: {:<5}", x) ;
 ---
 ## **§ vec!**
 	
-- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi: **§ Tipi Complessi | Struct -  Struct Vec** in [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)).
+- **Descrizione**: Macro che consente la generazione dei vettori di tipo univoco, a cui si applica tutte le proprietà delle *struct* `Vec` (Vedi: **§ Tipi Complessi | Struct -  Struct Vec** in [Rust Cheat Sheet - Tipi](rust-types-cheatsheet.md)).
 - **Tags**: #Vectors #Macros #Types 
 - **Esempi**:
 	
@@ -434,7 +434,7 @@ mod connection {
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
 	
 ---
 	

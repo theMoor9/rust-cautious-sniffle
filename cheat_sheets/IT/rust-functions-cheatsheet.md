@@ -208,9 +208,9 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Cicli](rust_loops_cheatsheet.md)
-[Rust Cheat Sheet - Dinamiche del codice](rust_controls_dynamics_cheatsheet.md)
-[Rust Cheat Sheet - Semplificare la Gestione Dati](rust_data_management_cheatsheet.md)
+[Rust Cheat Sheet - Cicli](rust-loops-cheatsheet.md)
+[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust Cheat Sheet - Semplificare la Gestione Dati](rust-data-management-cheatsheet.md)
 	
 ---
 	

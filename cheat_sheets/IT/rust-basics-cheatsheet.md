@@ -190,8 +190,8 @@ Tramite Terminal nella cartella dove si trova il `main.rs` :
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)
-[Rust Cheat Sheet - Cargo](rust_cargo_cheatsheet.md)
+[Rust Cheat Sheet - Tipi](rust-types-cheatsheet.md)
+[Rust Cheat Sheet - Cargo](rust-cargo-cheatsheet.md)
 	
 ---
 	

@@ -231,7 +231,7 @@ println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Macro](rust_macros_cheatsheet.md)
+[Rust Cheat Sheet - Macro](rust-macros-cheatsheet.md)
 	
 ---
 	

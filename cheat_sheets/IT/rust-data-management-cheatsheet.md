@@ -129,7 +129,7 @@ fn main () {
 ---
 ## **§ Option Combinator Pattern**
 
-- **Descrizione**: Lista dei combinators per i tipi Option (Vedi: **§ Tipi Aggiuntivi | Option** in [Rust Cheat Sheet - Tipi](rust_types_cheatsheet.md)).
+- **Descrizione**: Lista dei combinators per i tipi Option (Vedi: **§ Tipi Aggiuntivi | Option** in [Rust Cheat Sheet - Tipi](rust-types-cheatsheet.md)).
 - **Tags**: #Option #Combinators #Closures 
 	
 ### Is some or none
@@ -199,7 +199,7 @@ let unwrapped = opt.unwrap_or_else(|| default_val);
 }
 ```
 	
-> Controllare la libreria standard di Rust  per maggiori funzionalità( Vedi: **§ Standard Library API Docs** in [Rust Cheat Sheet - Elementi base](rust_basics_cheatsheet.md).)
+> Controllare la libreria standard di Rust  per maggiori funzionalità( Vedi: **§ Standard Library API Docs** in [Rust Cheat Sheet - Elementi base](rust-basics-cheatsheet.md).)
 	
 	
 ---
