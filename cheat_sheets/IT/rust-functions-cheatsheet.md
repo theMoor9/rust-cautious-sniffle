@@ -1,4 +1,4 @@
-# **Rust Cheat Sheet - Funzioni**
+# **Rust CheatSheet - Funzioni**
 ##### **Table of Contents**
 ###### [§ Signature](#-Signature-1)
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1)
@@ -208,9 +208,9 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Cicli](rust-loops-cheatsheet.md)
-[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
-[Rust Cheat Sheet - Semplificare la Gestione Dati](rust-data-management-cheatsheet.md)
+[Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Semplificare la Gestione Dati](rust-data-management-cheatsheet.md)
 	
 ---
 	

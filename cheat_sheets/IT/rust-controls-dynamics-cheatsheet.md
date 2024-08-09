@@ -1,4 +1,4 @@
-## **Rust Cheat Sheet - Dinamiche di controllo del codice**
+## **Rust CheatSheet - Dinamiche di controllo del codice**
 ##### **Table of Contents**
 ###### [§ Control Expressions](#-Control-Expressions-1)
 - [If - Else](#If---Else)
@@ -13,7 +13,7 @@
 - [Ownership](#Ownership)
 - [References](#References)
 ###### [§ Lifetimes](#-Lifetimes-1)
-
+	
 ___
 ## **§ Control Expressions**
 Espressioni di controllo
@@ -433,7 +433,7 @@ variabile che elabora alla fine del suo contesto
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Funzioni](rust-functions-cheatsheet.md)
+[Rust CheatSheet - Funzioni](rust-functions-cheatsheet.md)
 	
 ---
 	

@@ -1,4 +1,4 @@
-# **Rust Cheat Sheet - Tipi**
+# **Rust CheatSheet - Tipi**
 ##### **Table of Contents**
 ###### [§ Tipi Scalari](#-Tipi-Scalari-1)
 - [Numeri Interi](#Numeri-Interi)
@@ -788,8 +788,8 @@ fn main () {
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Macro](rust-macros-cheatsheet.md)
-[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Macro](rust-macros-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
 	
 ---
 	

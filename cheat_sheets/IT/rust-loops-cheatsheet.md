@@ -1,4 +1,4 @@
-# **Rust Cheat Sheet - Cicli**
+# **Rust CheatSheet - Cicli**
 ##### **Table of Contents**
 ###### [§ Ciclo Infinito ∞](#[-Ciclo-infinito--1)
 ###### [§ Cicli Condizionale - while](#-Cicli-Condizionale-1)
@@ -231,7 +231,7 @@ println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Macro](rust-macros-cheatsheet.md)
+[Rust CheatSheet - Macro](rust-macros-cheatsheet.md)
 	
 ---
 	

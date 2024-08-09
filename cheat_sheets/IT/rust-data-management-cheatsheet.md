@@ -1,4 +1,4 @@
-## **Rust Cheat Sheet - Semplificare la Gestione Dati**
+## **Rust CheatSheet - Semplificare la Gestione Dati**
 ##### **Table of Contents**
 ###### [§ Closures](#-Closures-1)
 - [Basics](#Basics)
@@ -686,7 +686,7 @@ use crate::auth::validate_credentials; // Dove `auth` è un modulo nel progetto
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - ](.md)
+[Rust CheatSheet - ](.md)
 	
 ---
 	

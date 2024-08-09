@@ -1,4 +1,4 @@
-# **Rust Cheat Sheet - Elementi base**
+# **Rust CheatSheet - Elementi base**
 
 ##### **Table of Contents**
 ###### [§ Basics](#-Basics-1)
@@ -190,8 +190,8 @@ Tramite Terminal nella cartella dove si trova il `main.rs` :
 	
 ---
 ##### Progressione Suggerita
-[Rust Cheat Sheet - Tipi](rust-types-cheatsheet.md)
-[Rust Cheat Sheet - Cargo](rust-cargo-cheatsheet.md)
+[Rust CheatSheet - Tipi](rust-types-cheatsheet.md)
+[Rust CheatSheet - Cargo](rust-cargo-cheatsheet.md)
 	
 ---
 	

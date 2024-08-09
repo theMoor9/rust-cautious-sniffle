@@ -1,4 +1,4 @@
-# **Rust Cheat Sheet - Macro**
+# **Rust CheatSheet - Macro**
 ##### **Table of Contents**
 ###### [§ println!](#-println-1)
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)
@@ -434,7 +434,7 @@ mod connection {
 	
 ---
 ##### Suggested Progression
-[Rust Cheat Sheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
 	
 ---
 	
