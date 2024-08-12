@@ -10,7 +10,7 @@ If, like me, you love challenges and are a seeker of self-tought knowledge, here
 
 My methodical approach to learning has proven to be practically successful. I hope it will be for you too!
 
-At the end you will find .pdf versions.
+At the end you will find .pdf versions of the .md docs.
 
 ## Learning Philosophy
 
@@ -25,7 +25,13 @@ I believe that humans can explain things better than an AI can. Why? Because unl
 
 ## Cheat Sheets
 
-You can find the detailed Rust cheat sheets [here](./cheat_sheets).
+### File pdf 
+- [EN](./cheat_sheets/EN/pdf/)
+- [IT](./cheat_sheets/IT/pdf/)
+- [FR](./cheat_sheets/FR/pdf/)
+- [DE](./cheat_sheets/DE/pdf/)
+
+You can find the Rust cheat sheets folder [here](./cheat_sheets).
 
 ## Documentation
 
