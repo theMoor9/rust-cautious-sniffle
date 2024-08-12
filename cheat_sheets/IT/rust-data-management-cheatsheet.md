@@ -630,6 +630,12 @@ note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.
 	
 - **Descrizione**: File di configurazione degli elementi di cargo.
 - **Uso**: All' URL *crates.io* si trovano i crates importabili nella sezione `[dependencies]` come lista dei requisiti. 
+
+```sh
+# Aggiundere automaticamente un crate tra le dependencies
+cargo add create_name
+```
+
 - **Tags**: #Toml
 - **Esempio**:
 	
@@ -641,7 +647,7 @@ authors = "[AuthorName <email>]"
 edition = "Year"
 
 [dependencies]
-cargo_name = "VersionNumber"
+crate_name = "VersionNumber"
 
 [lib] // Inserimento moduli esterni
 name = "Module_Name"
