@@ -10,6 +10,8 @@ If, like me, you love challenges and are a seeker of self-tought knowledge, here
 
 My methodical approach to learning has proven to be practically successful. I hope it will be for you too!
 
+At the end you will find .pdf versions.
+
 ## Learning Philosophy
 
 I believe that humans can explain things better than an AI can. Why? Because unlike AI, an intelligent human knows what it means not to know something and understands what is needed for a better learning process. This is why knowing how to make a query to an AI is essential and why it is not an immediate task. This is where my cheat sheets come into play. Use AI for further insights.
