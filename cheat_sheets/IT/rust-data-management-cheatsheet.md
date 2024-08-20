@@ -650,8 +650,15 @@ edition = "Year"
 crate_name = "VersionNumber"
 
 [lib] // Inserimento moduli esterni
-name = "Module_Name"
-path = "src/lib/mod.rs"
+name = "lib"
+path = "src/lib/lib.rs"
+```
+	
+```Rust
+// src/lib/lib.rs is a Collection of modules of the project 
+
+pub mod some_module;
+
 ```
 	
 > Si controlla la documentazione del cargo su `cargo.io` per l'implementazione nel `main.rs`.
@@ -665,7 +672,7 @@ path = "src/lib/mod.rs"
 - **Esempio**:
 	
 ```Rust
-// src/lib.rs o src/some_module.rs 
+// src/lib/some_module.rs 
 
 pub struct Person { 
 	pub name: String, 

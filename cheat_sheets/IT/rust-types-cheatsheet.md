@@ -311,9 +311,9 @@ fn main () {
 	let enum_variable1 = EnumName::Version1(9) ;
 	let enum_variable2 = EnumName::Version2(-9) ;
 	let enum_variable3 = EnumName::Version3{
-	key1: 96,
-	key2: "Questa è roba puzzle!",
-	key3: OtherEnum::SomeVersion.. ,
+		key1: 96,
+		key2: "Questa è roba puzzle!",
+		key3: OtherEnum::SomeVersion.. ,
 	} ;
 }
 ```
