@@ -1,4 +1,4 @@
-# Welcome to Kenneth's Rust CheatRepo!
+# Welcome to the Rust CheatRepo!
 
 This repository contains a collection of Rust code blocks for learning, along with a few comprehensive Rust cheat sheets. It is designed to help you learn Rust through hands-on practice and easy-to-reference resources.
 
@@ -44,6 +44,9 @@ You can find the exercise comprehensive of comments [here](./code)
 ## Contributing
 
 Contributions are welcome! If you have any Rust exercises, cheat sheets, or documentation that you'd like to share, please feel free to open a pull request.
+
+## Author
+Kenneth Boldrini
 
 ## License
 
