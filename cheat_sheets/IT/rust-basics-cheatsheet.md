@@ -27,7 +27,7 @@
 	
 	```Rust
 	//snake_case
-	let my_variable: u32 = 10 ;
+	let my_variable = 10 ;
 	```
 	
 	
@@ -38,7 +38,7 @@
 	
 	```Rust
 	//snake_case
-	let mut my_variable: bool ;
+	let mut my_variable ;
 	my_variable = false ;
 	```
 	

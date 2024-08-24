@@ -19,6 +19,11 @@
 ###### [§ Annotazioni Esplicite del Tipo](#-Annotazioni-Esplicite-del-Tipo)
 - [Specifiche](#Specifiche)
 - [Generiche](#Generiche)
+###### [§ Traits](#-Traits-1)
+- [Implementazione](#Implementazione)
+- [Default](#Default)
+- [Funzioni Generiche](#Funzioni Generiche)
+- [Struct Generiche](#Struct Generiche)
 	
 ---
 ## **§ Tipi Scalari** 
@@ -285,7 +290,6 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	println!("{:?}", second); // Output: 2 
 	println!("{:?}", vector); // Output: [1, 3, 4, 5, 1]
 	```
-	
 	
 ### Enumerations 
 	
@@ -782,6 +786,346 @@ fn main () {
 		DirectionalArrows::Down,
 	}
 
+}
+```
+	
+	
+---
+## **§ Traits**
+	
+### Implementazione
+- **Uso**:  Definendo una funzione classica, sei legato ai tipi specifici definiti nella firma. Implementando traits, crei una sorta di "whitelist" di tipi che rende l'uso delle funzioni più versatile e dinamico, permettendo una maggiore riusabilità e flessibilità dopo la rottura di cazzo iniziale di implementazione della funzionalità in tema.
+- **Sintassi**: `trait`
+- **Tags**: #Types #Traits #Structs #Impl
+- **Esempio**:
+	
+```Rust
+struct Kid {
+	age: u8,
+	name: String
+}
+struct Adult{
+	age: u8,
+	name: String	
+}
+
+impl Kid {
+	fn new (a: u8, n: String) -> Self {
+		Self {
+			age: a,
+			name: n
+		}
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+
+impl Adult {
+	fn new (a: u8, n: String) -> Self {
+		Self {
+			age: a,
+			name: n
+		}
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+
+fn main () {
+	let me = Adult::new(30, String::from("John")); 
+	let him = Kid::new(10, String::from("Tom"));
+	
+	me.tell_name();
+	him.tell_name();
+}
+
+```
+	
+Si converte il blocco con `trait`
+	
+```Rust
+struct Kid {
+	age: u8,
+	name: String
+}
+struct Adult{
+	age: u8,
+	name: String	
+}
+
+trait NewPerson {
+	fn new(n: String, a: u8) -> Self;
+	fn tell_name(&self);
+}
+
+impl NewPerson for Kid {
+	fn new(n: &str, a: u8) -> Self {
+		Self {
+			age: a,
+			name: n.to_owned(),
+		}
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+impl NewPerson for Adult {
+	fn new(n: &str, a: u8) -> Self {
+		Self {
+			age: a,
+			name: n.to_owned(),
+		}
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+	
+fn main () {
+	let me = Adult::new("Kenneth", 27);
+	let him = Kid::new("Costantino", 10);
+	
+	me.tell_name();
+	him.tell_name();
+}
+```
+	
+>Osservando bene non sembrerebbe cambiato molto anzi utilizzando il trait abbiamo addirittura più linee di codice.
+>	
+>La vera potenza d'uso sta nel prossimo esempio ipotizzando una funzione che gestisce i *traits*
+	
+```Rust
+struct Kid {
+	age: u8,
+	name: String
+}
+struct Adult{
+	age: u8,
+	name: String	
+}
+
+trait PersonTrait {
+	fn tell_age(&self);
+	fn tell_name(&self);
+}
+
+impl PersonTrait for Kid {
+	fn tell_age(&self) {
+		println!("Age: {}", &self.age);
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+impl PersonTrait for Adult {
+	fn tell_age(&self) {
+		println!("Age: {}", &self.age);
+	}
+	fn tell_name(&self) {
+		println!("Name: {}", &self.name);
+	}
+}
+	
+fn handle_crowd(anybody: impl Person) {
+	/*
+	L'elemento `anybody` è considerabile come qualunque tipo stia implementando  
+	il trait Person grazie a `impl Person for Struct` 
+	lasciando alla funzione la possibilità di ricevere più di un tipo 
+	in questo caso sia Adult che Kid 
+	
+	Su `anybody` è possibile fare tutti i controlli del caso prima della chiamata
+	delle funzioni proprietarie del `trait`
+	*/
+	anybody.tell_name(); // Chiamata diretta per semplicità
+	anybody.tell_age(); // Chiamata diretta per semplicità
+}
+	
+fn main () {
+	let me = Adult{name: "Kenneth".to_owned(), age: 27};
+	let him = Kid{name: "Costantino".to_owned(), age: 10};
+	
+	handle_crowd(me);
+	handle_crowd(him);
+	
+}
+```
+	
+>La funzione ipotetica `handle_crowd` lascia spazio non solo ad una ricezione dinamica di più tipi ma anche la possibilità di manipolare i tipi stessi all interno di se stessa.
+	
+### Default
+	
+- **Uso**:  Creare strutture ed enumerazioni con un valore di default per facilitare l implementazione di elementi regolabili in futuro o sotto condizione
+- **Sintassi**: `impl Default for Struct`
+- **Tags**: #Types #Traits #Structs  #Enums #Default #Impl
+- **Esempio**:
+	
+```Rust
+struct Tv {
+	volume: u8,
+	brightness: u8
+}
+
+impl Tv {
+	fn new(v: u8, b:u8) -> Self {
+		Self{volume: v, brightness: b}
+	}
+}
+
+impl Default for Tv {
+	fn default() -> Self {
+		Self{volume: 10, brightness: 50}
+	}
+}
+
+fn main() {
+	let mivar = Tv::default(); // Call
+}
+```
+	
+	
+### Funzioni Generiche
+	
+Utilizzando le precedenti componenti arriviamo all combinazione più utile le funzioni generiche
+	
+- **Uso**: Possibilità di creare funzioni che ricevono dei *traits* specifici.
+- **Sintassi**: 
+	
+```Rust
+fn handle_crowd<T, U, V, ... >(a: T, b: U, c: V)
+where 
+	T: Trait1,
+	U: Trait2 + Trait3,
+	V: Trait4 + Trait5 + Trait6
+{
+	//body
+}
+```
+
+>Questo blocco è una firma complessa ed è il constraint della funzione, una white list per i traits accettati. Differente dalla forma generica :
+	`fn handle_crowd(anybody: impl Person)` Che seleziona rispetto l'implementazione .
+>
+>I *traits* si indicano dalla letterati T in poi per convenzione e si specificano subito dopo la firma con la "firma ausiliare" `where` dove si assegna il *trait* alla lettera in maniera anche composta (`+`) .
+	
+- **Tags**: #Functions #Traits #Default #Impl
+- **Comparazione**:
+```Rust
+fn handle_crowd(anybody: impl PersonTrait)
+
+fn handle_crowd<T>(anybody: T)
+where 
+	T: PersonTrait,
+```
+- **Esempio**:
+	
+```Rust
+struct Monitor {
+	brand: String,
+	volume: u8,
+	brightness: u8
+}
+struct Tv {
+	brand: String,
+	volume: u8,
+	brightness: u8
+}
+struct SmartTv{
+	brand: String,
+	volume: u8,
+	brightness: u8
+}
+
+trait Setup {
+	fn default () -> Self;
+	fn brand(&self);
+}
+
+impl Setup for Tv {
+	fn default () -> Self {
+		Self{
+			volume: 10,
+			brightness: 50
+		}
+	}
+	fn brand(&self){println!("{}",self.brand);}
+}
+impl Setup for SmartTv {
+	fn default () -> Self {
+		Self{
+			volume: 15,
+			brightness: 55
+		}
+	}
+	fn brand(&self){println!("{}",self.brand);}
+}
+
+
+fn increase_volume_of <T> (a: &mut T, v: u8)
+where 
+	T: Setup,
+{
+	a.brand()
+	a.volume = v;
+}
+
+fn main() {
+	let mut mivar = Tv{brand: "Mivar".to_owned(),volume:0, brightness: 0};
+	let mut pear_tv = SmartTv{
+						brand: "Pear Tv".to_owned(), 
+						volume:0, 
+						brightness: 0
+					};
+	let mut simsamsung = Monitor{
+							brand: "Simsamsung".to_owned(), 
+							volume:0, 
+							brightness: 0
+						};
+	
+	increase_volume_of( &mut mivar, 10); // Output: Mivar
+	increase_volume_of( &mut pear_tv, 10); // Output: Pear Tv
+	// Non per Simsamsung perché non implementa il trait
+}
+```
+	
+- ##### Teoria della Monomorfizzazione
+	E' un concetto autogestito dal compilatore di rust che crea concettualmente versioni di funzione dalla funzione di default nel seguente modo:
+	
+	```Rust
+	// Quando Tv e SmartTv hanno trait Setup
+	
+	fn increase_volume <T> (a: T, v: u8)
+	where 
+		T: Setup,
+	
+	fn increase_volume(a: Tv, v: u8)
+	fn increase_volume(a: SmartTv, v: u8)
+	```
+	
+- ##### Sintassi
+	Le funzioni generiche possono lavorare con tipi differenti preassegnati in maniera costrittiva
+		
+	**Esempio**:
+	```Rust
+	fn func(param: impl Trait){/*Copo funzione*/}
+	
+	fn func<T: Trait>(param: T){/*Copo funzione*/}
+	
+	fn func<T>(param: T) 
+	where
+		T: Trait
+	{/*Copo funzione*/}
+	```
+	
+### Struct Generiche
+	
+- **Definizione**: Le strutture generiche permettono la gestione dei campi in modo dinamico rispetto il trait.
+- **Tags**: #Structs #Traits 
+- **Esempio**:
+	
+```Rust
+struct Structure<T: Trait> {
+	field: T,
 }
 ```
 	

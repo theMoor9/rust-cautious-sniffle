@@ -5,6 +5,8 @@
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1)
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
+###### [§ Funzioni Generiche](#-Funzioni-Generiche-1)
+- [Sintassi](#Sintassi)
 ###### [§ Metodi Standard](#-Metodi-Standard-1)
 - [Vettori (`Vec<T>`)](#vettori-vect)
 - [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
@@ -60,7 +62,7 @@ fn multiply(a: i32, b: i32, c ...) -> i32 {
 	
 ### Implementazione
 - **Uso**: Implementazione atta a definire funzioni di proprietà  (*Funzionalità* o *Metodi) per i tipi complessi `struct` o `enum` tramite il sistema di integrazione *implement*.
-- **Tags**: #Structs 
+- **Tags**: #Structs #Impl
 - **Sintassi**: `impl`
 - **Esempio**:
 	
@@ -169,8 +171,9 @@ fn main () {
 
 	
 ---
+---
 ## **§ Metodi Standard**
-
+	
 **Tags**: #Vectors #Strings 
 ##### Vettori (`Vec<T>`)
 	
