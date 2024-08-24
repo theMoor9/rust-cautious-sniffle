@@ -6,7 +6,7 @@
 - [Istanziazione Variabile Mutabile](#Istanziazione-Variabile-Mutabile)
 - [Struct](#Struct)
 - [Enum](#Enum)
-- [Chiamata d'ispezione](#Chiamata-d'ispezione)
+- [Chiamata d'ispezione](#Chiamata-d-ispezione)
 - [Import Librerie](#Import-Librerie)
 - [Istanziazione Funzione](#IstanziazioneFunzione) 
 - [Commenti e testi](#Commenti-e-testi)
@@ -14,8 +14,6 @@
 - [Procedura di Compilazione ed Esecuzione](#Procedura-di-Compilazione-ed-Esecuzione)
 ###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
 - [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
-	
-#Basics 
 	
 ---
 ## **§ Basics**

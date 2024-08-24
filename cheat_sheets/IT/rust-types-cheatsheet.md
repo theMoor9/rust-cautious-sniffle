@@ -22,8 +22,8 @@
 ###### [§ Traits](#-Traits-1)
 - [Implementazione](#Implementazione)
 - [Default](#Default)
-- [Funzioni Generiche](#Funzioni Generiche)
-- [Struct Generiche](#Struct Generiche)
+- [Funzioni Generiche](#Funzioni-Generiche)
+- [Struct Generiche](#Struct-Generiche)
 	
 ---
 ## **§ Tipi Scalari** 
@@ -48,14 +48,14 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
 	
 	- **Tipi**: ```u8```, ```u16```, ```u32```, ```u64```, ```u128```, ```usize```
 	- **Uso**: Età, Indicizzazione array, etc.
-	- **Tags**: #Integers 
+	- **Tags**: #Integers  #usize 
 	- **Esempio**:
 	
 		```Rust
 		let item_count: u32 = 50; 
 		let index: usize = 3;
 		```
-            
+    
 ### Numeri Floating-Point
     
 - **Definizione**: Usato per i numeri decimali.
