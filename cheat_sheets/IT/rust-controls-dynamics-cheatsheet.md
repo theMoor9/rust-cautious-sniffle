@@ -13,6 +13,7 @@
 - [Ownership](#Ownership)
 - [References](#References)
 ###### [§ Lifetimes](#-Lifetimes-1)
+###### [§ Trait Objects](#-Trait-Objects-1)
 	
 ___
 ## **§ Control Expressions**
@@ -431,6 +432,11 @@ variabile che elabora alla fine del suo contesto
 - **Output**: `The longest string is long string is long`
 	
 	
+---
+## **§ Trait Objects**
+
+
+
 ---
 ##### Suggested Progression
 [Rust CheatSheet - Funzioni](rust-functions-cheatsheet.md)

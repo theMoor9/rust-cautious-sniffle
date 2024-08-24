@@ -2,7 +2,7 @@
 
 ##### **Table of Contents**
 ###### [§ Stack](#-Stack-1)
- - [Definizione](#Definizione)
+-  [Definizione](#Definizione)
 - [Visualizzazione Dati nello Stack](#Visualizzazione-Dati-nello-Stack)
 ###### [§ Heap](#-Heap-1)
 - [Definizione](#Definizione)
@@ -12,6 +12,7 @@
 ___
 ## **§ Stack**
 	
+**Definizione**: Allocazione usata per tipi di dati dove sappiamo con certezza la grandezza necessaria.
 **Tags**: #Stack #Memory #Arrays 
 	
 ### Definizione
@@ -49,6 +50,7 @@ Data Addresses:
 	
 ## **§ Heap**
 	
+**Definizione**: Allocazione usata per tipi di dati dove ***non*** sappiamo con certezza la grandezza necessaria.
 **Tags**: #Heap #Memory #usize #Hashmaps #Vectors 
 	
 ### Definizione
@@ -95,12 +97,31 @@ Si alloca come negli scacchi e si prosegue in sequenza.
 Se si vuole aggiungere un dato la dove non c'è più posto come **3 bit** per **DataX** il set di dati verrà spostato la dove esiste posto modificando poi il puntatore nella memoria *stack*
 	
 ### Uso nel Codice
+	
+- **Sintassi**: `Box<Type>` 
+- **Esempio**:
+	
+```Rust
+struct Person {
+	id: u8,
+}
 
+fn main() {
+	let data = Person { id: 09 }; // Crea su stack
+	let data_allocated_to_heap: Box<Person> = Box::new(data); // Muove su heap
+	let data_allocated_to_stack = *data_heap; // Spostare di nuovo su stack
+}
+```
+	
+- **Soluzione a**:
+	
+```sh
+Error type cannot have an unboxed trait object
 
-
-
-
-
+whatever
+  ^^^doesnt have a size known at compile-time
+```
+	
 ---
 ###### Suggested Follow-up
 [Rust CheatSheet - ](./.md)
