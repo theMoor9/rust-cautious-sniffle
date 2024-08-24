@@ -18,7 +18,7 @@
 - [Last](#Last)
 - [Min Max](#Min-Max)
 - [Take](#Take)
-### [§ Range](#-Range-1)
+###### [§ Range](#-Range-1)
 - [Numeri](#Numeri)
 - [Lettere](#Lettere)
 ##### [§ Advanced Control Expressions](#-Advanced-Control_Expressions-1)

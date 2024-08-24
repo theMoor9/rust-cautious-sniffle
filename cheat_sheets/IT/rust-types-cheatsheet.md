@@ -855,11 +855,13 @@ struct Adult{
 	name: String	
 }
 
+// Considerabile come intestazione del trait
 trait NewPerson {
 	fn new(n: String, a: u8) -> Self;
 	fn tell_name(&self);
 }
 
+// Sviluppo del trait per Tipo
 impl NewPerson for Kid {
 	fn new(n: &str, a: u8) -> Self {
 		Self {
@@ -906,11 +908,13 @@ struct Adult{
 	name: String	
 }
 
-trait PersonTrait {
+// Intestazione del trait
+trait PersonTrait { 
 	fn tell_age(&self);
 	fn tell_name(&self);
 }
 
+// Sviluppo del trait per Tipo
 impl PersonTrait for Kid {
 	fn tell_age(&self) {
 		println!("Age: {}", &self.age);
@@ -927,7 +931,8 @@ impl PersonTrait for Adult {
 		println!("Name: {}", &self.name);
 	}
 }
-	
+
+//Uso dell' implementazione trait
 fn handle_crowd(anybody: impl Person) {
 	/*
 	L'elemento `anybody` è considerabile come qualunque tipo stia implementando  
@@ -1008,7 +1013,7 @@ where
 >
 >I *traits* si indicano dalla letterati T in poi per convenzione e si specificano subito dopo la firma con la "firma ausiliare" `where` dove si assegna il *trait* alla lettera in maniera anche composta (`+`) .
 	
-- **Tags**: #Functions #Traits #Default #Impl
+- **Tags**: #Functions #Traits #Default #Impl #Generic
 - **Comparazione**:
 ```Rust
 fn handle_crowd(anybody: impl PersonTrait)
@@ -1120,12 +1125,47 @@ fn main() {
 ### Struct Generiche
 	
 - **Definizione**: Le strutture generiche permettono la gestione dei campi in modo dinamico rispetto il trait.
-- **Tags**: #Structs #Traits 
+- **Tags**: #Structs #Traits #Generic
 - **Esempio**:
 	
 ```Rust
 struct Structure<T: Trait> {
 	field: T,
+}
+```
+	
+### Funzionalità Generiche
+	
+- **Definizione**: Le Funzionalità generiche permettono l'implementazione di funzioni per un  dinamico rispetto il trait
+- **Tags**: #Structs #Traits #Generic
+- **Esempio**:
+	
+```Rust
+struct Structure
+where
+	T: Trait1,
+	U: Trait1,
+{
+	field1: T,
+	field2: U
+}
+
+impl <T: Trait1, U: Trait2> Structure <T, U> {
+	/*
+	Gli argomenti T,U sono Tipi che implementano il trait 
+	passabili alle funzioni interne 
+	*/
+	
+	// Non richiedono ulteriori specificazioni rispetto il trait
+	fn function1 (arg1: T){
+	/*Body*/
+	}
+	fn function2 (arg1: U){
+	/*Body*/
+	}
+	fn function3 (arg1: T, arg2: U){
+	/*Body*/
+	}
 }
 ```
 	
