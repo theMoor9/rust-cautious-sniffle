@@ -1133,6 +1133,7 @@ struct Structure<T: Trait> {
 	field: T,
 }
 
+// Gestione firme rispetto il trait generico `<T: Trait> ` e `<T>`
 impl<T: Trait>  Structure<T> {
 	fn func (a: T) {
 		//Uso di `a` che sarà un elemento che implementa Trait
