@@ -22,7 +22,7 @@
 ###### [§ Traits](#-Traits-1) 📜
 - [Implementazione](#Implementazione)
 - [Default](#Default)
-- [Funzioni Generiche](#Funzioni-Generiche)
+- [Funzionalità Generiche](#Funzionalità-Generiche)
 - [Struct Generiche](#Struct-Generiche)
 	
 ---
@@ -1131,6 +1131,12 @@ fn main() {
 ```Rust
 struct Structure<T: Trait> {
 	field: T,
+}
+
+impl<T: Trait>  Structure<T> {
+	fn func (a: T) {
+		//Uso di `a` che sarà un elemento che implementa Trait
+	}
 }
 ```
 	
