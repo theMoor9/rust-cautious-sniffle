@@ -99,7 +99,8 @@ Se si vuole aggiungere un dato la dove non c'è più posto come **3 bit** per **
 	
 ## **§ Boxing**
 	
-- **Definizione**:
+- **Definizione**: Il Boxing delle variabili è dedicare su memoria heap i dati.
+- **Uso**: Facilita il passaggio di dati grandi o complessi tra funzioni senza copiare l'intero valore.
 - **Sintassi**: `Box<Type>` 
 - **Esempio**:
 	
