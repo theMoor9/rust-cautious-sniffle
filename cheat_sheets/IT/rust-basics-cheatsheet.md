@@ -1,7 +1,7 @@
 # **Rust CheatSheet - Elementi base**
 
 ##### **Table of Contents**
-###### [§ Basics](#-Basics-1)
+###### [§ Basics](#-Basics-1) 🛒
 - [Istanziazione Variabile](#Istanziazione-Variabile)
 - [Istanziazione Variabile Mutabile](#Istanziazione-Variabile-Mutabile)
 - [Struct](#Struct)
@@ -12,7 +12,7 @@
 - [Commenti e testi](#Commenti-e-testi)
 - [Variabili Inutilizzate](#Variabili-Inutilizzate)
 - [Procedura di Compilazione ed Esecuzione](#Procedura-di-Compilazione-ed-Esecuzione)
-###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 
+###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 📖
 - [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
 	
 ---

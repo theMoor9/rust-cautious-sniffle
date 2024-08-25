@@ -1,16 +1,16 @@
 ## **Rust CheatSheet - Semplificare la Gestione Dati**
 ##### **Table of Contents**
-###### [§ Closures](#-Closures-1)
+###### [§ Closures](#-Closures-1) ⚡
 - [Basics](#Basics)
-###### [§ Map Combinator](#-Map-Combinator-1)
+###### [§ Map Combinator](#-Map-Combinator-1) 🗺️
 - [Collect](#Collect)
-###### [§ Option Combinator Pattern](#-Option-Combinator-Pattern-1)
+###### [§ Option Combinator Pattern](#-Option-Combinator-Pattern-1)❓
 - [Is some or none](#Is-some-or-none)
 - [Map](#Map)
 - [Filter](#Filter)
 - [Or Else](#Or-Else)
 - [Unwrap Else](#Unwrap-Else)
-###### [§ Using Collections Iterators](#-Using-Collections-Iterators-1)
+###### [§ Using Collections Iterators](#-Using-Collections-Iterators-1)📚
 - [Map](#Map-1)
 - [Filter](#Filter-1)
 - [Find](#Find)
@@ -18,14 +18,14 @@
 - [Last](#Last)
 - [Min Max](#Min-Max)
 - [Take](#Take)
-###### [§ Range](#-Range-1)
+###### [§ Range](#-Range-1) 📏
 - [Numeri](#Numeri)
 - [Lettere](#Lettere)
-##### [§ Advanced Control Expressions](#-Advanced-Control_Expressions-1)
+##### [§ Advanced Control Expressions](#-Advanced-Control_Expressions-1) 🛂
 - [While let](#While-let)
 - [If Let Else](#If-Let-Else)
-###### [§ Modules](#-Modules-1)
-###### [§ Project Structure](#-Project-Structure-1)
+###### [§ Modules](#-Modules-1) 🧩
+###### [§ Project Structure](#-Project-Structure-1) 🧱
 - [Cargo](#Cargo)
 - [External Crates - Libraries](#External-Crates---Libraries)
 ---

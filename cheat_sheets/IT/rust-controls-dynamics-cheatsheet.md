@@ -1,19 +1,18 @@
 ## **Rust CheatSheet - Dinamiche di controllo del codice**
 ##### **Table of Contents**
-###### [§ Control Expressions](#-Control-Expressions-1)
+###### [§ Control Expressions](#-Control-Expressions-1) 🚦
 - [If - Else](#If---Else)
 - [Match](#Match)
-###### [§ Expressions Dynamics](#-Expressions-Dynamics-1)
+###### [§ Expressions Dynamics](#-Expressions-Dynamics-1) ♻️
 - [If - Else](#If---Else-1)
 - [Match](#Match-1)
-###### [§ Advance Match Dynamics](#-Advance-Match-Dynamics)
+###### [§ Advance Match Dynamics](#-Advance-Match-Dynamics) 🧑‍🤝‍👩
 - [Enum](#Enum)
 - [Struct](#Struct)
-###### [§ Ownership and References](#-Ownership-and-References-1)
-- [Ownership](#Ownership)
-- [References](#References)
+###### [§ Ownership](#-Ownership-1) 🪪
+###### [§ References](#-References-1) 🏷️
 - [Trait Objects](#Trait-Objects)
-###### [§ Lifetimes](#-Lifetimes-1)
+###### [§ Lifetimes](#-Lifetimes-1) ⏱️
 	
 ___
 ## **§ Control Expressions**

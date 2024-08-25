@@ -1,16 +1,16 @@
 # **Rust CheatSheet - Macro**
 ##### **Table of Contents**
-###### [§ println!](#-println-1)
+###### [§ println!](#-println-1) 🖨️
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)
-###### [§ vec!](#-vec-1)
-###### [§ stringify!](#-stringify-1)
-###### [§ dbg!](#-dbg-1)
-###### [§ Derive](#-Derive-1)
+###### [§ vec!](#-vec-1) 🔢
+###### [§ stringify!](#-stringify-1) 🗣️
+###### [§ dbg!](#-dbg-1) 🕵️‍♂️
+###### [§ Derive](#-Derive-1) 🧬
 - [Debug](#Debug)
 - [Clone](#Clone)
 - [Quando Usare Copy](#Quando-Usare-Copy)
 - [Riassunto](#Riassunto)
-###### [§ Config](#-Config-1)
+###### [§ Config](#-Config-1) ⚙️
 - [Target](#Target)
 - [Test](#Test)
 	

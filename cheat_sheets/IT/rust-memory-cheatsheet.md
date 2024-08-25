@@ -1,7 +1,7 @@
 # **Rust CheatSheet - Memory
 
 ##### **Table of Contents**
-###### [§ Stack](#-Stack-1)🗄️
+###### [§ Stack](#-Stack-1)📥
 -  [Definizione](#Definizione)
 - [Visualizzazione Dati nello Stack](#Visualizzazione-Dati-nello-Stack)
 ###### [§ Heap](#-Heap-1) 🗃️

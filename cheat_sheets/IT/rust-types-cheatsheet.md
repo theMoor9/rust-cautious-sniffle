@@ -1,25 +1,25 @@
 # **Rust CheatSheet - Tipi**
 ##### **Table of Contents**
-###### [§ Tipi Scalari](#-Tipi-Scalari-1)
+###### [§ Tipi Scalari](#-Tipi-Scalari-1) 📐
 - [Numeri Interi](#Numeri-Interi)
 - [Numeri Floating-Point](#Numeri-Floating-Point)
 - [Booleani](#Booleani)
 - [Caratteri](#Caratteri)
 - [Unit](#Unit)
-###### [§ Tipi Composti](#-Tipi-Composti-1)
+###### [§ Tipi Composti](#-Tipi-Composti-1) 🗂️
 - [Tuples](#Tuples)
 - [Arrays](#Arrays)
-###### [§ Tipi Complessi](#-Tipi-Complessi-1)
+###### [§ Tipi Complessi](#-Tipi-Complessi-1) 🔣
 - [Struct](#Struct)
 - [Enumerations](#Enumerations)
-###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1)
+###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1) ➕
 - [Slices](#Slices)
 - [String Slices](#String-Slices)
 - [Option](#Option)
-###### [§ Annotazioni Esplicite del Tipo](#-Annotazioni-Esplicite-del-Tipo)
+###### [§ Annotazioni Esplicite del Tipo](#-Annotazioni-Esplicite-del-Tipo) 📝
 - [Specifiche](#Specifiche)
 - [Generiche](#Generiche)
-###### [§ Traits](#-Traits-1)
+###### [§ Traits](#-Traits-1) 📜
 - [Implementazione](#Implementazione)
 - [Default](#Default)
 - [Funzioni Generiche](#Funzioni-Generiche)

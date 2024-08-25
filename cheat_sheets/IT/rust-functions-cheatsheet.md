@@ -1,13 +1,13 @@
 # **Rust CheatSheet - Funzioni**
 ##### **Table of Contents**
-###### [§ Signature](#-Signature-1)
-###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1)
-###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1)
+###### [§ Signature](#-Signature-1) ✒️
+###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1) ↩️
+###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
-###### [§ Funzioni Generiche](#-Funzioni-Generiche-1)
+###### [§ Funzioni Generiche](#-Funzioni-Generiche-1) 🌐
 - [Sintassi](#Sintassi)
-###### [§ Metodi Standard](#-Metodi-Standard-1)
+###### [§ Metodi Standard](#-Metodi-Standard-1) 🔧
 - [Vettori (`Vec<T>`)](#vettori-vect)
 - [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
 	

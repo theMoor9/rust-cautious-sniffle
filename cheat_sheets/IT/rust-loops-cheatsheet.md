@@ -1,9 +1,9 @@
 # **Rust CheatSheet - Cicli**
 ##### **Table of Contents**
-###### [§ Ciclo Infinito ∞](#[-Ciclo-infinito--1)
-###### [§ Cicli Condizionale - while](#-Cicli-Condizionale-1)
-###### [§ Ciclo Iterativo - for](#-Ciclo-Iterativo-1)
-###### [§ Interruzione Cicli](#-Interruzione-Cicli-1)
+###### [§ Ciclo Infinito](#[-Ciclo-infinito-1)♾️
+###### [§ Cicli Condizionale - while](#-Cicli-Condizionale-1) ⏳
+###### [§ Ciclo Iterativo - for](#-Ciclo-Iterativo-1) 🧮
+###### [§ Interruzione Cicli](#-Interruzione-Cicli-1) 🛑
 	
 ---
 ## **§ Ciclo infinito ∞**
