@@ -12,8 +12,8 @@
 ###### [§ Ownership and References](#-Ownership-and-References-1)
 - [Ownership](#Ownership)
 - [References](#References)
+- [Trait Objects](#Trait-Objects)
 ###### [§ Lifetimes](#-Lifetimes-1)
-###### [§ Trait Objects](#-Trait-Objects-1)
 	
 ___
 ## **§ Control Expressions**
@@ -320,11 +320,9 @@ fn main () {
 - **Output**: Found!
 	
 ___
-## **§ Ownership and References**
+## **§ Ownership**
 	
 La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
-	
-### Ownership
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
 - **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
@@ -372,12 +370,12 @@ fn main () {
 ```
 	
 	
-### References
+## **§ References**
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
 - **Sintassi**: `&`
 - **Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
-- **Tags**: #References #Types #Strings #Dynamics 
+- **Tags**: #References #Types #Strings #Dynamics #Borrowing
 - **Esempio**:
 	
 ```Rust
@@ -405,13 +403,36 @@ variabile che elabora alla fine del suo contesto
 	>
 	>Per ovviare a questo problema, sono necessarie le annotazioni di durata ***lifetimes*** oppure, in alternativa, si può usare la `struct` di default di Rust `String`.
 	
+### Trait Object
+	
+- **Definizione**: Gli _oggetti trait_ (`dyn Trait`) usano il sistema di referenze `&` per operare in modo dinamico. A differenza dei tipi statici, permettono di gestire diversi tipi che implementano lo stesso trait a runtime, con un piccolo costo in termini di velocità e memoria.
+
+>	Quindi un *Trait Object* è l'elemento che ti permette di gestire il codice in runtime.
+
+- **Caso d' Uso**: Le collezioni normalmente contengono tipi statici e definiti al momento della compilazione. Con gli _oggetti trait_, puoi creare collezioni che accettano più tipi diversi, come plugin o estensioni, che possono essere gestiti a runtime. Questo è utile in scenari come videogiochi, sistemi di plugin o quando hai bisogno di modificare dinamicamente il comportamento in base al tipo.
+- **Sintassi**: `&dyn Trait`
+- **Tags**: #Dynamics #Traits #References #Dynamics
+- Esempio:
+	
+```Rust
+// Metodo strutturato
+let item = StructItem;
+let item_trait_obj: &dyn Trait = &item;
+
+// Metodo diretto
+let struct_trait_obj: &dyn Trait = &StructItem;
+
+// Medodo Error-Safe al costo di ingombro e velocità
+let boxed_trait_obj: Box<dyn Trait> = Box::new(StructItem);
+```
+	
 	
 ---
 ## **§ Lifetimes** da finire
 	
-- Ensure that references are valid as long as they are used.
-- **Uso**: Managing the scope of references.
-- **Tags**: #Dynamics 
+- **Definizione**:
+- **Uso**: 
+- **Tags**: #Dynamics #Lifetimes
 - **Esempio**:
     
     ```Rust
@@ -432,11 +453,6 @@ variabile che elabora alla fine del suo contesto
 - **Output**: `The longest string is long string is long`
 	
 	
----
-## **§ Trait Objects**
-
-
-
 ---
 ##### Suggested Progression
 [Rust CheatSheet - Funzioni](rust-functions-cheatsheet.md)

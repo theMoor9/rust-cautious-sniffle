@@ -1,13 +1,13 @@
 # **Rust CheatSheet - Memory
 
 ##### **Table of Contents**
-###### [§ Stack](#-Stack-1)
+###### [§ Stack](#-Stack-1)🗄️
 -  [Definizione](#Definizione)
 - [Visualizzazione Dati nello Stack](#Visualizzazione-Dati-nello-Stack)
-###### [§ Heap](#-Heap-1)
+###### [§ Heap](#-Heap-1) 🗃️
 - [Definizione](#Definizione)
 - [Visualizzazione Dati nello Heap](#Visualizzazione-Dati-nello-Heap)
-- [Uso nel Codice](#Uso-nel-Codice)
+###### [§ Boxing](#-Boxing-1) 📦
 	
 ___
 ## **§ Stack**
@@ -96,8 +96,10 @@ Si alloca come negli scacchi e si prosegue in sequenza.
 ##### Gestione I/O 
 Se si vuole aggiungere un dato la dove non c'è più posto come **3 bit** per **DataX** il set di dati verrà spostato la dove esiste posto modificando poi il puntatore nella memoria *stack*
 	
-### Uso nel Codice
 	
+## **§ Boxing**
+	
+- **Definizione**:
 - **Sintassi**: `Box<Type>` 
 - **Esempio**:
 	
