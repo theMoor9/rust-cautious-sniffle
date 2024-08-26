@@ -115,8 +115,64 @@ fn my_main() {
 }
 
 //AI------------------------------------------------------------------------------------------------------------------------
+// Step 1: Definire un Trait per ottenere il costo per metro quadro
+trait MaterialAi {
+  fn cost_per_square_meter_ai(&self) -> f64;
+}
 
-fn ai_main () {}
+// Step 2: Creare le strutture per i diversi materiali
+struct CarpetAi;
+struct TileAi;
+struct WoodAi;
+
+// Step 2: Implementare il Trait per ogni materiale
+impl MaterialAi for CarpetAi {
+  fn cost_per_square_meter_ai(&self) -> f64 {
+    2000.0
+  }
+}
+
+impl MaterialAi for TileAi {
+  fn cost_per_square_meter_ai(&self) -> f64 {
+      500.0
+  }
+}
+
+impl MaterialAi for WoodAi {
+  fn cost_per_square_meter_ai(&self) -> f64 {
+    2500.0
+  }
+}
+
+// Step 3: Creare una funzione per calcolare il costo totale
+fn calculate_total_cost_ai(materials_ai: Vec<(&dyn MaterialAi, f64)>) -> f64 {
+  let mut total_cost_ai = 0.0;
+
+  for (material_ai, area_ai) in materials_ai {
+      total_cost_ai += material_ai.cost_per_square_meter_ai() * area_ai;
+  }
+
+  total_cost_ai
+}
+
+fn ai_main () {
+  // Crea le istanze dei materiali
+  let carpet_ai = CarpetAi;
+  let tile_ai = TileAi;
+  let wood_ai = WoodAi;
+
+  // Definisci una lista di materiali con i metri quadri richiesti
+  let materials_ai: Vec<(&dyn MaterialAi, f64)> = vec![
+      (&carpet_ai, 5.0), // 50 metri quadri di Carpet
+      (&tile_ai, 30.0),   // 30 metri quadri di Tile
+      (&wood_ai, 5.0),   // 20 metri quadri di Wood
+  ];
+
+  // Calcola il costo totale
+  let total_cost_ai = calculate_total_cost_ai(materials_ai);
+
+  println!("The total cost of materials is: ${}", total_cost_ai);
+}
 
 //MAIN-----------------------------------------------------------------------------------------------------------------------
 fn main () {
