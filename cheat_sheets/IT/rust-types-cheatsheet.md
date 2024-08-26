@@ -166,9 +166,10 @@ I tipi complessi, sono quelli che combinano dati e logica. Possono contenere var
 ### Struct
 	
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
+- **Proprietà**: Owner
 - **Tipo**: `struct`
 - **Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
-- **Tags**: #Structs 
+- **Tags**: #Structs #Ownership 
 - **Esempio**:
 	
 ```Rust
@@ -294,9 +295,10 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 ### Enumerations 
 	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
+- **Proprietà**: Owner
 - **Tipo**: `enum`
 - **Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
-- **Tags**: #Enums 
+- **Tags**: #Enums #Ownership 
 - **Esempio**:
 	
 ```Rust

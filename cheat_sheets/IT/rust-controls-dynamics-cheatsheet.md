@@ -324,7 +324,7 @@ ___
 La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
     
 - **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
-- **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza.
+- **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza. I responsabili della proprietà sono: Funzioni, Closures, Structs, Enums and Scopes.
 - **Tags**: #Ownership #Types #Strings #Dynamics
 - Esempio:
 	
@@ -427,29 +427,59 @@ let boxed_trait_obj: Box<dyn Trait> = Box::new(StructItem);
 	
 	
 ---
-## **§ Lifetimes** da finire
+## **§ Lifetimes**
 	
-- **Definizione**:
+- **Definizione**: Secondo il criterio di ownership i tipi che possiedono la proprietà di un certo dato hanno la responsabilità di terminarlo. Per evitare che esso venga terminato si usa la proprietà *lifetime* che ne garantisce l'estensione
 - **Uso**: 
-- **Tags**: #Dynamics #Lifetimes
+- **Tags**: #Dynamics #Lifetimes #Borrowing 
+- **Sintassi**: 
+	```Rust
+	struct StructName<'a>{
+		field: &'a String 
+	}
+	
+	struct StructName<'static>{
+		field: &'static String 
+	}
+	```
+	
+	`'a`,`'b`,`'c`...`'z` sono tick e indicano che esiste ownership da un altra parte nel codice
+	`field: &'a String` si traduce in: 
+		il campo `field` aspetta un prestito `&` con ownership esterna `'a` da proprietario `String`
+    `'static` indica che la variabile ha durata uguale al programma stesso.
+
 - **Esempio**:
     
     ```Rust
-    fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
-        if x.len() > y.len() {
-		    x     
-        } else {
-		    y    
-	    }
-	}  
+    
+	struct StructName < 'a,'b,'c,'static >{
+	    field1: &'a EnumName, // Durata di EnumName
+	    field2: &'b String, // Durata di string
+	    field3: &'c Struct2Name, // Durata di Struct2Name
+	    field4: &'static Enum2Name, // Durata dello script
+	    field5: u8 //Durata di StructName
+    }
 	
-	let string1 = String::from("long string is long"); 
-	let string2 = "xyz"; 
-	let result = longest(string1.as_str(), string2); 
-	println!("The longest string is {}", result);
+	// Chiamata 
+	let new_variable = StructName{
+		field1: &EnumName::Version,
+		...
+	}
     ```
 	
-- **Output**: `The longest string is long string is long`
+> Una volta concluso l' uso di StructName le altre variabili rimarranno disponibili visto che sono riferimenti il field5 no. 
+> 
+> **Le strutture che prendono in prestito inoltre devono essere sempre create dopo chi presta la variabile e il suo contenuto e distrutte prima che il proprietario venga terminato**
+	
+### Funzioni
+	
+- **Descrizione**: Se si vuole ritornare un campo di una struttura come referenza tramite funzione occorre implementare il *lifetime*. Non è una pratica comune ma è possibile farlo nel caso sia necessario.
+- **Tags**: #Functions #Lifetimes #Borrowing 
+- **Esempio**:
+	
+```Rust
+fn function_name<'a>(arg: &'a DataType) -> &'a DataType {/*Corpo di mille balene*/}
+```
 	
 	
 ---

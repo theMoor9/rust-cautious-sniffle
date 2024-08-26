@@ -32,7 +32,8 @@
 ## **§ Closures**
 	
 - **Descrizione**: Le closure sono Funzioni semplici senza identità atte a piccole modifiche. Per differenziare le closures da le funzioni classiche si usa i pipes `| ... |` come utilizziamo le parentesi tonde `( ... )` . Possono inoltre auto definire i loro parametri della loro firma nella forma breve.
-- **Tags**: #Closures 
+- **Proprietà**: Owner
+- **Tags**: #Closures #Ownership 
 - **Sintassi**: 
 ```Rust
 // Firma Estesa
