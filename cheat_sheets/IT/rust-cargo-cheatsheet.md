@@ -3,6 +3,7 @@
 ###### [§ Documentazione](#-Documentazione-1) 📃
 - [Aggiungere la Documentazione](#Aggiungere-la-Documentazione)
 - [Generare la Documentazione](#Generare-la-Documentazione)
+###### [§ Installare Pacchetti](#-Installare-Pacchetti-1) ⬇️
 	
 ___
 ## **§ Documentazione**

@@ -434,7 +434,7 @@ mod connection {
 	
 ---
 ##### Suggested Progression
-[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
 	
 ---
 	

@@ -13,6 +13,10 @@
 ###### [§ References](#-References-1) 🏷️
 - [Trait Objects](#Trait-Objects)
 ###### [§ Lifetimes](#-Lifetimes-1) ⏱️
+- [Funzioni](#Funzioni)
+###### [§ Custom Errors](§-Custom-Errors-1) ⚠️
+- [Display](#Display)
+- [Error Crate](#Error-Crate)
 	
 ___
 ## **§ Control Expressions**
@@ -430,9 +434,10 @@ let boxed_trait_obj: Box<dyn Trait> = Box::new(StructItem);
 ## **§ Lifetimes**
 	
 - **Definizione**: Secondo il criterio di ownership i tipi che possiedono la proprietà di un certo dato hanno la responsabilità di terminarlo. Per evitare che esso venga terminato si usa la proprietà *lifetime* che ne garantisce l'estensione
-- **Uso**: 
+- **Uso**: Estendere l'utilità di un elemento nel codice.
 - **Tags**: #Dynamics #Lifetimes #Borrowing 
 - **Sintassi**: 
+	
 	```Rust
 	struct StructName<'a>{
 		field: &'a String 
@@ -481,6 +486,70 @@ let boxed_trait_obj: Box<dyn Trait> = Box::new(StructItem);
 fn function_name<'a>(arg: &'a DataType) -> &'a DataType {/*Corpo di mille balene*/}
 ```
 	
+	
+---
+## **§ Custom Errors**
+
+- **Definizione**: Gli errori personalizzati sono costruiti attraverso l'uso delle enumerazioni, devono implementare con `derive` il trait di `Debug`, `Error` e `Display`.
+- **Uso**: Garantire una comprensione migliore delle eventuali problematiche che potrebbero verificarsi nel codice.
+- **Tags**: #Dynamics #Error #Traits #Display #Enums 
+- **Esempio**: 
+	
+```Rust
+#[derive(Debug)]
+enum ErrorGenotype {
+	NetworkError,
+	NotAthorized(i32),
+	WrongInput,
+}
+use::std::Error; // Dalla libreria standard importiamo il trait Error
+impl Error for ErrorGenotype {} //Vuoto
+// L'implementazione è opzionale visto che ErrorGenotype lo abbiamo già
+```
+	
+### Display
+	
+- **Definizione**: L'Implementazione opzionale di `Display` tramite la libreria `std`. L'intera sintassi è di default, l'unica parte dell' implementazione da modificare è lo sviluppo del `match` interno. 
+- **Uso**: L' implementazione `Display` serve per riportare i messaggi di errore personalizzati a a livello utente.
+- **Tags**:
+- **Esempio**:
+	
+```Rust
+use std::fmt; // Format
+impl fmt::Display for ErrorGenotype {
+	fn fmt(&self, f: &mut fmt::Formatter -> fmt::Result {
+		match self {
+			Self::NetworkError => write!(f, "Network error"),
+			Self::NotAuthorized(code) => {
+				match code {
+					1 => write!(f, "You don't have the necessary permissions"),
+					2 => write!(f, "You need to sign in first"),
+				}
+			},
+			Self::WrongInput => write!(f, "Type better"),
+		}
+	}
+}
+```
+	
+### Error Crate
+	
+- **Definizione**: 
+- **Uso**:
+	
+```Rust
+// In cargo.toml
+[Dependencies]
+thiserror = "1.0"
+```
+	
+```sh
+```
+	
+- **Esempio**:
+	
+```Rust
+```
 	
 ---
 ##### Suggested Progression

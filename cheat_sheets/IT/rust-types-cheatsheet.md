@@ -294,7 +294,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 ### Enumerations 
 	
-- **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float`, ecc.
+- **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float` e altri dentro tuple e strutture.
 - **Proprietà**: Owner
 - **Tipo**: `enum`
 - **Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
@@ -303,14 +303,14 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 ```Rust
 enum EnumName {
-	Version1(u8),
+	Version1(u8), //Uso tupla
 	Version2(i8),
-	Version3{
+	Version3{     //Uso struct
 		key1:i8, 
 		key2:&str, 
 		key3:OtherEnum, 
 	},
-	Version4,
+	Version4,     //Uso etichetta
 }
 
 fn main () {
@@ -1182,7 +1182,7 @@ impl <T: Trait1, U: Trait2> Structure <T, U> {
 ---
 ##### Progressione Suggerita
 [Rust CheatSheet - Macro](rust-macros-cheatsheet.md)
-[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
 	
 ---
 	

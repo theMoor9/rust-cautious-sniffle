@@ -213,7 +213,7 @@ fn main () {
 ---
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
-[Rust CheatSheet - Dinamiche del codice](rust-controls-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
 [Rust CheatSheet - Semplificare la Gestione Dati](rust-data-management-cheatsheet.md)
 	
 ---
