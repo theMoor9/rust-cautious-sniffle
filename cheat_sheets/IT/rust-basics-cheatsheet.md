@@ -41,6 +41,18 @@
 	```
 	
 	
+- ##### Istanziazione Variabile Costante
+	
+	**Sintassi**: `const`
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
+	**Nota**: Efficiente in termini di memoria rispetto `let`.
+		
+	```Rust
+	//UPPER_SNAKE_CASE
+	const INIZIALIZED_AT_COMPILE_TIME = 0;
+	```
+	
+	
 - ##### Struct
 	
 	**Sintassi**: `struct`  
