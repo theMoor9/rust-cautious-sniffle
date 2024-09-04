@@ -491,7 +491,7 @@ fn function_name<'a>(arg: &'a DataType) -> &'a DataType {/*Corpo di mille balene
 ## **§ Custom Errors**
 
 - **Definizione**: Gli errori personalizzati sono costruiti attraverso l'uso delle enumerazioni, devono implementare con `derive` il trait di `Debug`, `Error` e `Display`.
-- **Uso**: Garantire una comprensione migliore delle eventuali problematiche che potrebbero verificarsi nel codice.
+- **Uso**: Garantire una comprensione migliore delle eventuali problematiche che potrebbero verificarsi nel codice raggruppandoli per tipo. Preferibile rispetto ai messaggi string, con lo statement `match` i custom 
 - **Tags**: #Dynamics #Error #Traits #Display #Enums 
 - **Esempio**: 
 	
@@ -505,12 +505,17 @@ enum ErrorGenotype {
 use::std::Error; // Dalla libreria standard importiamo il trait Error
 impl Error for ErrorGenotype {} //Vuoto
 // L'implementazione è opzionale visto che ErrorGenotype lo abbiamo già
+
+fn function() -> Result<(),ErrorGenotype> {
+	//body
+	Err(ErrorGenotype::WrongInput)
+}
 ```
 	
 ### Display
 	
 - **Definizione**: L'Implementazione opzionale di `Display` tramite la libreria `std`. L'intera sintassi è di default, l'unica parte dell' implementazione da modificare è lo sviluppo del `match` interno. 
-- **Uso**: L' implementazione `Display` serve per riportare i messaggi di errore personalizzati a a livello utente.
+- **Uso**: L' implementazione `Display` serve per riportare i messaggi di errore personalizzati a a livello utente. 
 - **Tags**:
 - **Esempio**:
 	
@@ -519,14 +524,14 @@ use std::fmt; // Format
 impl fmt::Display for ErrorGenotype {
 	fn fmt(&self, f: &mut fmt::Formatter -> fmt::Result {
 		match self {
-			Self::NetworkError => write!(f, "Network error"),
+			Self::NetworkError => write!(f, "Network error check connection"),
 			Self::NotAuthorized(code) => {
 				match code {
 					1 => write!(f, "You don't have the necessary permissions"),
 					2 => write!(f, "You need to sign in first"),
 				}
 			},
-			Self::WrongInput => write!(f, "Type better"),
+			Self::WrongInput => write!(f, "Type better!"),
 		}
 	}
 }
@@ -534,7 +539,8 @@ impl fmt::Display for ErrorGenotype {
 	
 ### Error Crate
 	
-- **Definizione**: 
+- **Definizione**: Questo crate permette una versione della gestione degli errori meno macchinosa generando i messaggi in maniera diretta tramite le annotazioni al posto della creazione del `Display` trait.
+- **Tags**: #Crates #Error #Enums 
 - **Uso**:
 	
 ```Rust
@@ -544,11 +550,66 @@ thiserror = "1.0"
 ```
 	
 ```sh
+// In terminal per utima versione garantita
+cargo install thiserror
 ```
 	
 - **Esempio**:
 	
 ```Rust
+use thiserror::Error
+
+#[derive(Debug,Error)]
+enum ErrorGenotype {
+	#[error("Network error check connection")]
+	NetworkError,
+	#[error("Not authorized: {0}")] 
+	NotAthorized(i32), // {0} indica la posizione della tupla di NotAuthorized
+	#[error("Type better!")]
+	WrongInput,
+}
+```
+	
+>In questo modo abbiamo un sistema veloce ma meno personalizzato per la gestione degli errori.
+	
+###### *Approfondimento Avanzato*
+- **Descrizione**:  E' possibile innestare le enumerazioni per ottenere versioni specifiche dell'errore.
+- **Uso**: Permettere la propagazione con `?` .
+- **Tags**: #Crates #Error  #Enums #Advanced 
+- **Esempio**:
+	
+
+```Rust
+use thiserror::Error
+
+#[derive(Debug,Error)]
+enum NetworkError {
+	#[error("Connection timed out")]
+	TimeOut
+	#[error("Unreachable")]
+	Unreachable
+}
+
+
+#[derive(Debug,Error)]
+enum ErrorGenotype {
+	#[error("Network error check connection")]
+	Connection(#[from]NetworkError),
+	#[error("Not authorized: {0}")] 
+	NotAthorized(i32), // {0} indica la posizione della tupla di NotAuthorized
+	#[error("Type better!")]
+	WrongInput,
+}
+let error = ErrorGenotype::Connection(NetworkError::TimeOut);
+println!("{}", error); // Errore di connection
+println!("{}", error?); // Errore di propagato di NetworkError::TimeOut
+```
+	
+- **Output**: 
+	
+```sh 
+Network error check connection
+Connection timed out
 ```
 	
 ---

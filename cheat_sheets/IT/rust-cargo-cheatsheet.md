@@ -51,6 +51,17 @@ $ cargo doc --open
 	
 	
 ---
+## **§ Installare Crate**
+
+**Uso**: Installazione crate tramite cargo garantendo ultima versione disponibile.
+**Tags**: #Documentazione #Cargo #ExternalLibraries #Crates 
+**Esempio**:
+	
+```sh
+cargo install crate_name
+```
+	
+---	
 ##### Progressione Suggerita
 [Rust CheatSheet - Tipi](rust-types-cheatsheet.md)
 	
