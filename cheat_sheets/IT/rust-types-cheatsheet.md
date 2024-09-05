@@ -12,6 +12,7 @@
 ###### [§ Tipi Complessi](#-Tipi-Complessi-1) 🔣
 - [Struct](#Struct)
 - [Enumerations](#Enumerations)
+- [Creare Tipi Complessi](#Creare-Tipi-Complessi)
 ###### [§ Tipi Aggiuntivi](#-Tipi-Aggiuntivi-1) ➕
 - [Slices](#Slices)
 - [String Slices](#String-Slices)
@@ -291,6 +292,136 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	println!("{:?}", second); // Output: 2 
 	println!("{:?}", vector); // Output: [1, 3, 4, 5, 1]
 	```
+
+- ### Struct Hashmaps
+	
+	- **Definizione**: E' un tipo complesso riconducibile come analogia ai dizionari, set di dati di tipi disparati con chiavi associate registrati in maniera casuale, quindi le chiavi diventano essenziali per la gestione.
+	- **Libreria**: `use std::collections::HashMap;`
+	- **Sintassi**: `let mut dictionary = HashMap::new();`
+	- **Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
+	- **Tags**: #Hashmaps #Option 
+	- **Esempio**:
+		
+	```Rust
+	use std::collections::HashMap;
+	
+	let mut dictionary = HashMap::new() ; // Init
+	
+	let pages1 = 90 ;
+	let pages2 = "A thousand" ; // I valori possono essere disparati
+	
+	// Si definisce chiave e valore per inserire i dati
+	dictionary.insert("Key Book1", pages2) ; // Simile al .push per i vettori
+	dictionary.insert("Key Book2", pages1) ;
+	
+	// Si indica la chiave per rimuovere il blocco col valore associato
+	dictionary.remove("Key Book1") ; // Simile al .pop per i vettori
+	
+	// `.get` restituisce un Option value gestibile con `match`
+	match dictionary.get("Key Book2") {
+		some(pagesamount) => println("{}",pagesamount),
+		None => println("Not found")
+	}
+	
+	// ITERARE un HashMap
+	
+	let mut hotel_rooms = HashMap::new();
+	
+	hotel_rooms.insert("Client ID 1","Room Number1");
+	hotel_rooms.insert("Client ID 2","Room Number2");
+	hotel_rooms.insert("Client ID 3","Room Number3");
+	
+	// .iter is used to go through considering the couples KEY/VALUE
+	for (client, room) in hotel_rooms.iter() {
+		println!("Client ID: {} and its room number: {}", client, room);
+	}
+	
+	// Go through KEYs
+	for client in hotle_room.key(){
+		println!("Client ID: {}", client);
+	}
+	// Go through VALUEs
+	for rooms in hotle_room.values(){
+		println!("Client room number: {}", room);
+	}
+	```
+		
+	 ##### *Approfondimento Avanzato*
+		
+	- **Descrizione**:  Costruire una struttura di dati basata su chiavi utilizzando una libreria standard dalla API Doc.
+	- **Tags**: #Hashmaps #Advanced
+	- **Esempio**:
+		
+	```Rust
+	use std::collections::HashMap;
+	
+	#[derive(Debug)]
+	struct Guest {
+	    name: String,
+	    surname: String,
+	    telephone: u32,
+	    email: String,
+	    confirm: bool
+	}
+	
+	fn add_confirms (chr: &mut HashMap<String,Guest>, hrl: Vec<Guest>) {
+	    // Componente per l' ID
+	    let mut n = 0 ;
+	  
+	    for g in hrl {
+	        // Se è confermato inserisce
+	        if g.confirm {
+	            // Converte n in stringa per creare l' ID
+	            let nstring = n.to_string();
+	            let id: String = "ID".to_owned() + &nstring + " ";
+	            // Iserisce nell HashMap ID e Guest
+	            chr.insert(id,g) ;
+	            // Aumenta il valore ID
+	            n = n + 1
+	        }
+	    }
+	}  
+	
+	fn see_confirms (chr: &HashMap<String,Guest>) {
+	    for (id,g) in chr.iter() {
+	        println!("{}{:?}",id,g);
+	    }
+	}
+	  
+	fn main() {
+	  
+	    // Lista delle prenotazioni non confermate
+	    let mut hotel_reservation_list: Vec<Guest> = vec![
+	        Guest{
+	            name: String::from("Kenneth"),
+	            surname: String::from("Boldrini"),
+	            telephone: 345345345,
+	            email: String::from("kenneth@email.com"),
+	            confirm: true
+	        },
+	        Guest{
+	            name: String::from("Linda"),
+	            surname: String::from("Francescucci"),
+	            telephone: 346346346,
+	            email: String::from("linda@email.com"),
+	            confirm: true
+	        },
+	        Guest{
+	            name: String::from("Niccolò"),
+	            surname: String::from("Pierazzi"),
+	            telephone: 347347347,
+	            email: String::from("niccolo@email.com"),
+	            confirm: false
+	        },
+	    ];
+	
+	    // Lista delle prenotazioni confermate
+	    let mut confermed_hotel_reservations:  HashMap<String,Guest> = HashMap::new() ;
+	    // Inserimento conferme
+	    add_confirms(&mut confermed_hotel_reservations,hotel_reservation_list);
+	    see_confirms(&confermed_hotel_reservations);
+	}
+	```
 	
 ### Enumerations 
 	
@@ -391,136 +522,25 @@ fn main () {
 }
 ```
 	
-### Hashmaps
+### Creare Tipi Complessi
 	
-- **Definizione**: E' un tipo complesso riconducibile come analogia ai dizionari, set di dati di tipi disparati con chiavi associate registrati in maniera casuale, quindi le chiavi diventano essenziali per la gestione.
-- **Libreria**: `use std::collections::HashMap;`
-- **Sintassi**: `let mut dictionary = HashMap::new();`
-- **Uso**: Metodo funzionale e veloce di gestire i dati . Utile per il recupero dati intuitivo via chiave.
-- **Tags**: #Hashmaps #Option 
+- **Definizione**: Il "new type pattern" è il metodo di creazione di nuovi tipi oltre i classici String, Vec e HashMap che come questi possiedono proprietà e metodi attraverso l'uso dello statement `struct`.
+- **Uso**: Creare tipi personalizzati con proprietà e funzioni. Si usa `(type)` al posto di `{field:Type}`
+- **Sintassi**: `struct StructName(type) `
+- **Tags**: #Structs 
 - **Esempio**:
 	
 ```Rust
-use std::collections::HashMap;
+// Costruito un tipo intero sempre doppio
 
-let mut dictionary = HashMap::new() ; // Init
+struct AlwaysDoubleInt(i64) 
 
-let pages1 = 90 ;
-let pages2 = "A thousand" ; // I valori possono essere disparati
-
-// Si definisce chiave e valore per inserire i dati
-dictionary.insert("Key Book1", pages2) ; // Simile al .push per i vettori
-dictionary.insert("Key Book2", pages1) ;
-
-// Si indica la chiave per rimuovere il blocco col valore associato
-dictionary.remove("Key Book1") ; // Simile al .pop per i vettori
-
-// `.get` restituisce un Option value gestibile con `match`
-match dictionary.get("Key Book2") {
-	some(pagesamount) => println("{}",pagesamount),
-	None => println("Not found")
-}
-
-// ITERARE un HashMap
-
-let mut hotel_rooms = HashMap::new();
-
-hotel_rooms.insert("Client ID 1","Room Number1");
-hotel_rooms.insert("Client ID 2","Room Number2");
-hotel_rooms.insert("Client ID 3","Room Number3");
-
-// .iter is used to go through considering the couples KEY/VALUE
-for (client, room) in hotel_rooms.iter() {
-	println!("Client ID: {} and its room number: {}", client, room);
-}
-
-// Go through KEYs
-for client in hotle_room.key(){
-	println!("Client ID: {}", client);
-}
-// Go through VALUEs
-for rooms in hotle_room.values(){
-	println!("Client room number: {}", room);
+impl AlwaysDoubleInt {
+	fn new(i: i64) -> Self {
+		return Self(i*2)
+	}
 }
 ```
-	
-##### *Approfondimento Avanzato*
-	
-- **Descrizione**:  Costruire una struttura di dati basata su chiavi utilizzando una libreria standard dalla API Doc.
-- **Tags**: #Hashmaps #Advanced
-- **Esempio**:
-	
-```Rust
-use std::collections::HashMap;
-
-#[derive(Debug)]
-struct Guest {
-    name: String,
-    surname: String,
-    telephone: u32,
-    email: String,
-    confirm: bool
-}
-
-fn add_confirms (chr: &mut HashMap<String,Guest>, hrl: Vec<Guest>) {
-    // Componente per l' ID
-    let mut n = 0 ;
-  
-    for g in hrl {
-        // Se è confermato inserisce
-        if g.confirm {
-            // Converte n in stringa per creare l' ID
-            let nstring = n.to_string();
-            let id: String = "ID".to_owned() + &nstring + " ";
-            // Iserisce nell HashMap ID e Guest
-            chr.insert(id,g) ;
-            // Aumenta il valore ID
-            n = n + 1
-        }
-    }
-}  
-
-fn see_confirms (chr: &HashMap<String,Guest>) {
-    for (id,g) in chr.iter() {
-        println!("{}{:?}",id,g);
-    }
-}
-  
-fn main() {
-  
-    // Lista delle prenotazioni non confermate
-    let mut hotel_reservation_list: Vec<Guest> = vec![
-        Guest{
-            name: String::from("Kenneth"),
-            surname: String::from("Boldrini"),
-            telephone: 345345345,
-            email: String::from("kenneth@email.com"),
-            confirm: true
-        },
-        Guest{
-            name: String::from("Linda"),
-            surname: String::from("Francescucci"),
-            telephone: 346346346,
-            email: String::from("linda@email.com"),
-            confirm: true
-        },
-        Guest{
-            name: String::from("Niccolò"),
-            surname: String::from("Pierazzi"),
-            telephone: 347347347,
-            email: String::from("niccolo@email.com"),
-            confirm: false
-        },
-    ];
-
-    // Lista delle prenotazioni confermate
-    let mut confermed_hotel_reservations:  HashMap<String,Guest> = HashMap::new() ;
-    // Inserimento conferme
-    add_confirms(&mut confermed_hotel_reservations,hotel_reservation_list);
-    see_confirms(&confermed_hotel_reservations);
-}
-```
-	
 	
 ---
 ## **§ Tipi Aggiuntivi**
@@ -724,7 +744,7 @@ fn main () {
 - **Output**: `Wrong input!`
 	
 	
----
+--- 
 ## **§ Annotazioni Esplicite del Tipo**
 	
 ### Specifiche
