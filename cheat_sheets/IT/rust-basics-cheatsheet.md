@@ -6,6 +6,7 @@
 - [Istanziazione Variabile Mutabile](#Istanziazione-Variabile-Mutabile)
 - [Struct](#Struct)
 - [Enum](#Enum)
+- [Rappresentazione Generica](#Rappresentazione-Generica)
 - [Chiamata d'ispezione](#Chiamata-d-ispezione)
 - [Import Librerie](#Import-Librerie)
 - [Istanziazione Funzione](#IstanziazioneFunzione) 
@@ -80,6 +81,18 @@
 	}
 	```
 	
+- ##### Rappresentazione Generica
+	
+	**Sintassi**: `< >`  
+	**Tag**: #Generic 
+	**Posizione obbligatoria rispetto il codice**: *Nessuna*
+	
+```Rust
+	struct GenericElement;
+	struct StructName<GenericElement> {
+		field1: GenericElement,
+	}
+```
 	
 - ##### Chiamata d'Ispezione 
 	
@@ -90,7 +103,6 @@
 	Vec::new()
 	String::new()
 	```
-	
 	
 - ##### Import Librerie
 	**Descrizione**: La dichiarazione per l'importazione delle librerie è `use`, seguita dai due punti (`::`) per importare gli elementi specifici della libreria ai fini della memoria.

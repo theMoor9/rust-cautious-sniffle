@@ -9,7 +9,9 @@
 ###### [§ Advance Match Dynamics](#-Advance-Match-Dynamics) 🧑‍🤝‍👩
 - [Enum](#Enum)
 - [Struct](#Struct)
+- Guards
 ###### [§ Ownership](#-Ownership-1) 🪪
+###### [§ Type State](#-Type-State-1)
 ###### [§ References](#-References-1) 🏷️
 - [Trait Objects](#Trait-Objects)
 ###### [§ Lifetimes](#-Lifetimes-1) ⏱️
@@ -373,6 +375,89 @@ fn main () {
 ```
 	
 	
+## **§ Type State**
+
+- **Definizione**: E' possibile utilizzare tipi personalizzati per creare degli stati strutture complesse aventi più forme, un po come le varianti di un enumerazione.
+- **Uso**: Rappresentare uno stato in campi o variabili. 
+- **Tags**: #Types #Dynamics #Custom
+- **Esempio**:
+
+```Rust
+struct Person<State>{
+	name: String,
+	condition: State,
+}
+struct Unemployed{
+	from: String,
+}
+
+impl Person<Emplyed>{
+	fn for_who(name: String, forw: String) -> Self { 
+		Self { 
+			name, 
+			condition: Employed { forw }, 
+		} 
+	} 
+}
+
+fn main(){
+	// Crea una persona disoccupata con from When,
+	let mut me = Person::for_who("Kenneth".to_owned(), "For you".to_owned());
+	
+}
+
+```
+
+- ##### ***Approfondimento Avanzato***
+
+```Rust
+struct Person<State>{
+	name: String,
+	condition: State,
+}
+struct Employed{
+	company: String,
+}
+struct Unemployed{
+	from: String,
+}
+
+impl Person<Unemployed> { 
+	fn from_when(name: String, from: String) -> Self { 
+		Self { 
+			name, 
+			condition: Unemployed { from }, 
+		} 
+	} 
+}
+impl Person<Emplyed>{
+	fn for_who(name: String, forw: String) -> Self { 
+		Self { 
+			name, 
+			condition: Employed { forw }, 
+		} 
+	} 
+}
+impl<State> Person<State> {
+	fn change<NewState>(self, state:NewState) -> Person<NewState> {
+		Person {
+			name: self.name,
+			condition: state
+		}
+	}
+}
+
+fn main(){
+	// Crea una persona disoccupata con from When,
+	let mut me = Person::from_when("Kenneth".to_owned(), "A year".to_owned());
+	
+	// Modifica me creando una nuova persona da for_who
+	let new_year_new_me = me.change(
+		Person::for_who("Kenneth".to_owned(), "For you".to_owned())
+	);
+}
+
+```
 ## **§ References**
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*

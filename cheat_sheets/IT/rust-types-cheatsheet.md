@@ -527,7 +527,7 @@ fn main () {
 - **Definizione**: Il "new type pattern" è il metodo di creazione di nuovi tipi oltre i classici String, Vec e HashMap che come questi possiedono proprietà e metodi attraverso l'uso dello statement `struct`.
 - **Uso**: Creare tipi personalizzati con proprietà e funzioni. Si usa `(type)` al posto di `{field:Type}`
 - **Sintassi**: `struct StructName(type) `
-- **Tags**: #Structs 
+- **Tags**: #Structs #Custom #Types
 - **Esempio**:
 	
 ```Rust
