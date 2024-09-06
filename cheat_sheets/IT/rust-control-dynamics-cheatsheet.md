@@ -9,7 +9,8 @@
 ###### [§ Advance Match Dynamics](#-Advance-Match-Dynamics) 🧑‍🤝‍👩
 - [Enum](#Enum)
 - [Struct](#Struct)
-- Guards
+- [Binding Guards](#Binding-Guards)
+- [If Guards](#If-Guards)
 ###### [§ Ownership](#-Ownership-1) 🪪
 ###### [§ Type State](#-Type-State-1)
 ###### [§ References](#-References-1) 🏷️
@@ -234,7 +235,7 @@ E' possibile rendere i `match` dinamici tramite la personalizzazione delle possi
 ### Enums
 	
 - **Descrizione**: E' possibile dichiarare in maniera dinamica le possibilità non prese in considerazione in modo che il codice sia ricettivo alle alternative.
-- **Tags**: #Enums #match #Dynamics 
+- **Tags**: #Enums #match #Dynamics #Advanced 
 - **Esempio**:
 	
 ```Rust
@@ -277,7 +278,7 @@ fn main () {
 ### Struct
 
 - **Descrizione**: Si usa per una ricerca avanzata rispetto i campi, con il supporto della sintassi `..` come strumento di esclusione, e dei nominativi dei campi come carpitori di valore.
-- **Tags**: #match #Structs #Dynamics 
+- **Tags**: #match #Structs #Dynamics #Advanced 
 - **Esempio**:
 	
 ```Rust
@@ -323,6 +324,68 @@ fn main () {
 ```
 	
 - **Output**: Found!
+	
+### Binding Guards
+	
+- **Definizione**: E' possibile creare strutture complesse di controllo dentro i `match` statements legando un informazione specifica, tramite la cattura `@`, ad una variabile che potrà essere poi utilizzata. 
+- **Sintassi**: `x @ y`
+- **Uso**: E' importante per permettere la dichiarazione di una variabile per un utilizzo futuro anziché dichiarare il suo valore in un istanza di controllo.
+- **Tags**: #match  #Advanced #Bind
+- **Esempio**:
+	
+```Rust
+enum EnumName {
+	Variant(i32)
+}
+let something = EnumName::Variant(2);
+match something {
+	EnumName::Variant(n @ 2) => println!("Variant {}", n),
+	EnumName::Variant(n @ 9 | n @ 3) => println!("Variant 3 or 9"),
+	EnumName::Variant(n @ 4..=8) => println!("Range 4 to 8")
+}
+```
+	
+- **Output**: `Variant 2`
+	
+### If Guards
+	
+- **Definizione**: E' possibile creare strutture complesse di controllo dentro i `match` statements legando un informazione specifica, tramite gli `if` statements
+- **Uso**: E' importante per permettere controlli rispetto a molteplici variabili in relazione alla variabile che vogliamo controllare.
+- **Tags**: #match  #Advanced #if 
+- **Esempio**:
+	
+```Rust
+enum EnumName {
+	Variant1
+	Variant2
+	Variant3
+}
+
+let number = 9;
+let existence = EnumName::Variant3;
+match number {
+	n if (n == 9 && existence == EnumName::Variant3) => println!("YES"),
+	n if existence == EnumName::Variant1 => println!("NO!! {}", n),
+}
+
+struct StructName {
+	field1: i8,
+	field2: i8,
+}
+
+let something = StructName{field1:3,field2:9};
+match something {
+	StructName{field1 , ..} if (number == 9 && field1 == 9) => println!("NO"),
+	StructName{.. , field2} if (number == 9 && field2 == 9) => println!("MAYBE"),
+}
+```
+	
+- **Output**: 
+```sh
+YES
+MAYBE
+```
+	
 	
 ___
 ## **§ Ownership**
@@ -375,41 +438,41 @@ fn main () {
 ```
 	
 	
+---
 ## **§ Type State**
-
+	
 - **Definizione**: E' possibile utilizzare tipi personalizzati per creare degli stati strutture complesse aventi più forme, un po come le varianti di un enumerazione.
 - **Uso**: Rappresentare uno stato in campi o variabili. 
 - **Tags**: #Types #Dynamics #Custom
 - **Esempio**:
-
+	
 ```Rust
 struct Person<State>{
 	name: String,
 	condition: State,
 }
-struct Unemployed{
-	from: String,
+struct Employed{
+	company: String,
 }
 
-impl Person<Emplyed>{
-	fn for_who(name: String, forw: String) -> Self { 
+impl Person<Employed>{
+	fn for_who(n: String, forw: String) -> Self { 
 		Self { 
-			name, 
-			condition: Employed { forw }, 
+			name: n, 
+			condition: Employed { company:forw }, 
 		} 
 	} 
 }
 
 fn main(){
-	// Crea una persona disoccupata con from When,
+	// Crea una persona disoccupata con for_who,
 	let mut me = Person::for_who("Kenneth".to_owned(), "For you".to_owned());
 	
 }
-
 ```
-
-- ##### ***Approfondimento Avanzato***
-
+	
+##### Approfondimento Avanzato
+	
 ```Rust
 struct Person<State>{
 	name: String,
@@ -423,18 +486,18 @@ struct Unemployed{
 }
 
 impl Person<Unemployed> { 
-	fn from_when(name: String, from: String) -> Self { 
+	fn from_when(n: String, f: String) -> Self { 
 		Self { 
-			name, 
-			condition: Unemployed { from }, 
+			name: n, 
+			condition: Unemployed { from: f }, 
 		} 
 	} 
 }
-impl Person<Emplyed>{
-	fn for_who(name: String, forw: String) -> Self { 
+impl Person<Employed>{
+	fn for_who(n: String, forw: String) -> Self { 
 		Self { 
-			name, 
-			condition: Employed { forw }, 
+			name: n,  
+			condition: Employed { company:forw }, 
 		} 
 	} 
 }
@@ -456,8 +519,10 @@ fn main(){
 		Person::for_who("Kenneth".to_owned(), "For you".to_owned())
 	);
 }
-
 ```
+	
+	
+---
 ## **§ References**
 	
 - **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
@@ -601,7 +666,7 @@ fn function() -> Result<(),ErrorGenotype> {
 	
 - **Definizione**: L'Implementazione opzionale di `Display` tramite la libreria `std`. L'intera sintassi è di default, l'unica parte dell' implementazione da modificare è lo sviluppo del `match` interno. 
 - **Uso**: L' implementazione `Display` serve per riportare i messaggi di errore personalizzati a a livello utente. 
-- **Tags**:
+- **Tags**: #Display 
 - **Esempio**:
 	
 ```Rust

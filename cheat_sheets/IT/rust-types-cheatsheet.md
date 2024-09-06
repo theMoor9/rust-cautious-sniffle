@@ -168,7 +168,7 @@ I tipi complessi, sono quelli che combinano dati e logica. Possono contenere var
 	
 - **Definizione**: E' un tipo complesso che ha scopo di definire un oggetto avente le "proprietà", chiamate ***campi***, della struttura. I campi si definiscono con loro tipo.
 - **Proprietà**: Owner
-- **Tipo**: `struct`
+- **Sintassi**: `struct`
 - **Uso**: Definizione di oggetti con proprietà fisiche e metafisiche
 - **Tags**: #Structs #Ownership 
 - **Esempio**:
@@ -207,7 +207,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 - ##### Struct String 
 	
 	- **Definizione**: E' una collezione mutabile e dinamicamente allocata di caratteri UTF-8.
-	- **Tipo**: `String`
+	- **Sintassi**: `String`
 	- **Uso**: Usa `String` per stringhe mutabili e possedute, e `&str` per riferimenti immutabili a stringhe esistenti.
 	- **Tags**: #Structs #Strings 
 	- **Esempio**:
@@ -346,7 +346,7 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	}
 	```
 		
-	 ##### *Approfondimento Avanzato*
+	 ##### Approfondimento Avanzato
 		
 	- **Descrizione**:  Costruire una struttura di dati basata su chiavi utilizzando una libreria standard dalla API Doc.
 	- **Tags**: #Hashmaps #Advanced
@@ -427,39 +427,39 @@ let my_box_volume = my_box.width * my_box.depth * my_box.height ;
 	
 - **Definizione**: E' un tipo complesso che può assumere uno tra diversi valori definiti, dove ogni _**variante**_ può contenere dati di un tipo specifico come `String`, `char`, `int`, `float` e altri dentro tuple e strutture.
 - **Proprietà**: Owner
-- **Tipo**: `enum`
+- **Sintassi**: `enum`
 - **Uso**: Quando si necessita che un'entità possa avere più versioni di se stessa.
 - **Tags**: #Enums #Ownership 
 - **Esempio**:
 	
-```Rust
-enum EnumName {
-	Version1(u8), //Uso tupla
-	Version2(i8),
-	Version3{     //Uso struct
-		key1:i8, 
-		key2:&str, 
-		key3:OtherEnum, 
-	},
-	Version4,     //Uso etichetta
-}
-
-fn main () {
-	let enum_variable1 = EnumName::Version1(9) ;
-	let enum_variable2 = EnumName::Version2(-9) ;
-	let enum_variable3 = EnumName::Version3{
-		key1: 96,
-		key2: "Questa è roba puzzle!",
-		key3: OtherEnum::SomeVersion.. ,
-	} ;
-}
-```
+	```Rust
+	enum EnumName {
+		Version1(u8), //Uso tupla
+		Version2(i8),
+		Version3{     //Uso struct
+			key1:i8, 
+			key2:&str, 
+			key3:OtherEnum, 
+		},
+		Version4,     //Uso etichetta
+	}
 	
-##### *Approfondimento Avanzato*
+	fn main () {
+		let enum_variable1 = EnumName::Version1(9) ;
+		let enum_variable2 = EnumName::Version2(-9) ;
+		let enum_variable3 = EnumName::Version3{
+			key1: 96,
+			key2: "Questa è roba puzzle!",
+			key3: OtherEnum::SomeVersion.. ,
+		} ;
+	}
+	```
 	
-- **Descrizione**:  Enumerazioni contenenti versioni con valori multipli e selezione appropriata.
-- **Tags**: #Enums #Advanced
-- **Esempio**:
+	 ##### Approfondimento Avanzato
+	
+	- **Descrizione**:  Enumerazioni contenenti versioni con valori multipli e selezione appropriata.
+	- **Tags**: #Enums #Advanced
+	- **Esempio**:
 	
 ```Rust
 enum Exceptions {
