@@ -175,8 +175,9 @@ fn main () {
 ---
 ## **§ Metodi Standard**
 	
-**Tags**: #Vectors #Strings 
-##### Vettori (`Vec<T>`)
+### Vettori (`Vec<T>`)
+	
+**Tags**: #Vectors 
 	
 - **.push()**: Aggiunge un elemento alla fine del vettore.
 - **.pop()**: Rimuove e restituisce l'ultimo elemento del vettore.
@@ -194,7 +195,9 @@ fn main () {
 - **.retain(f)**: Mantiene solo gli elementi che soddisfano il predicato `f`.
 - .as_slice(): Converte in slice per essere iterato come slice.
 	
-##### Stringhe (`String` e `&str`)
+### Stringhe (`String` e `&str`)
+	
+**Tags**: #Strings 
 	
 - **.to_string()**: Converte una slice di stringa in una stringa posseduta.
 - **.to_owned()**: Crea una copia posseduta della stringa.
@@ -211,7 +214,56 @@ fn main () {
 - **.capacity()**: Restituisce la capacità totale della stringa.
 - .as_slice(): Converte in slice per essere iterato come slice.
 	
+### From Into
 	
+**Descrizione**: Sono metodi di *Traits* che permettono di convertire un tipo in un altro
+**Uso**: Si utilizza ad esempio nella generazione dello String type con `String::from("slice")`. E' spesso utile implementare `from`  o con `.into()`  per gli errori rendendoli dinamici e convertibili tra le varie tipologie
+**Tags**: #Traits 
+**Esempio**:
+
+```Rust
+enum Status {
+	Online,
+	Offline,
+	NoResponse(u8),
+}
+
+/*
+* NON necessario in quanto parte della libreria standard di rust.
+trait From {
+	fn from(code: u8) -> Self;
+}
+*/
+
+impl From<u8> for Status {
+	fn from(code: u8) -> Self {
+		match code {
+			0 => Status::Offline,
+			1 => Status::Online,
+			c => Status::NoResponse(c),
+		}
+	}
+}
+fn status_code_gen(n: u8) -> u8 {
+	match n {
+		1 => 9,
+		2 => 3,
+		_ => 0
+	}
+}
+
+let into_status: Status = status_code_gen(1).into(); 
+let from_trait_status = Status::from(status_code_gen(2));
+
+println!("{:?}",into_status);
+println!("{:?}",from_trait_status);
+```
+- **Output**:
+```sh
+NoResponse(9)
+NoResponse(3)
+```
+
 ---
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
