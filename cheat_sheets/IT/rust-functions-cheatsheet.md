@@ -192,6 +192,7 @@ fn main () {
 - **.reserve(additional)**: Riserva spazio per almeno altri `additional` elementi.
 - **.shrink_to_fit()**: Riduce la capacità del vettore per adattarla alla lunghezza attuale.
 - **.retain(f)**: Mantiene solo gli elementi che soddisfano il predicato `f`.
+- .as_slice(): Converte in slice per essere iterato come slice.
 	
 ##### Stringhe (`String` e `&str`)
 	
@@ -208,6 +209,7 @@ fn main () {
 - **.split_whitespace()**: Restituisce un iteratore sugli elementi della stringa separati dagli spazi bianchi.
 - **.as_str()**: Restituisce una slice `&str` di una stringa `String`.
 - **.capacity()**: Restituisce la capacità totale della stringa.
+- .as_slice(): Converte in slice per essere iterato come slice.
 	
 	
 ---

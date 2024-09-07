@@ -28,7 +28,29 @@
 - [External Crates - Libraries](#External-Crates---Libraries)
 ---
 ## **§ Type Alias**
+	
+- **Descrizione**: Rinominare i tipi attraverso l' assegnazione classica `=`.
+- **Uso**: Utile per identificare i tipi in base al loro uso.
+- **Sintassi**: `type`
+- **Tags**: #Types #Alias
+- **Esempio**: 
+	
+```Rust
+struct Person {
+	name: String,
+	age: u8,
+}
+struct Hospitalization {
+	day: String,
+	illness: String,
+}
 
+type Id = Person;
+type Patient = HashMap<Id,Hospitalization>;
+
+```
+	
+	
 ---
 ## **§ Closures**
 	
