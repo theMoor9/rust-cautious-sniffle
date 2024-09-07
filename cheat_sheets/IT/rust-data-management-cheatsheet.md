@@ -1,6 +1,7 @@
 ## **Rust CheatSheet - Semplificare la Gestione Dati**
 ##### **Table of Contents**
 ###### [§ Type Alias](#-Type-Alias-1) 🥸
+- [Lifetimes](#Lifetimes)
 ###### [§ Closures](#-Closures-1) ⚡
 - [Basics](#Basics)
 ###### [§ Map Combinator](#-Map-Combinator-1) 🗺️
@@ -48,6 +49,13 @@ struct Hospitalization {
 type Id = Person;
 type Patient = HashMap<Id,Hospitalization>;
 
+```
+	
+### Lifetimes
+	
+```Rust
+type BorrowedItem<'a> = Vec<&'a str>
+type GenericItem<T> = Vec<Item<T>>
 ```
 	
 	
