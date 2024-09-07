@@ -2,6 +2,7 @@
 ##### **Table of Contents**
 ###### [§ Signature](#-Signature-1) ✒️
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1) ↩️
+- [Propagazione Errore](#Propagazione-Errore)
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
@@ -10,6 +11,7 @@
 ###### [§ Metodi Standard](#-Metodi-Standard-1) 🔧
 - [Vettori (`Vec<T>`)](#vettori-vect)
 - [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
+- [From Into](#From-Into)
 	
 ---
 ## **§ Signature**
@@ -56,6 +58,28 @@ fn multiply(a: i32, b: i32, c ...) -> i32 {
 - **Espressione finale senza punto e virgola**: Se l'ultima espressione nel corpo della funzione non è seguita da un punto e virgola, il valore di questa espressione sarà automaticamente restituito.
 	
 - **Comando `return`**: Puoi usare `return` per restituire un valore in modo esplicito da qualsiasi punto della funzione. Questo può essere utile per restituire valori condizionalmente.
+	
+### Propagazione Errore
+	
+- **Descrizione**: In Rust, è possibile propagare gli errori di un `Result` da una funzione a un'altra, delegando la gestione dell'errore alla funzione "madre" che ha chiamato la funzione figlia.
+- **Uso**: La propagazione degli errori è utile per simulare una meccanica simile al _raise_ presente in altri linguaggi, consentendo di far risalire l'errore alla funzione chiamante. Questo evita di gestire gli errori a ogni livello intermedio, semplificando il codice.
+- **Sintassi**: `?`
+- **Tags**: #Functions #Advanced #Result #Error 
+- **Esempi**:
+	
+```Rust
+fn son() -> Result<(), Error> {
+    // Calcoli che potrebbero generare errori
+}
+
+fn mother() -> Result<(), Error> {
+    son()?; 
+    // Se la chiamata a `son` genera un errore, 
+    // questo viene propagato e gestito dalla funzione madre
+    Ok(()) // La funzione madre deve comunque restituire un `Result`
+}
+
+```
 	
 	
 ---
@@ -169,9 +193,8 @@ fn main () {
 	// Restituisce a monitor "999.9"
 }
 ```
-
 	
----
+	
 ---
 ## **§ Metodi Standard**
 	
@@ -263,7 +286,8 @@ println!("{:?}",from_trait_status);
 NoResponse(9)
 NoResponse(3)
 ```
-
+	
+	
 ---
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
