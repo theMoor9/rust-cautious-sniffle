@@ -1,5 +1,6 @@
 ## **Rust CheatSheet - Semplificare la Gestione Dati**
 ##### **Table of Contents**
+###### [§ Type Alias](#-Type-Alias-1) 🥸
 ###### [§ Closures](#-Closures-1) ⚡
 - [Basics](#Basics)
 ###### [§ Map Combinator](#-Map-Combinator-1) 🗺️
@@ -21,13 +22,13 @@
 ###### [§ Range](#-Range-1) 📏
 - [Numeri](#Numeri)
 - [Lettere](#Lettere)
-##### [§ Advanced Control Expressions](#-Advanced-Control_Expressions-1) 🛂
-- [While let](#While-let)
-- [If Let Else](#If-Let-Else)
 ###### [§ Modules](#-Modules-1) 🧩
 ###### [§ Project Structure](#-Project-Structure-1) 🧱
 - [Cargo](#Cargo)
 - [External Crates - Libraries](#External-Crates---Libraries)
+---
+## **§ Type Alias**
+
 ---
 ## **§ Closures**
 	
@@ -473,73 +474,6 @@ fn main () {
 }
 ```
 -  **Output**: `a,b,c,f,e,f,g,j,k,`
-	
-	
----
-## **§ Advanced Control Expressions**
-	
-**Descrizione**: Seguono espressioni selettive in merito alla gestione dei risultati rispetto i controlli sulle variabili.
-	
-### If Let Else
-	
-**Descrizione**: Volendo considerare lo statement di controllo `match` durante i controlli sulle `Option` potrebbe non interessarci effettuare controlli per dare soluzioni su `Option None` si utilizza quindi la serie di comandi If Let Else
-**Sintassi**: `if let Some(_) = { ... } else { ... }`
-**Tags**: #if 
-**Esempio**:
-	
-```Rust 
-let place = Some("Vallombrosa");
-match place {
-	Some(p) => println!("You are in: {}", p), // Output: You are in: Vallombrosa
-	None => println!("I really dont't care where you are")
-}
-
-if let Some(p) = place {
-	println!("You are in: {}", p); // Output: You are in: Vallombrosa
-}
-
-// E' possibile inoltre replicare la struttuara match aggiungendo un else
-
-if let Some(p) = place {
-	println!("You are in: {}", p); // Output: You are in: Vallombrosa
-} else {
-	println!("I really dont't care where you are");
-}
-```
-	
-### While Let
-	
-**Descrizione**: Proprio come `if let` questo comando permette di ciclare rispetto il valore `Some(_)` una variabile `Option`
-**Sintassi**: `while let`
-**Tags**: #Loops 
-**Esempio**:
-	
-```Rust
-let mut place: Option<&str> = Some("Home") ;
-
-while let Some("Home") = place {
-	print!("Relax");
-	data = None; // Exit loop
-}
-
-let animals: [Result<&str, &str>; 5] = [
-	Ok("Cat"),
-	Ok("Dog"),
-	Ok("Shark"),
-	Err("No animal in queue"),
-	Err("No animal in queue"),
-	Err("No animal in queue")
-] ;
-
-let mut veterinary_inspection = animals.iter() ;
-
-// Cicla finche è disponibile un valore Some(_)
-while let Some(Ok(_)) = veterinary_inspection.next() {
-	print!("Visited");
-}
-
-```
--  **Output**: `Relax Visited Visited Visited`
 	
 	
 ---
