@@ -347,7 +347,7 @@ match something {
 	
 ### If Guards
 	
-- **Definizione**: E' possibile creare strutture complesse di controllo dentro i `match` statements legando un informazione specifica, tramite gli `if` statements
+- **Definizione**: E' possibile creare strutture complesse di controllo dentro i `match` statements, tramite gli `if` statements.
 - **Uso**: E' importante per permettere controlli rispetto a molteplici variabili in relazione alla variabile che vogliamo controllare.
 - **Tags**: #match  #Advanced #if 
 - **Esempio**:
@@ -381,6 +381,46 @@ match something {
 ```sh
 YES
 MAYBE
+```
+	
+### Slice Guards
+	
+- **Definizione**: E' possibile analizzare porzioni di dati con lo *slicing*.
+- **Uso**: Si può così eseguire controlli su specifici elementi dello *slice*.
+- **Sintassi**: `match vector.as_slice() {}`
+- **Tags**: #match  #Advanced #Slices 
+- **Esempio**:
+	
+```Rust
+let chart = vec![1,2,3,4,5,6,7,8,9,10]
+match chart.as_slice() {
+	[fist_plc, .., third_plc,..] => println!("{}st and {}rd",fist_plc,third_plc ),
+	[alone] => println("Only one element: {}", alone),
+	[] => println!("Empty slice"),
+}
+```
+- **Output**: `1st and 3rd`
+	
+### Combined matching
+	
+- **Definizione**: E' possibile combinare l'uso delle nozioni di matching.
+- **Tags**: #match  #Advanced 
+- **Esempio**:
+	
+```Rust
+let chart = vec![1,2,3,4,5,6]
+
+match chart.as_slice() {
+	[podium @ 0..=2 , losers_for_glory @ ..] => {
+		// `podium` è sempre uno slice tra 1 e 3
+		// `losers_for_glory` è tutto il resto
+	},
+	[signle] if signle == &5 || signle == &6 => {
+		// Solo se chart fosse un unico elemento tra il 5 o il 6
+	},
+	[..] => println!("I don't care about previously unmatched content"),
+	[] => println!("Empty"),
+}
 ```
 	
 	
