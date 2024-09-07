@@ -146,7 +146,7 @@ println!("The Third Number Is {}!", numbers.2) ; // Selezione posizionale .3
 	
 ### Arrays
     
-- **Definizione**: Una collezione di elementi  dalla lunghezza e il tipo prefissati.
+- **Definizione**: Una collezione di elementi  dalla lunghezza e il tipo immutabili.
 - **Uso**: Immagazzinare dei dati fissi come i giorni della settimana.
 - **Tags**: #Arrays 
 - **Esempio**:
@@ -157,6 +157,14 @@ let first_day = days[0];
 println!("First day: {}", first_day);
 ```
 - **Output**: `First day: Mon`
+	
+##### Approfondimento Avanzato
+	
+```Rust
+fn function(array: [i8;9]) {} // chiamata in funzione
+fn function(array: & [i8]) {} // Borrowing
+fn function(array: &mut [i8]) {} // Modifica array tramite il borrowing mutabile
+```
 	
 	
 ---
@@ -558,6 +566,17 @@ let slice: &[i32] = &array[1..3];
 println!("Slice: {:?}", slice);
 ```
 - **Output**: `Slice: [2, 3]`
+	
+##### Approfondimento Avanzato
+	
+- **Descrizione**: E' possibile creare slice da vettori.
+- **Esempio**:
+	
+```Rust
+let letters = vec!["a","b","c","d","e","f"]
+let chars = &letters[0..=3]
+```
+- **Output**: a, b, c
 	
 ### String Slice  
 	

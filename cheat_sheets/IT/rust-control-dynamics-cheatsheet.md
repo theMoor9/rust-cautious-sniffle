@@ -322,7 +322,6 @@ fn main () {
 	search_by_hash(third_block) ; 
 }
 ```
-	
 - **Output**: Found!
 	
 ### Binding Guards
@@ -344,7 +343,6 @@ match something {
 	EnumName::Variant(n @ 4..=8) => println!("Range 4 to 8")
 }
 ```
-	
 - **Output**: `Variant 2`
 	
 ### If Guards
@@ -379,7 +377,6 @@ match something {
 	StructName{.. , field2} if (number == 9 && field2 == 9) => println!("MAYBE"),
 }
 ```
-	
 - **Output**: 
 ```sh
 YES
@@ -549,7 +546,6 @@ Considerato che `calculate_length` non elimina la
 variabile che elabora alla fine del suo contesto
 */
 ```
-	
 - **Output**: `The length of the name Kenneth is 7
 	
 	>Non è possibile utilizzare i _Riferimenti_ `&` nei tipi complessi come `struct` ed `enum` perché questi sono obbligati alla pulizia della memoria occupata alla fine del loro scopo. Poiché i _Riferimenti_ non sono di loro proprietà, il compilatore genera un errore per garantire l'integrità del codice.
@@ -754,7 +750,6 @@ let error = ErrorGenotype::Connection(NetworkError::TimeOut);
 println!("{}", error); // Errore di connection
 println!("{}", error?); // Errore di propagato di NetworkError::TimeOut
 ```
-	
 - **Output**: 
 	
 ```sh 
