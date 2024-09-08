@@ -166,7 +166,22 @@ use crate::auth::validate_credentials; // Dove `auth` è un modulo nel progetto
 ---
 ## **§ Threads**
 	
+- **Descrizione**: I **thread** sono esecuzioni parallele del programma principale. In Rust, un thread viene rappresentato da un tipo specifico: `JoinHandle<Type>`.
+- **Uso**: I thread sono utili per eseguire task secondarie mentre il programma principale continua la sua esecuzione. Una variabile di tipo `JoinHandle` agisce come un "handle" (maniglia) che permette di controllare e sincronizzare il thread, attendendo il suo completamento tramite il metodo `.join()`.
+- **Sintassi**: `thread::spawn()`
+- **Tags**: #Threads
+- **Esempio**:
+	
+```Rust
+use std::thread;
 
+let handle_variable = thread::spawn(move |args| {
+	// Codice eseguito nel thread 
+	println!("Esecuzione parallela in un thread");
+});
+
+handle_variable.join(); // .join() ritorna un result
+```
 	
 	
 ---
