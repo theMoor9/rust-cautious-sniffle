@@ -4,6 +4,7 @@
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1) ↩️
 - [Propagazione Errore](#Propagazione-Errore)
 ###### [§ Closure Argument](#-Closure-Argument-1)
+- [Dynamic Closures Arguments](#Dynamic-Closures-Arguments)
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
@@ -104,7 +105,7 @@ fn main() {
 ```
 - **Output**: `81`
 	
-### Dynamic Closures
+### Dynamic Closures Arguments
 	
 - **Descrizione**: E' possibile passare nella firma di una funzione più di una *closure* consentendo la flessibilità di accettare diversi comportamenti dinamici.
 - **Uso**: Utile a passare alla funzione più modelli da eseguire nel suo corpo.

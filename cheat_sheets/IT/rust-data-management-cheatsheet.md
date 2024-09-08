@@ -3,7 +3,7 @@
 ###### [§ Type Alias](#-Type-Alias-1) 🥸
 - [Lifetimes](#Lifetimes)
 ###### [§ Closures](#-Closures-1) ⚡
-- [Basics](#Basics)
+- [Move](#Move)
 ###### [§ Map Combinator](#-Map-Combinator-1) 🗺️
 - [Collect](#Collect)
 ###### [§ Option Combinator Pattern](#-Option-Combinator-Pattern-1)❓
@@ -64,8 +64,9 @@ type GenericItem<T> = Vec<Item<T>>
 	
 - **Descrizione**: Le closure sono Funzioni semplici senza identità atte a piccole modifiche. Per differenziare le closures da le funzioni classiche si usa i pipes `| ... |` come utilizziamo le parentesi tonde `( ... )` . Possono inoltre auto definire i loro parametri della loro firma nella forma breve.
 - **Proprietà**: Owner
-- **Tags**: #Closures #Ownership 
+- **Tags**: #Closures
 - **Sintassi**: 
+	
 ```Rust
 // Firma Estesa
 let closure_name = | a: Type, b: Type | -> Return_Type { ... } ;
@@ -73,10 +74,8 @@ let closure_name = | a: Type, b: Type | -> Return_Type { ... } ;
 let closure_name = | a , b | ... ;
 ```
 	
-### Basics
-	
 - **Uso**: Si può evitare grosse parti di sintassi utilizzando la forma breve della closure. E possiamo utilizzarle in maniera strategica in situazioni dinamiche, come potrai vedere nelle sezioni (§) di seguito.
-- **Esempi**:
+- **Esempio**:
 	
 ```Rust
 fn main () {
@@ -91,6 +90,28 @@ fn main () {
 }
 ```
 - **Output**: `1`
+	
+### Move
+	
+- **Descrizione**: La *Ownership*  In una closure serve trasferirla, perché di default prendono solo i **riferimenti** alle variabili esterne.
+- **Uso**: Il `move` keyword è necessario quando la closure cattura variabili al di fuori del suo scope, trasferendo la proprietà di queste variabili alla closure stessa.
+- **Sintassi**: `move |args| { ... }`
+- **Esempio**:
+	
+```Rust
+fn main () {
+	// Da passare in proprietà a `math`
+	let sub = 1005;
+	// Firma breve e corpo esteso
+	let math = move |a,b| {
+		a + b - sub
+	};
+	let x = math(3,3);
+
+	println!("{}",x)
+}
+```
+- **Output**: `-999`
 	
 	
 ---
