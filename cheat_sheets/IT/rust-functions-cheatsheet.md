@@ -3,8 +3,8 @@
 ###### [§ Signature](#-Signature-1) ✒️
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1) ↩️
 - [Propagazione Errore](#Propagazione-Errore)
-###### [§ Closure Argument](#-Closure-Argument-1)
-- [Dynamic Closures Arguments](#Dynamic-Closures-Arguments)
+###### [§ Closures](#-Closures-1) ⚡
+- [Move](#Move)
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
@@ -83,52 +83,58 @@ fn mother() -> Result<(), Error> {
 	
 	
 ---
-## **§ Closure Argument**
+## **§ Closures**
 	
-- **Descrizione**: È possibile passare una _closure_ come parametro di una funzione in Rust. Poiché le closure possono catturare variabili dall'ambiente e non hanno una dimensione fissa a tempo di compilazione, devono essere inserite all'interno di un `Box` per gestire la loro allocazione.
-- **Uso**: Utile per passare alla funzione un modello da eseguire nel suo corpo, consentendo di definire un comportamento flessibile.
-- **Sintassi**: `Box<Fn(Type,Type, ... ) -> Type>`
-- **Tags**: #Functions #Closures #Boxing #Heap 
+- **Descrizione**: Le closure sono Funzioni semplici senza identità atte a piccole modifiche. Per differenziare le closures da le funzioni classiche si usa i pipes `| ... |` come utilizziamo le parentesi tonde `( ... )` . Possono inoltre auto definire i loro parametri della loro firma nella forma breve.
+- **Proprietà**: Owner
+- **Tags**: #Closures
+- **Sintassi**: 
+	
+```Rust
+// Firma Estesa
+let closure_name = | a: Type, b: Type | -> Return_Type { ... } ;
+// Firma Breve
+let closure_name = | a , b | ... ;
+```
+	
+- **Uso**: Si può evitare grosse parti di sintassi utilizzando la forma breve della closure. E possiamo utilizzarle in maniera strategica in situazioni dinamiche, come potrai vedere nelle sezioni (§) di seguito.
 - **Esempio**:
 	
 ```Rust
-fn mathematics( a: i32, b: i32, operation: Box<Fn(i32,i32)-> i32> ) -> i32 {
-	a + b * opreration(a,b)	
-}
-	
-fn main() {
-	let add_closure = |a, b| a + b;
-	let add_boxed: Box<_> = Box::new(add_closure);
-	
-	println!("{}", mathematics(3,6,add_boxed))
+fn main () {
+	// Firma e corpo esteso
+	let sub = |a: i64, b: i64| -> i64 { a + b };
+	// Firma e corpo breve
+	let add = |a,b| a + b;
+	let x = add(1,1);
+	let y = sub(x,1);
+
+	println!("{}",y)
 }
 ```
-- **Output**: `81`
+- **Output**: `1`
 	
-### Dynamic Closures Arguments
+### Move
 	
-- **Descrizione**: E' possibile passare nella firma di una funzione più di una *closure* consentendo la flessibilità di accettare diversi comportamenti dinamici.
-- **Uso**: Utile a passare alla funzione più modelli da eseguire nel suo corpo.
-- **Sintassi**: `dyn`
-- **Tags**: #Functions #Closures #Boxing #Heap
+- **Descrizione**: La *Ownership*  In una closure serve trasferirla, perché di default prendono solo i **riferimenti** alle variabili esterne.
+- **Uso**: Il `move` keyword è necessario quando la closure cattura variabili al di fuori del suo scope, trasferendo la proprietà di queste variabili alla closure stessa.
+- **Sintassi**: `move |args| { ... }`
 - **Esempio**:
 	
 ```Rust
-fn mathematics( a: i32, b: i32, operation: Box< dyn Fn(i32,i32)-> i32> ) -> i32 {
-	a + b * opreration(a,b)	
-}
-	
-fn main() {
-	let add_closure = |a, b| a + b;
-	let sub_closure = |a, b| a - b;
-	let add_boxed: Box<_> = Box::new(add_closure);
-	let sub_closure: Box<_> = Box::new(sub_closure);
-	
-	println!("{},", mathematics(3,6,add_boxed))
-	print!(" {}", mathematics(3,6,sub_closure))
+fn main () {
+	// Da passare in proprietà a `math`
+	let sub = 1005;
+	// Firma breve e corpo esteso
+	let math = move |a,b| {
+		a + b - sub
+	};
+	let x = math(3,3);
+
+	println!("{}",x)
 }
 ```
-- **Output**: `81, 27`
+- **Output**: `-999`
 	
 	
 ---
@@ -379,7 +385,7 @@ NoResponse(3)
 >E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
-[Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](Rust/IT/rust_control_flow_cheatsheet.md)
 [Rust CheatSheet - Semplificare la Gestione Dati](rust-data-management-cheatsheet.md)
 	
 ---

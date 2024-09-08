@@ -1,5 +1,4 @@
 # **Rust CheatSheet - Elementi base**
-
 ##### **Table of Contents**
 ###### [§ Basics](#-Basics-1) 🛒
 - [Istanziazione Variabile](#Istanziazione-Variabile)
@@ -194,7 +193,7 @@
 	   ```     
 	
 ---
-## § Standard Library API Docs
+## **§ Standard Library API Docs**
 	
 Come spesso accade, i linguaggi possiedono una vasta gamma di metodi e funzioni necessarie ad ampliare la versatilità delle capacità coding. Gli API Docs sono una risorsa indispensabile per ciò.
 ##### Procedura di apertura API Docs e ricerca

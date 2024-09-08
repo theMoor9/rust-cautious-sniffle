@@ -1,9 +1,18 @@
 ## **Rust CheatSheet - Semplificare la Gestione Dati**
 ##### **Table of Contents**
+###### [§ Ownership](#-Ownership-1) 🪪
+###### [§ References](#-References-1) 🏷️
+- [Trait Objects](#Trait-Objects)
+###### [§ Lifetimes](#-Lifetimes-1) ⏱️
+- [Funzioni](#Funzioni)
 ###### [§ Type Alias](#-Type-Alias-1) 🥸
 - [Lifetimes](#Lifetimes)
-###### [§ Closures](#-Closures-1) ⚡
-- [Move](#Move)
+###### [§ Type State](#-Type-State-1)
+###### [§ Custom Errors](§-Custom-Errors-1) ⚠️
+- [Display](#Display)
+- [Error Crate](#Error-Crate)
+###### [§ Closure Argument](#-Closure-Argument-1) 🌠
+- [Dynamic Closures Arguments](#Dynamic-Closures-Arguments)
 ###### [§ Map Combinator](#-Map-Combinator-1) 🗺️
 - [Collect](#Collect)
 ###### [§ Option Combinator Pattern](#-Option-Combinator-Pattern-1)❓
@@ -23,10 +32,172 @@
 ###### [§ Range](#-Range-1) 📏
 - [Numeri](#Numeri)
 - [Lettere](#Lettere)
-###### [§ Modules](#-Modules-1) 🧩
-###### [§ Project Structure](#-Project-Structure-1) 🧱
-- [Cargo](#Cargo)
-- [External Crates - Libraries](#External-Crates---Libraries)
+	
+---
+## **§ Ownership**
+	
+La proprietà di una variabile è unica e fine a se stessa fuori da una funzione
+    
+- **Definizione**: La *Responsabilità* è un attributo atto alla gestione della memoria che garantisce la sicurezza dei dati.
+- **Caso d' Uso**: Assicurazione su conflitti di concorrenza e sicurezza. I responsabili della proprietà sono: Funzioni, Closures, Structs, Enums and Scopes.
+- **Tags**: #Ownership #Types #Strings #Management
+- Esempio:
+	
+	```Rust
+	let s = String::from("hello"); 
+	let s1 = s; // s è spostato in s1, s non è più disponibile
+	// println!("{}", s); // Questo causerebbe errore
+
+
+	fn main () {
+		let s2 = 10;
+	}
+	// println!("{}", s2) // Questo causerebbe errore
+	```
+	
+	
+	>Se la variabile si trova all interno di una funzione, essa prende la *Responsabilità* fino alla fine del suo blocco. Alla fine di essa il dato variabile viene eliminato.
+		
+	
+```Rust
+struct Customer {
+	name: &str,
+	age: u8,
+	email: &str,
+}
+
+fn register_customer (i : &Customer) {
+	println!("{} succesfully registered!", i.name);
+}
+fn display_age (i: &Customer) {
+	println!("name: {} age: {}", i.name i.age)
+}
+
+fn main () {
+	let me = Customer{
+		name: "Kenneth"
+		age: 27
+		email: "kennethhereiam@mydomain.com"
+	}
+	register_customer(&me)
+}
+```
+	
+	
+---
+## **§ References**
+	
+- **Definizione**: Attributo che permette di fare *riferimento* ad una variabile *senza* prenderne la *Responsabilità*
+- **Sintassi**: `&`
+- **Uso**: Prestito di dati *senza* vincoli di *Responsabilità*.
+- **Tags**: #References #Types #Strings #Management #Borrowing
+- **Esempio**:
+	
+```Rust
+// Si aggiunge la refernza `&` nell'intestazione
+fn calculate_length(given_name: &String) -> usize {
+	given_name.len() 
+}
+
+let name = String::from("Kenneth"); 
+
+// Si aggiunge la referenza `&` quando si chiama la funzione
+let len = calculate_length(&name); 
+
+println!("The length of the name '{}' is {}", name, len);  
+/*
+Questo è possibile per la presenza della referenza `&`
+Considerato che `calculate_length` non elimina la 
+variabile che elabora alla fine del suo contesto
+*/
+```
+- **Output**: `The length of the name Kenneth is 7
+	
+	>Non è possibile utilizzare i _Riferimenti_ `&` nei tipi complessi come `struct` ed `enum` perché questi sono obbligati alla pulizia della memoria occupata alla fine del loro scopo. Poiché i _Riferimenti_ non sono di loro proprietà, il compilatore genera un errore per garantire l'integrità del codice.
+	>
+	>Per ovviare a questo problema, sono necessarie le annotazioni di durata ***lifetimes*** oppure, in alternativa, si può usare la `struct` di default di Rust `String`.
+	
+### Trait Object
+	
+- **Definizione**: Gli _oggetti trait_ (`dyn Trait`) usano il sistema di referenze `&` per operare in modo dinamico. A differenza dei tipi statici, permettono di gestire diversi tipi che implementano lo stesso trait a runtime, con un piccolo costo in termini di velocità e memoria.
+
+>	Quindi un *Trait Object* è l'elemento che ti permette di gestire il codice in runtime.
+
+- **Caso d' Uso**: Le collezioni normalmente contengono tipi statici e definiti al momento della compilazione. Con gli _oggetti trait_, puoi creare collezioni che accettano più tipi diversi, come plugin o estensioni, che possono essere gestiti a runtime. Questo è utile in scenari come videogiochi, sistemi di plugin o quando hai bisogno di modificare dinamicamente il comportamento in base al tipo.
+- **Sintassi**: `&dyn Trait`
+- **Tags**: #Management #Traits #References 
+- Esempio:
+	
+```Rust
+// Metodo strutturato
+let item = StructItem;
+let item_trait_obj: &dyn Trait = &item;
+
+// Metodo diretto
+let struct_trait_obj: &dyn Trait = &StructItem;
+
+// Medodo Error-Safe al costo di ingombro e velocità
+let boxed_trait_obj: Box<dyn Trait> = Box::new(StructItem);
+```
+	
+	
+---
+## **§ Lifetimes**
+	
+- **Definizione**: Secondo il criterio di ownership i tipi che possiedono la proprietà di un certo dato hanno la responsabilità di terminarlo. Per evitare che esso venga terminato si usa la proprietà *lifetime* che ne garantisce l'estensione
+- **Uso**: Estendere l'utilità di un elemento nel codice.
+- **Tags**: #Management #Lifetimes #Borrowing 
+- **Sintassi**: 
+	
+	```Rust
+	struct StructName<'a>{
+		field: &'a String 
+	}
+	
+	struct StructName<'static>{
+		field: &'static String 
+	}
+	```
+	
+	`'a`,`'b`,`'c`...`'z` sono tick e indicano che esiste ownership da un altra parte nel codice
+	`field: &'a String` si traduce in: 
+		il campo `field` aspetta un prestito `&` con ownership esterna `'a` da proprietario `String`
+    `'static` indica che la variabile ha durata uguale al programma stesso.
+
+- **Esempio**:
+    
+    ```Rust
+    
+	struct StructName < 'a,'b,'c,'static >{
+	    field1: &'a EnumName, // Durata di EnumName
+	    field2: &'b String, // Durata di string
+	    field3: &'c Struct2Name, // Durata di Struct2Name
+	    field4: &'static Enum2Name, // Durata dello script
+	    field5: u8 //Durata di StructName
+    }
+	
+	// Chiamata 
+	let new_variable = StructName{
+		field1: &EnumName::Version,
+		...
+	}
+    ```
+	
+> Una volta concluso l' uso di StructName le altre variabili rimarranno disponibili visto che sono riferimenti il field5 no. 
+> 
+> **Le strutture che prendono in prestito inoltre devono essere sempre create dopo chi presta la variabile e il suo contenuto e distrutte prima che il proprietario venga terminato**
+	
+### Funzioni
+	
+- **Descrizione**: Se si vuole ritornare un campo di una struttura come referenza tramite funzione occorre implementare il *lifetime*. Non è una pratica comune ma è possibile farlo nel caso sia necessario.
+- **Tags**: #Functions #Lifetimes #Borrowing 
+- **Esempio**:
+	
+```Rust
+fn function_name<'a>(arg: &'a DataType) -> &'a DataType {/*Corpo di mille balene*/}
+```
+	
+	
 ---
 ## **§ Type Alias**
 	
@@ -60,58 +231,261 @@ type GenericItem<T> = Vec<Item<T>>
 	
 	
 ---
-## **§ Closures**
+## **§ Type State**
 	
-- **Descrizione**: Le closure sono Funzioni semplici senza identità atte a piccole modifiche. Per differenziare le closures da le funzioni classiche si usa i pipes `| ... |` come utilizziamo le parentesi tonde `( ... )` . Possono inoltre auto definire i loro parametri della loro firma nella forma breve.
-- **Proprietà**: Owner
-- **Tags**: #Closures
-- **Sintassi**: 
-	
-```Rust
-// Firma Estesa
-let closure_name = | a: Type, b: Type | -> Return_Type { ... } ;
-// Firma Breve
-let closure_name = | a , b | ... ;
-```
-	
-- **Uso**: Si può evitare grosse parti di sintassi utilizzando la forma breve della closure. E possiamo utilizzarle in maniera strategica in situazioni dinamiche, come potrai vedere nelle sezioni (§) di seguito.
+- **Definizione**: E' possibile utilizzare tipi personalizzati per creare degli stati strutture complesse aventi più forme, un po come le varianti di un enumerazione.
+- **Uso**: Rappresentare uno stato in campi o variabili. 
+- **Tags**: #Types #Management #Custom
 - **Esempio**:
 	
 ```Rust
-fn main () {
-	// Firma e corpo esteso
-	let sub = |a: i64, b: i64| -> i64 { a + b };
-	// Firma e corpo breve
-	let add = |a,b| a + b;
-	let x = add(1,1);
-	let y = sub(x,1);
+struct Person<State>{
+	name: String,
+	condition: State,
+}
+struct Employed{
+	company: String,
+}
 
-	println!("{}",y)
+impl Person<Employed>{
+	fn for_who(n: String, forw: String) -> Self { 
+		Self { 
+			name: n, 
+			condition: Employed { company:forw }, 
+		} 
+	} 
+}
+
+fn main(){
+	// Crea una persona disoccupata con for_who,
+	let mut me = Person::for_who("Kenneth".to_owned(), "For you".to_owned());
+	
 }
 ```
-- **Output**: `1`
 	
-### Move
+##### Approfondimento Avanzato
 	
-- **Descrizione**: La *Ownership*  In una closure serve trasferirla, perché di default prendono solo i **riferimenti** alle variabili esterne.
-- **Uso**: Il `move` keyword è necessario quando la closure cattura variabili al di fuori del suo scope, trasferendo la proprietà di queste variabili alla closure stessa.
-- **Sintassi**: `move |args| { ... }`
+```Rust
+struct Person<State>{
+	name: String,
+	condition: State,
+}
+struct Employed{
+	company: String,
+}
+struct Unemployed{
+	from: String,
+}
+
+impl Person<Unemployed> { 
+	fn from_when(n: String, f: String) -> Self { 
+		Self { 
+			name: n, 
+			condition: Unemployed { from: f }, 
+		} 
+	} 
+}
+impl Person<Employed>{
+	fn for_who(n: String, forw: String) -> Self { 
+		Self { 
+			name: n,  
+			condition: Employed { company:forw }, 
+		} 
+	} 
+}
+impl<State> Person<State> {
+	fn change<NewState>(self, state:NewState) -> Person<NewState> {
+		Person {
+			name: self.name,
+			condition: state
+		}
+	}
+}
+
+fn main(){
+	// Crea una persona disoccupata con from When,
+	let mut me = Person::from_when("Kenneth".to_owned(), "A year".to_owned());
+	
+	// Modifica me creando una nuova persona da for_who
+	let new_year_new_me = me.change(
+		Person::for_who("Kenneth".to_owned(), "For you".to_owned())
+	);
+}
+```
+	
+	
+---
+## **§ Custom Errors**
+
+- **Definizione**: Gli errori personalizzati sono costruiti attraverso l'uso delle enumerazioni, devono implementare con `derive` il trait di `Debug`, `Error` e `Display`.
+- **Uso**: Garantire una comprensione migliore delle eventuali problematiche che potrebbero verificarsi nel codice raggruppandoli per tipo. Preferibile rispetto ai messaggi string, con lo statement `match` i custom 
+- **Tags**: #Management #Error #Traits #Display #Enums 
+- **Esempio**: 
+	
+```Rust
+#[derive(Debug)]
+enum ErrorGenotype {
+	NetworkError,
+	NotAthorized(i32),
+	WrongInput,
+}
+use::std::Error; // Dalla libreria standard importiamo il trait Error
+impl Error for ErrorGenotype {} //Vuoto
+// L'implementazione è opzionale visto che ErrorGenotype lo abbiamo già
+
+fn function() -> Result<(),ErrorGenotype> {
+	//body
+	Err(ErrorGenotype::WrongInput)
+}
+```
+	
+### Display
+	
+- **Definizione**: L'Implementazione opzionale di `Display` tramite la libreria `std`. L'intera sintassi è di default, l'unica parte dell' implementazione da modificare è lo sviluppo del `match` interno. 
+- **Uso**: L' implementazione `Display` serve per riportare i messaggi di errore personalizzati a a livello utente. 
+- **Tags**: #Display 
 - **Esempio**:
 	
 ```Rust
-fn main () {
-	// Da passare in proprietà a `math`
-	let sub = 1005;
-	// Firma breve e corpo esteso
-	let math = move |a,b| {
-		a + b - sub
-	};
-	let x = math(3,3);
-
-	println!("{}",x)
+use std::fmt; // Format
+impl fmt::Display for ErrorGenotype {
+	fn fmt(&self, f: &mut fmt::Formatter -> fmt::Result {
+		match self {
+			Self::NetworkError => write!(f, "Network error check connection"),
+			Self::NotAuthorized(code) => {
+				match code {
+					1 => write!(f, "You don't have the necessary permissions"),
+					2 => write!(f, "You need to sign in first"),
+				}
+			},
+			Self::WrongInput => write!(f, "Type better!"),
+		}
+	}
 }
 ```
-- **Output**: `-999`
+	
+### Error Crate
+	
+- **Definizione**: Questo crate permette una versione della gestione degli errori meno macchinosa generando i messaggi in maniera diretta tramite le annotazioni al posto della creazione del `Display` trait.
+- **Tags**: #Crates #Error #Enums 
+- **Uso**:
+	
+```Rust
+// In cargo.toml
+[Dependencies]
+thiserror = "1.0"
+```
+	
+```sh
+// In terminal per utima versione garantita
+cargo install thiserror
+```
+	
+- **Esempio**:
+	
+```Rust
+use thiserror::Error
+
+#[derive(Debug,Error)]
+enum ErrorGenotype {
+	#[error("Network error check connection")]
+	NetworkError,
+	#[error("Not authorized: {0}")] 
+	NotAthorized(i32), // {0} indica la posizione della tupla di NotAuthorized
+	#[error("Type better!")]
+	WrongInput,
+}
+```
+	
+>In questo modo abbiamo un sistema veloce ma meno personalizzato per la gestione degli errori.
+	
+###### *Approfondimento Avanzato*
+- **Descrizione**:  E' possibile innestare le enumerazioni per ottenere versioni specifiche dell'errore.
+- **Uso**: Permettere la propagazione con `?` .
+- **Tags**: #Crates #Error  #Enums #Advanced 
+- **Esempio**:
+	
+
+```Rust
+use thiserror::Error
+
+#[derive(Debug,Error)]
+enum NetworkError {
+	#[error("Connection timed out")]
+	TimeOut
+	#[error("Unreachable")]
+	Unreachable
+}
+
+
+#[derive(Debug,Error)]
+enum ErrorGenotype {
+	#[error("Network error check connection")]
+	Connection(#[from]NetworkError),
+	#[error("Not authorized: {0}")] 
+	NotAthorized(i32), // {0} indica la posizione della tupla di NotAuthorized
+	#[error("Type better!")]
+	WrongInput,
+}
+let error = ErrorGenotype::Connection(NetworkError::TimeOut);
+println!("{}", error); // Errore di connection
+println!("{}", error?); // Errore di propagato di NetworkError::TimeOut
+```
+- **Output**: 
+	
+```sh 
+Network error check connection
+Connection timed out
+```
+	
+	
+---
+## **§ Closure Argument**
+	
+- **Descrizione**: È possibile passare una _closure_ come parametro di una funzione in Rust. Poiché le closure possono catturare variabili dall'ambiente e non hanno una dimensione fissa a tempo di compilazione, devono essere inserite all'interno di un `Box` per gestire la loro allocazione.
+- **Uso**: Utile per passare alla funzione un modello da eseguire nel suo corpo, consentendo di definire un comportamento flessibile.
+- **Sintassi**: `Box<Fn(Type,Type, ... ) -> Type>`
+- **Tags**: #Functions #Closures #Boxing #Heap 
+- **Esempio**:
+	
+```Rust
+fn mathematics( a: i32, b: i32, operation: Box<Fn(i32,i32)-> i32> ) -> i32 {
+	a + b * opreration(a,b)	
+}
+	
+fn main() {
+	let add_closure = |a, b| a + b;
+	let add_boxed: Box<_> = Box::new(add_closure);
+	
+	println!("{}", mathematics(3,6,add_boxed))
+}
+```
+- **Output**: `81`
+	
+### Dynamic Closures Arguments
+	
+- **Descrizione**: E' possibile passare nella firma di una funzione più di una *closure* consentendo la flessibilità di accettare diversi comportamenti dinamici.
+- **Uso**: Utile a passare alla funzione più modelli da eseguire nel suo corpo.
+- **Sintassi**: `dyn`
+- **Tags**: #Functions #Closures #Boxing #Heap
+- **Esempio**:
+	
+```Rust
+fn mathematics( a: i32, b: i32, operation: Box< dyn Fn(i32,i32)-> i32> ) -> i32 {
+	a + b * opreration(a,b)	
+}
+	
+fn main() {
+	let add_closure = |a, b| a + b;
+	let sub_closure = |a, b| a - b;
+	let add_boxed: Box<_> = Box::new(add_closure);
+	let sub_closure: Box<_> = Box::new(sub_closure);
+	
+	println!("{},", mathematics(3,6,add_boxed))
+	print!(" {}", mathematics(3,6,sub_closure))
+}
+```
+- **Output**: `81, 27`
 	
 	
 ---
@@ -525,162 +899,6 @@ fn main () {
 }
 ```
 -  **Output**: `a,b,c,f,e,f,g,j,k,`
-	
-	
----
-## **§ Modules**
-	
-**Descrizione**: I moduli in Rust sono utilizzati per raggruppare funzioni, definizioni di tipo, implementazioni e altri moduli. Funzionano come spazi dei nomi e come unità di organizzazione del codice, consentendo la privacy del codice e la riutilizzabilità. Ogni modulo può essere considerato come un file separato.
-**Sintassi**: `mod nome_modulo {_}`, `use nome_modulo::_`
-**Tags**:  #Modules #Functions 
-**Esempio**:
-	
-```Rust
-mod connection {
-	pub fn init (_) {_}
-	pub fn abort (_) {_}
-	fn check (_) {_} // Funzione privata
-}
-mod order {
-	pub fn sell (amount) {_}
-	pub fn buy (amount) {_}
-}
-
-fn main () {
-	// Import selettivo del modulo per l'utilizzo in funzione
-	use connection::init;
-	init();
-	connection::abort();
-	// check() non è possbile usarla perchè è privata
-	
-	// Import totale del modulo per l'utilizzo in funzione
-	use order::*
-	buy(10);
-	sell(9);
-}
-```
-	
-	
----
-## § Project Structure
-	
-- **Definizione**:
-	
-```
-progetto_rust/
-│
-├── Cargo.toml   # File cgf Cargo, dipendenze e le impostazioni del progetto
-├── Cargo.lock   # File Cargo per tracciare le versioni esatte delle dipendenze
-│
-├── src/   # Directory contenente i sorgenti del progetto
-│   ├── lib/      # Directory contenente elementi di supporto alla funzionalità
-│   │    └── mod.rs        # File di contenimento dei moduli esterni
-│   ├── main.rs            # File punto di ingresso dell'applicazione
-│   └── lib.rs             # File punto di ingresso della libreria 
-│
-├── tests/                    # Directory per i test di integrazione
-│   └── integration_test.rs   # Esempio di test di integrazione
-│
-├── examples/              # Esempi di codice che dimostrano l'uso della libreria
-│   └── simple.rs          # Esempio semplice
-│
-├── benches/          # Directory Benchmark 
-│   └── performance.rs     # File di benchmark per valutazione di parti del codice
-│
-└── target/                # Directory generata dove Cargo compila il progetto
-│
-└── .gitignore             # File di configurazione Git
-```
-	
-### Cargo
-	
-- **Descrizione**: Cargo è il sistema di setup delle dependencies, metadata, configurazione build, gestione del workspace e features opzionali.  E' il cuore della della configurazione dei progetti.
-- **Tags**: #Cargo
-- Esempio:
-	
-```sh
-# Nella cartella progetto
-cargo init .
-
-# In posizione relativa
-cargo init path
-```
-	
-```sh
-# Nel terminal il link che porta alle possibili implementazioni del file .toml
-
-note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-```
-	
-##### .toml
-	
-- **Descrizione**: File di configurazione degli elementi di cargo.
-- **Uso**: All' URL *crates.io* si trovano i crates importabili nella sezione `[dependencies]` come lista dei requisiti. 
-
-```sh
-# Aggiundere automaticamente un crate tra le dependencies
-cargo add create_name
-```
-
-- **Tags**: #Toml
-- **Esempio**:
-	
-```Rust 
-[package]
-name = "ProjectName"
-version = "VersionNumber"
-authors = "[AuthorName <email>]"
-edition = "Year"
-
-[dependencies]
-crate_name = "VersionNumber"
-
-[lib] // Inserimento moduli esterni
-name = "lib"
-path = "src/lib/lib.rs"
-```
-	
-```Rust
-// src/lib/lib.rs is a Collection of modules of the project 
-
-pub mod some_module;
-
-```
-	
-> Si controlla la documentazione del cargo su `cargo.io` per l'implementazione nel `main.rs`.
-> Nel codice si importerà il crate con `use crate_name::needed_element`.
-	
-### External Crates - Libraries
-	
-- **Descrizione**: I crates esterni sono librerie che possono essere incorporate nei progetti Rust attraverso Cargo. Possono contenere la compartimentazione delle funzioni del codice secondo criteri di convenienza tramite la creazione di .rs, in cui possono essere istanziati moduli funzioni strutture ed elementi di rust in maniera pubblica con l'uso di `pub` al fine di modularizzare e mantenere il codice pulito e manutenibile.
-- **Sintassi**: `extern crate` `use`
-- **Tags**: #Crates #ExternalLibraries
-- **Esempio**:
-	
-```Rust
-// src/lib/some_module.rs 
-
-pub struct Person { 
-	pub name: String, 
-	pub age: u32, 
-}
-
-pub fn some_function (_) {_}
-```
-	
-##### Accessibilità
-	
-```Rust
-// Importazione di un crate esterno e utilizzo nel progetto 
-use serde_json::json; 
-
-// Parola chiave `super` per accedere ai moduli al livello superiore 
-use super::config::Settings; 
-// Accede a `Settings` definito in un modulo 'config' un livello sopra 
-
-// Importazione diretta di strutture o funzioni da moduli interni 
-use crate::auth::validate_credentials; // Dove `auth` è un modulo nel progetto
-```
 	
 	
 ---

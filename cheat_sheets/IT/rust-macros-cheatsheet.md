@@ -436,7 +436,7 @@ mod connection {
 	
 >E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Suggested Progression
-[Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
+[Rust CheatSheet - Dinamiche del codice](Rust/IT/rust_control_flow_cheatsheet.md)
 	
 ---
 	
