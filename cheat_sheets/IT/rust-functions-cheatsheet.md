@@ -6,12 +6,10 @@
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
-###### [§ Funzioni Generiche](#-Funzioni-Generiche-1) 🌐
-- [Sintassi](#Sintassi)
 ###### [§ Metodi Standard](#-Metodi-Standard-1) 🔧
 - [Vettori (`Vec<T>`)](#vettori-vect)
 - [Stringhe (`String` e `&str`)](#stringhe-string-e-str)
-- [From Into](#From-Into)
+- [From \Into](#From-Into)
 	
 ---
 ## **§ Signature**
@@ -239,10 +237,10 @@ fn main () {
 	
 ### From Into
 	
-**Descrizione**: Sono metodi di *Traits* che permettono di convertire un tipo in un altro
-**Uso**: Si utilizza ad esempio nella generazione dello String type con `String::from("slice")`. E' spesso utile implementare `from`  o con `.into()`  per gli errori rendendoli dinamici e convertibili tra le varie tipologie
-**Tags**: #Traits 
-**Esempio**:
+- **Descrizione**: Sono metodi di *Traits* che permettono di convertire un tipo in un altro. `From` implementa la logica di conversione, mentre `Into` fornisce una conversione implicita basata sul tipo di destinazione.
+- **Uso**: Si utilizza ad esempio nella generazione dello String type con `String::from("slice")`. E' spesso utile implementare `from`  o con `.into()`  per gli errori rendendoli dinamici e convertibili tra le varie tipologie.
+- **Tags**: #Traits 
+- **Esempio**:
 
 ```Rust
 enum Status {
@@ -282,12 +280,48 @@ println!("{:?}",into_status);
 println!("{:?}",from_trait_status);
 ```
 - **Output**:
-```sh
+	```sh
 NoResponse(9)
 NoResponse(3)
-```
+	```
 	
+	 ##### Approfondimento Avanzato
+		
+	- **Descrizione**: Spesso la conversione del tipo può essere limitata da fattori logici, quindi si implementa al posto di `From` il trait `TryFrom` che restituisce un `Result` personalizzabile.
+	- **Uso**: Si personalizza `Error` all interno della funzione `try_from` per essere restituito come `Err` dal `Result` nel `Self::Error`.
+	- **Sintassi**: `use std::convert::TryFrom`
+	- **Tags**: #Result #Advanced #Traits #Error 
 	
+	```Rust
+	use std::convert::TryFrom; // Importa il trait TryFrom 
+	
+	enum Status { 
+		Online, 
+		Offline, 
+		NoResponse(u8), 
+	} 
+	#[derive(Debug)] 
+	struct ConversionError(&'static str); //  un tipo di errore personalizzato 
+	impl TryFrom<u8> for Status { 
+		type Error = ConversionError; //  Il tipo di errore personalizzato 
+		fn try_from(code: u8) -> Result<Self, Self::Error> { 
+			match code { 
+				0 => Ok(Status::Offline), 
+				1 => Ok(Status::Online), 
+				c => Err(ConversionError("Invalid status code!")), 
+				// Restituisce un errore per valori non validi 
+			} 
+		} 
+	} 
+	
+	let status_result = Status::try_from(5); 
+	match status_result { 
+		Ok(status) => println!("Conversion successful: {:?}", status), 
+		Err(e) => println!("Conversion failed: {:?}", e), 
+	}	
+	```
+	- **Output**: `Conversion failed: ConversionError("Invalid status code!")`
+
 ---
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)

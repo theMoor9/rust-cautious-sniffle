@@ -158,7 +158,7 @@ println!("First day: {}", first_day);
 ```
 - **Output**: `First day: Mon`
 	
-##### Approfondimento Avanzato
+	 ##### Approfondimento Avanzato
 	
 ```Rust
 fn function(array: [i8;9]) {} // chiamata in funzione
@@ -567,16 +567,16 @@ println!("Slice: {:?}", slice);
 ```
 - **Output**: `Slice: [2, 3]`
 	
-##### Approfondimento Avanzato
+	 ##### Approfondimento Avanzato
+		
+	- **Descrizione**: E' possibile creare slice da vettori.
+	- **Esempio**:
 	
-- **Descrizione**: E' possibile creare slice da vettori.
-- **Esempio**:
-	
-```Rust
-let letters = vec!["a","b","c","d","e","f"]
-let chars = &letters[0..=3]
-```
-- **Output**: a, b, c
+	```Rust
+	let letters = vec!["a","b","c","d","e","f"]
+	let chars = &letters[0..=3]
+	```
+	- **Output**: a, b, c
 	
 ### String Slice  
 	
@@ -609,7 +609,7 @@ let chars = &letters[0..=3]
 - **Tags**: #Types #Option #Enums 
 - **Esempio**:
 	
-```Rust
+	```Rust
 struct Shipping {
 	address: String,
 	address_number: civic_number,
@@ -631,40 +631,40 @@ let my_shipping = Shipping {
 }
 ```
 	
-##### *Approfondimento Avanzato*
+	 ##### *Approfondimento Avanzato*
+		
+	- **Descrizione**:  Un sistema di ricerca per valore che risulta in un None in caso di fallimento.
+	- **Tags**: #Option #Advanced
+	- **Esempio**:
 	
-- **Descrizione**:  Un sistema di ricerca per valore che risulta in un None in caso di fallimento.
-- **Tags**: #Option #Advanced
-- **Esempio**:
-	
-```Rust
-struct PersonID {
-	name: String,
-	age: u8,
-	email: Option<String>
-}
-
-fn find_age (people: Vec<PersonID>, name: &String) -> Option<u8> {
-	for person in people {
-		if person.name == name {
-			return person.age
-		}
+	```Rust
+	struct PersonID {
+		name: String,
+		age: u8,
+		email: Option<String>
 	}
-	None
-}
-
-fn main () {
-	let travelers = vec![
-		PersonID { name: "Kenneth".to_owned(), age:27, email: None},
-		PersonID { name: "Linda".to_owned(), age:19, email: None },
-		PersonID { name: "Elisa".to_owned(), age:21, email: None },
-		PersonID { name: "Lorenzo".to_owned(), age:27, email: None },
-	];
-
-	let me = "Kenneth"
-	let kenneth_age = find_age(travellers, &me);
-}
-
+	
+	fn find_age (people: Vec<PersonID>, name: &String) -> Option<u8> {
+		for person in people {
+			if person.name == name {
+				return person.age
+			}
+		}
+		None
+	}
+	
+	fn main () {
+		let travelers = vec![
+			PersonID { name: "Kenneth".to_owned(), age:27, email: None},
+			PersonID { name: "Linda".to_owned(), age:19, email: None },
+			PersonID { name: "Elisa".to_owned(), age:21, email: None },
+			PersonID { name: "Lorenzo".to_owned(), age:27, email: None },
+		];
+	
+		let me = "Kenneth"
+		let kenneth_age = find_age(travellers, &me);
+	}
+	
 ```
 	
 ### Result
@@ -683,7 +683,7 @@ enum Result <T,E> {
 - **Tags**: #Types #Result #Enums 
 - **Esempio**:
 	
-```Rust
+  ```Rust
 // Nella firma della funzione si dichiara Result e i tipi delle varianti
 fn distance_goal_check (mt: f64, minutes: u8) -> Result<u8, String>{
 	if mt > 1000 {
@@ -710,58 +710,58 @@ fn main () {
 }
 ```
 	
-##### *Approfondimento Avanzato*
+	 ##### *Approfondimento Avanzato*
+		
+	- **Descrizione**:  Si può evitare controlli match sul tipo di *Result* ottenuto.
+	- **Sintassi**: `?`
+	- **Uso**: Si usa per dare la possibilità ad una chiamata di funzione che restituisce un *Result* di autogestirsi dentro ad una funzione che ritorna un *Result* dando il risultato se esiste o l'errore alla funzione madre se si verifica posizionando `?` subito dopo la funzione figlia.
+	- **Tags**: #Result #Advanced
+	- **Esempio**:
 	
-- **Descrizione**:  Si può evitare controlli match sul tipo di *Result* ottenuto.
-- **Sintassi**: `?`
-- **Uso**: Si usa per dare la possibilità ad una chiamata di funzione che restituisce un *Result* di autogestirsi dentro ad una funzione che ritorna un *Result* dando il risultato se esiste o l'errore alla funzione madre se si verifica posizionando `?` subito dopo la funzione figlia.
-- **Tags**: #Result #Advanced
-- **Esempio**:
+	```Rust
+	#[derive(Debug)]
+	enum MenuPath {
+	    Start,
+	    Options,
+	    Exit
+	}
 	
-```Rust
-#[derive(Debug)]
-enum MenuPath {
-    Start,
-    Options,
-    Exit
-}
-
-// Funzione di definizione dei valori dei tipi di Result
-fn choice (input: &char) -> Result<MenuPath, String> {
-    match input {
-        's' => Ok(MenuPath::Start),
-        'o' => Ok(MenuPath::Options),
-        'e' => Ok(MenuPath::Exit),
-        _ => Err("Wrong input!".to_owned()),
-    }
-}
-
-// print_path accetta solo tipi enum MenuPath 
-fn print_path (c: &MenuPath) {
-    println!("{:?}",c);
-}
-
-// Il return Result è atto a catturare gli errori omettendo T con ()
-fn determine_path ( input: char) -> Result<(),String> {
-    /*
-	Determiniamo checked_choice come tipo enum MenuPath
-	L' operatore `?` ritornerà un Err come Result per 
-	determine_path interrompendo la funzione
-	*/
-	let checked_choice: MenuPath = choice(&input)?;
-	// E' assicurato che in questo caso print_path non riceva un Err
-	print_path( &checked_choice );
-	Ok(())
-}
-
-fn main () {
-	// Se è stato ritornato un errore verra raccolto e gestito qui
-	let err = determine_path('s');
-	if err == Err(String::from("Wrong input!")) {println!("{:?}",err)};
-}
-```
-- **Output**: `Wrong input!`
+	// Funzione di definizione dei valori dei tipi di Result
+	fn choice (input: &char) -> Result<MenuPath, String> {
+	    match input {
+	        's' => Ok(MenuPath::Start),
+	        'o' => Ok(MenuPath::Options),
+	        'e' => Ok(MenuPath::Exit),
+	        _ => Err("Wrong input!".to_owned()),
+	    }
+	}
 	
+	// print_path accetta solo tipi enum MenuPath 
+	fn print_path (c: &MenuPath) {
+	    println!("{:?}",c);
+	}
+	
+	// Il return Result è atto a catturare gli errori omettendo T con ()
+	fn determine_path ( input: char) -> Result<(),String> {
+	    /*
+		Determiniamo checked_choice come tipo enum MenuPath
+		L' operatore `?` ritornerà un Err come Result per 
+		determine_path interrompendo la funzione
+		*/
+		let checked_choice: MenuPath = choice(&input)?;
+		// E' assicurato che in questo caso print_path non riceva un Err
+		print_path( &checked_choice );
+		Ok(())
+	}
+	
+	fn main () {
+		// Se è stato ritornato un errore verra raccolto e gestito qui
+		let err = determine_path('s');
+		if err == Err(String::from("Wrong input!")) {println!("{:?}",err)};
+	}
+	```
+	- **Output**: `Wrong input!`
+		
 	
 --- 
 ## **§ Annotazioni Esplicite del Tipo**
