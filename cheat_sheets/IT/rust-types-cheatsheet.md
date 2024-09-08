@@ -6,6 +6,7 @@
 - [Booleani](#Booleani)
 - [Caratteri](#Caratteri)
 - [Unit](#Unit)
+- [Conversione Numerica](#Conversione-Numerica)
 ###### [§ Tipi Composti](#-Tipi-Composti-1) 🗂️
 - [Tuples](#Tuples)
 - [Arrays](#Arrays)
@@ -110,7 +111,31 @@ I tipi scalari in Rust rappresentano i valori più semplici, quelli che non poss
  }
 ```
 	
+### Conversione Numerica
+
+- **Descrizione**: A causa delle diverse dimensioni in _bit_ delle variabili numeriche, non è possibile effettuare operazioni tra tipi numerici diversi senza una conversione. In Rust, esiste un sistema per uniformare questi tipi in termini di dimensioni (_bit_), evitando così incompatibilità.
+- **Uso**: Per tutti i tipi numerici esiste il metodo `try_from` che tenta una conversione sicura, in particolare quando si passa da un tipo più grande a uno più piccolo. L'operatore `as`, invece, è un metodo meno sicuro, poiché tronca i dati se il valore non può essere contenuto nel tipo di destinazione.
+- **Sintassi**: 
+
+```Rust
+try_from // Conversione sicura
+as // Conversione spavalda
+```
+
+- **Tags**: #Types #Conversion #Integers #Float 
+- **Esempio**:
 	
+```Rust
+std
+
+let type_u16 = 9;
+let type_u32 = type_u16 as u32;
+
+u8::try_from(300u16)
+
+```
+
+
 ---
 ## **§ Tipi composti**
 	
