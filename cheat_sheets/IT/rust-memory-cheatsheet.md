@@ -7,7 +7,7 @@
 ###### [§ Heap](#-Heap-1) 🗃️
 - [Definizione](#Definizione)
 - [Visualizzazione Dati nello Heap](#Visualizzazione-Dati-nello-Heap)
-###### [§ Boxing](#-Boxing-1) 📦
+###### [§ Boxing](#-Boxing-1) 🗳️
 	
 ___
 ## **§ Stack**

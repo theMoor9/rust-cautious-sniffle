@@ -3,7 +3,7 @@
 ###### [§ Documentazione](#-Documentazione-1) 📃
 - [Aggiungere la Documentazione](#Aggiungere-la-Documentazione)
 - [Generare la Documentazione](#Generare-la-Documentazione)
-###### [§ Installare Pacchetti](#-Installare-Pacchetti-1) ⬇️
+###### [§ Installare Crate](#-Installare-Crate-1) 📦
 	
 ___
 ## **§ Documentazione**
@@ -54,14 +54,15 @@ $ cargo doc --open
 ## **§ Installare Crate**
 
 **Uso**: Installazione crate tramite cargo garantendo ultima versione disponibile.
-**Tags**: #Documentazione #Cargo #ExternalLibraries #Crates 
+**Tags**: #Cargo #ExternalLibraries #Crates 
 **Esempio**:
 	
 ```sh
 cargo install crate_name
 ```
 	
----	
+	
+---
 ##### Progressione Suggerita
 [Rust CheatSheet - Tipi](rust-types-cheatsheet.md)
 	

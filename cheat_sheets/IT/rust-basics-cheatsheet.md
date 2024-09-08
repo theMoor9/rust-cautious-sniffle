@@ -15,6 +15,7 @@
 - [Procedura di Compilazione ed Esecuzione](#Procedura-di-Compilazione-ed-Esecuzione)
 ###### [§ Standard Library API Docs](#-Standard-Library-API-Docs) 📖
 - [Procedura di apertura API Docs e ricerca](#Procedura-di-apertura-API-Docs-e-ricerca)
+###### [§ Clippy](#-Clippy-1) 📎
 	
 ---
 ## **§ Basics**
@@ -209,6 +210,28 @@ Tramite Terminal nella cartella dove si trova il `main.rs` :
 	
 1. **Una volta nell'API Documentation è possibile cercare qualsivoglia elemento necessario ad una corretta implementazione del proprio codice**
 	
+	
+	
+---	
+## **§ Clippy**
+
+**Descrizione**: Assistente che fornisce suggerimenti e avvisi per migliorare il codice, rendendolo più idiomatico e prevenendo errori comuni.
+**Tags**: #Cargo #Clppy #Errors
+**Uso**:
+	
+```sh
+rustup components add clippy
+```
+	
+**Esempio**:
+	
+```sh
+# Nella cartella del progetto
+cargo clippy
+
+# Nella cartella progetto su file singolo
+cargo clippy --bin nome_del_binario
+```
 	
 ---
 ##### Progressione Suggerita
