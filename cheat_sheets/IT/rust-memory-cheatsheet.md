@@ -102,6 +102,7 @@ Se si vuole aggiungere un dato la dove non c'è più posto come **3 bit** per **
 - **Definizione**: Il Boxing delle variabili è dedicare su memoria heap i dati.
 - **Uso**: Facilita il passaggio di dati grandi o complessi tra funzioni senza copiare l'intero valore.
 - **Sintassi**: `Box<Type>` 
+- **Tag**: #Boxing #Heap 
 - **Esempio**:
 	
 ```Rust
@@ -126,6 +127,8 @@ whatever
 ```
 	
 ---
+	
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ###### Suggested Follow-up
 [Rust CheatSheet - ](./.md)
 	  

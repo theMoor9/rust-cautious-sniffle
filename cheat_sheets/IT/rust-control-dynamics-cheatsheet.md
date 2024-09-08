@@ -867,7 +867,10 @@ Network error check connection
 Connection timed out
 ```
 	
+	
 ---
+
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Suggested Progression
 [Rust CheatSheet - Funzioni](rust-functions-cheatsheet.md)
 	

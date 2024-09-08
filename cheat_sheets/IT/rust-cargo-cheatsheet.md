@@ -63,6 +63,8 @@ cargo install crate_name
 	
 	
 ---
+
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Progressione Suggerita
 [Rust CheatSheet - Tipi](rust-types-cheatsheet.md)
 	

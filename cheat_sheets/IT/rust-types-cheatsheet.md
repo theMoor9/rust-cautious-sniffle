@@ -1244,6 +1244,8 @@ impl <T: Trait1, U: Trait2> Structure <T, U> {
 	
 	
 ---
+	
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Progressione Suggerita
 [Rust CheatSheet - Macro](rust-macros-cheatsheet.md)
 [Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)

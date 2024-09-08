@@ -230,6 +230,8 @@ println!("Il risultato è {}", result) ; // Stampa "Il risultato è 20"
 	
 	
 ---
+	
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Suggested Progression
 [Rust CheatSheet - Macro](rust-macros-cheatsheet.md)
 	

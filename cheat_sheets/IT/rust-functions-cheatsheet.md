@@ -3,6 +3,7 @@
 ###### [§ Signature](#-Signature-1) ✒️
 ###### [§ Metodi di Restituzione](#-Metodi-di-Restituzione-1) ↩️
 - [Propagazione Errore](#Propagazione-Errore)
+###### [§ Closure Argument](#-Closure-Argument-1)
 ###### [§ Funzionalità (Metodi)](#-Funzionalità-Metodi-1) 🛠️
 - [Implementazione](#Implementazione)
 - [Implementazione Autonoma](#Implementazione-Autonoma)
@@ -78,6 +79,55 @@ fn mother() -> Result<(), Error> {
 }
 
 ```
+	
+	
+---
+## **§ Closure Argument**
+	
+- **Descrizione**: È possibile passare una _closure_ come parametro di una funzione in Rust. Poiché le closure possono catturare variabili dall'ambiente e non hanno una dimensione fissa a tempo di compilazione, devono essere inserite all'interno di un `Box` per gestire la loro allocazione.
+- **Uso**: Utile per passare alla funzione un modello da eseguire nel suo corpo, consentendo di definire un comportamento flessibile.
+- **Sintassi**: `Box<Fn(Type,Type, ... ) -> Type>`
+- **Tags**: #Functions #Closures #Boxing #Heap 
+- **Esempio**:
+	
+```Rust
+fn mathematics( a: i32, b: i32, operation: Box<Fn(i32,i32)-> i32> ) -> i32 {
+	a + b * opreration(a,b)	
+}
+	
+fn main() {
+	let add_closure = |a, b| a + b;
+	let add_boxed: Box<_> = Box::new(add_closure);
+	
+	println!("{}", mathematics(3,6,add_boxed))
+}
+```
+- **Output**: `81`
+	
+### Dynamic Closures
+	
+- **Descrizione**: E' possibile passare nella firma di una funzione più di una *closure* consentendo la flessibilità di accettare diversi comportamenti dinamici.
+- **Uso**: Utile a passare alla funzione più modelli da eseguire nel suo corpo.
+- **Sintassi**: `dyn`
+- **Tags**: #Functions #Closures #Boxing #Heap
+- **Esempio**:
+	
+```Rust
+fn mathematics( a: i32, b: i32, operation: Box< dyn Fn(i32,i32)-> i32> ) -> i32 {
+	a + b * opreration(a,b)	
+}
+	
+fn main() {
+	let add_closure = |a, b| a + b;
+	let sub_closure = |a, b| a - b;
+	let add_boxed: Box<_> = Box::new(add_closure);
+	let sub_closure: Box<_> = Box::new(sub_closure);
+	
+	println!("{},", mathematics(3,6,add_boxed))
+	print!(" {}", mathematics(3,6,sub_closure))
+}
+```
+- **Output**: `81, 27`
 	
 	
 ---
@@ -321,8 +371,11 @@ NoResponse(3)
 	}	
 	```
 	- **Output**: `Conversion failed: ConversionError("Invalid status code!")`
-
+	
+	
 ---
+	
+>E' consigliato usare i `Tags` in relazione a gli altri Cheatsheets per un quadro sull'argomento più esaustivo.
 ##### Progressione Suggerita
 [Rust CheatSheet - Cicli](rust-loops-cheatsheet.md)
 [Rust CheatSheet - Dinamiche del codice](rust-control-dynamics-cheatsheet.md)
