@@ -226,7 +226,7 @@ let my_thread_handle = thread::spawn(move || {
 my_thread_handle.join(); // Chiamata di chiusura del thread
 	```
 	
-	 #### Enum Message
+	 #### Messaggio Enum 
 	 
 	```Rust
 use crossbeam_channel::unbounded; // Crea un canale con buffer illimitato;
@@ -250,7 +250,10 @@ fn main(){
 				Msg::Calculate(a,b) => println!("{}",(a+b)),
 				Msg::Quit => break, // Esce dal loop
 			},
-			Err(e) => println!("{}",e),
+			Err(e) => {
+				println!("{}",e)
+				break
+			},
 		}
 	})
 	
@@ -301,15 +304,36 @@ my_thread_handle1.join();
 my_thread_handle2.join(); 
 ```
 	
-### Bidirectional Communication
+### Bidirectional Communication 
 	
-- **Descrizione**: 
-- **Uso**: 
-- **Sintassi**: 
-- **Tags**: #Threads #Channels
+- **Uso**: Questo meccanismo rende possibile la comunicazione bidirezionale al fine di avere un codice responsivo e dinamico. 
+- **Tags**: #Threads #BidirectionalChannels 
 - **Esempio**:
 	
 ```Rust
+use crossbeam_channel::unbounded; // Crea un canale con buffer illimitato;
+use std::thread;
+
+fn main(){
+	let (thread_tx, thread_rx) = unbounded();
+	let (main_tx, main_rx) = unbounded();
+	
+	thread_tx.send("Message").unwrap(); // `unwrap()` gestisce i Result
+	
+	let my_thread_handle = thread::spawn(move || {
+		match thread_rx.recv() {
+			Ok(msg) => {
+				main_tx.send("Thread: Received").unwrap();
+			},
+			Err(e) => println!("Thread: {}",e),
+		}
+	})
+	
+	println!("main: {}",main_rx.recv().unwrap());
+	
+	// Chiamate di chiusura del thread
+	my_thread_handle.join().unwrap(); 
+}
 ```
 	
 	

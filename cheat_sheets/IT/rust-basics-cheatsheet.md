@@ -17,6 +17,9 @@
 ###### [§ Clippy](#-Clippy-1) 📎
 	
 ---
+
+> *Il compilatore è il tuo peggior nemico nei momenti di serenità ma il tuo miglior amico nei momenti di crisi.*
+
 ## **§ Basics**
 	
 - ##### Istanziazione Variabile
