@@ -214,7 +214,6 @@ let (sender, receiver) = unbounded();
 
 sender.send("Message")?; // ? essendo un sender e receiver dei Result type
 
-// Nel thread
 use std::thread;
 
 let my_thread_handle = thread::spawn(move || {
@@ -223,7 +222,50 @@ let my_thread_handle = thread::spawn(move || {
 		Err(e) => println!("{}",e),
 	}
 })
+
+my_thread_handle.join(); // Chiamata di chiusura del thread
 	```
+	
+	 #### Enum Message
+	 
+	```Rust
+use crossbeam_channel::unbounded; // Crea un canale con buffer illimitato;
+
+enum Msg {
+	PrintData(String),
+	Calculate(i64,i64),
+	Quit,
+}
+
+fn main(){
+	let (sender, receiver) = unbounded();
+	
+	use std::thread;
+	
+	//thread
+	let my_thread_handle = thread::spawn(move || loop{
+		match receiver.recv() { // il ricevitore è dentro il thread 
+			Ok(msg) => match msg {
+				Msg::PrintData(m) => println!("{}",m),
+				Msg::Calculate(a,b) => println!("{}",(a+b)),
+				Msg::Quit => break, // Esce dal loop
+			},
+			Err(e) => println!("{}",e),
+		}
+	})
+	
+	// Il mittente invia al corrispettivo ricevitore nel thread
+	sender.send(Msg::Calculate(3,3)).unwrap(); 
+	drop(sender) 
+	/*
+	In thread di `loop` infiniti si usa `drop()` che recide la connessione
+	generando `Err` 
+	*/
+	// Aspetta che il thread termini 
+	my_thread_handle.join().unwrap();
+}
+	```
+
 	
 	 #### Clone
 	- **Descrizione**: Il sender e il receiver possono esser clonate per gestire il flusso di informazioni caricate nel buffer in maniera dinamica.
@@ -238,7 +280,6 @@ let receiver_clone = receiver.clone();
 
 sender.send("Message")?; // ? essendo un sender e receiver dei Result type
 
-// Nel thread
 use std::thread;
 
 let my_thread_handle1 = thread::spawn(move || {
@@ -254,6 +295,10 @@ let my_thread_handle2 = thread::spawn(move || {
 		Err(e) => println!("{}",e),
 	}
 })
+
+// Chiamate di chiusura del thread
+my_thread_handle1.join(); 
+my_thread_handle2.join(); 
 ```
 	
 ### Bidirectional Communication
