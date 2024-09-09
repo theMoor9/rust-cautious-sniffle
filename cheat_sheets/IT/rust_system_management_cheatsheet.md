@@ -6,6 +6,8 @@
 - [Cargo](#Cargo)
 - [External Crates - Libraries](#External-Crates---Libraries)
 ###### [§ Threads](#-Thread-1) 🧵
+- [Channels](#Channels)
+- [Bidirectional Communication](#Bidirectional-Communication)
 	
 ---
 ## **§ Modules**
@@ -113,7 +115,7 @@ authors = "[AuthorName <email>]"
 edition = "Year"
 
 [dependencies]
-crate_name = "VersionNumber"
+crate_name = "VersionNumber" // Oppure "*" per ultima versione disponibile
 
 [lib] // Inserimento moduli esterni
 name = "lib"
@@ -175,12 +177,94 @@ use crate::auth::validate_credentials; // Dove `auth` è un modulo nel progetto
 ```Rust
 use std::thread;
 
-let handle_variable = thread::spawn(move |args| {
+let handle_variable = thread::spawn(move || {
 	// Codice eseguito nel thread 
 	println!("Esecuzione parallela in un thread");
 });
 
-handle_variable.join(); // .join() ritorna un result
+handle_variable.join(); // .join() ritorna un type Result
+```
+	
+> Se il `main()` finisce prima dell'esecuzione dei threads essi verranno interrotti, per prevenire ciò assicurarsi che i `.join()` corrispettivi siano correttamente posizionati nel codice è cruciale.
+	
+### Channels
+	
+- **Descrizione**: I canali permettono comunicazioni unidirezionali tra *threads*. Sebbene la libreria standard fornisca un modulo idoneo alla comunicazione tra threads, `crossbeam-channel` è un crate più completo.
+	
+```Rust
+// Installazione diretta
+[Dependencies]
+crossbeam-channel = "*"
+```
+	
+```sh
+# Installazione via cargo
+cargo install crossbeam-channel
+```
+	
+- **Uso**: Anche se è possibile inviare qualsiasi tipo di messaggio è consigliabile l'utilizzo degli `enum` che garantiscono la personalizzazione delle versioni in maniera robusta, grazie anche all'utilizzo del `match` statement. I canali sono da considerare come dei buffer di informazioni da cui un "sender" di tipo Result `Sender<type>` invia informazioni ad un "receiver" di tipo `Receiver<type>`.
+- **Sintassi**: `.send()` `.recv()`
+- **Tags**: #Threads #Channels
+- **Esempio**:
+	
+	```Rust
+use crossbeam_channel::unbounded; // Crea un canale con buffer illimitato;
+
+let (sender, receiver) = unbounded();
+
+sender.send("Message")?; // ? essendo un sender e receiver dei Result type
+
+// Nel thread
+use std::thread;
+
+let my_thread_handle = thread::spawn(move || {
+	match receiver.recv() {
+		Ok(msg) => println!("{}",msg),
+		Err(e) => println!("{}",e),
+	}
+})
+	```
+	
+	 #### Clone
+	- **Descrizione**: Il sender e il receiver possono esser clonate per gestire il flusso di informazioni caricate nel buffer in maniera dinamica.
+	- **Uso**: Utile alla sincronizzazione dei processi.
+	- **Esempio**:
+	
+```Rust
+use crossbeam_channel::unbounded; // Crea un canale con buffer illimitato;
+
+let (sender, receiver) = unbounded();
+let receiver_clone = receiver.clone();
+
+sender.send("Message")?; // ? essendo un sender e receiver dei Result type
+
+// Nel thread
+use std::thread;
+
+let my_thread_handle1 = thread::spawn(move || {
+	match receiver.recv() {
+		Ok(msg) => println!("{}",msg),
+		Err(e) => println!("{}",e),
+	}
+})
+
+let my_thread_handle2 = thread::spawn(move || {
+	match receiver_clone.recv() {
+		Ok(msg) => println!("{}",msg),
+		Err(e) => println!("{}",e),
+	}
+})
+```
+	
+### Bidirectional Communication
+	
+- **Descrizione**: 
+- **Uso**: 
+- **Sintassi**: 
+- **Tags**: #Threads #Channels
+- **Esempio**:
+	
+```Rust
 ```
 	
 	

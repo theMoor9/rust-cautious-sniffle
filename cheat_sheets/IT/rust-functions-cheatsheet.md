@@ -116,9 +116,9 @@ fn main () {
 	
 ### Move
 	
-- **Descrizione**: La *Ownership*  In una closure serve trasferirla, perché di default prendono solo i **riferimenti** alle variabili esterne.
+- **Descrizione**: La *Ownership*  In una closure serve trasferirla, perché di default gli argomenti dentro `| |` sono solo i **riferimenti** alle variabili passate.
 - **Uso**: Il `move` keyword è necessario quando la closure cattura variabili al di fuori del suo scope, trasferendo la proprietà di queste variabili alla closure stessa.
-- **Sintassi**: `move |args| { ... }`
+- **Sintassi**: `move || { ... }`
 - **Esempio**:
 	
 ```Rust
@@ -126,10 +126,12 @@ fn main () {
 	// Da passare in proprietà a `math`
 	let sub = 1005;
 	// Firma breve e corpo esteso
-	let math = move |a,b| {
+	let math = move || {
 		a + b - sub
 	};
-	let x = math(3,3);
+	let a = 3;
+	let b = 3;
+	let x = math();
 
 	println!("{}",x)
 }
