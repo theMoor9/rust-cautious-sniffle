@@ -4,6 +4,7 @@
 - [Tipologie di Placeholders](#Tipologie-di-Placeholders)
 ###### [§ vec!](#-vec-1) 🔢
 ###### [§ stringify!](#-stringify-1) 🗣️
+###### [§ macro_rules!](#-macro-rules-1) 🛄
 ###### [§ dbg!](#-dbg-1) 🕵️‍♂️
 ###### [§ Derive](#-Derive-1) 🧬
 - [Debug](#Debug)
@@ -155,6 +156,45 @@ println!("{}",name);
 	
 	
 ---
+## **§ macro_rules!**
+	
+- **Descrizione**: Permette di creare macro potenti e flessibili per generare codice in modo dinamico. Può essere usato per creare pattern di codice ricorrenti o per implementare comportamenti che altrimenti richiederebbero molto codice boilerplate. 
+- **Tags**: #Debug #Macros  
+- **Esempio**:
+`
+```Rust
+// Definizione di una macro per il debug
+macro_rules! debug_print {
+    ($val:expr) => {
+        println!("Debug: {:?}", $val);
+    };
+}
+
+fn main() {
+    let x = 42;
+    let y = "Hello, world!";
+    
+    // Utilizzo della macro per stampare i valori
+    debug_print!(x);   
+    debug_print!(y); 
+}
+
+```
+- **Output**: 
+	```Rust
+	/*
+	Output: Debug: 42
+    Output: Debug: "Hello, world!"
+    */
+	```
+
+- **Spiegazione**:
+    - **`macro_rules!`**: Definisce una macro in Rust.
+    - **`$val:expr`**: Specifica un pattern per catturare un'espressione. Il pattern `expr` accetta quasi qualsiasi cosa che si possa valutare.
+    - **`println!`**: Stampa nel terminale l'argomento, formattato per il debug (`{:?}`).
+	
+
+---
 ## **§ dbg!**
 	
 - **Descrizione**: Mostra nel terminale l'argomento ai fini del debug.
@@ -169,9 +209,6 @@ dbg!(name);
 - **Output**: `name = kenneth`
 	
 	
-
-
-
 ---
 ## **§ Derive**
 	
@@ -333,7 +370,7 @@ Usando in maniera standard `#[derive(Debug, Clone, Copy)]`, puoi ampliare la fun
 	
 	
 ---
-## § Config
+## **§ Config**
 	
 **Descrizione**: Il macro `cfg` in Rust è utilizzato per configurare la compilazione condizionale del codice a seconda di specifiche flag o opzioni di configurazione.
 **Uso**: Particolarmente utile per includere o escludere parti di codice basandosi su piattaforme target, funzionalità opzionali, o altre condizioni personalizzate definite dall'utente.
